@@ -89,7 +89,7 @@ p.small {
 }
 
 .admin-text{
-    position: relative; bottom:43px;  right: -12px; 
+    position: relative; bottom:45px;  right: -12px; 
     font-size: 25px;
     color: white;
     font-family: Lato regular;
@@ -224,6 +224,6 @@ p.small {
     font-family: Lato regular;
     font-size: 23px;
     position: relative;
-    top: -45px;
+    bottom: 50px;
     pointer-events: none;
 }

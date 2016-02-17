@@ -7,7 +7,7 @@
         <h:outputStylesheet  name="css/welcome.css"/>
     </h:head>
     <h:body>
-
+       
         <div class="container">
             <div class="top">
                 <h1 id="title" class="hidden"><span id="logo">Online Shopping</span></h1>
@@ -18,7 +18,7 @@
                     <h:commandButton class="admin-area-wrapper"  action="admin page"/>
                 </h:form> 
                 <div class="admin-text">
-                        Admin Area
+                    Admin Area
                 </div>
             </div>
             <div class="user-enter">
@@ -30,19 +30,23 @@
                 </h:form>
 
                 <div class="login-box animated fadeInUp">
-                    <div class="box-header">
-                        <h2>Log In</h2>
-                    </div>
-                    <label for="username">Username</label>
-                    <br/>
-                    <input type="text" id="username"/>
-                    <br/>
-                    <label for="password">Password</label>
-                    <br/>
-                    <input type="password" id="password"/>
-                    <br/>
-                    <button type="submit">Sign In</button>
-                    <br/>
+                       <h:form> 
+                            <div class="box-header">
+                                <h2>Log In</h2>
+                            </div>
+                           
+                            <label for="username">Username</label>
+                            <br/>
+                            <h:inputText id="inputText" value="#{userBean.userName}"/>
+                            <br/>
+                            <label for="password">Password</label>
+                            <br/>
+                            <h:inputText id="password" value="#{userBean.password}" />
+                            <br/>
+                            
+                            <h:commandButton style="cursor:pointer;" action="#{userBean.checkUserAuth}" value="Sign In"/>
+                               
+                       </h:form> 
                 </div>
             </div>
         </div>
