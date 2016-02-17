@@ -1,5 +1,5 @@
 body {
-	background: url("../images/c.jpg") no-repeat center center fixed;
+	background: url("../images/welcome.jpg") no-repeat center center fixed;
 	background-size: cover;
 	font-size: 16px;
 	font-family: 'Lato', sans-serif;
@@ -70,21 +70,31 @@ p.small {
    background: linear-gradient(#3C3732,#7D7A79);
 }
 
+.admin-area-wrapper:focus{
+    outline: none;
+}
+
+.admin-enter{
+    position: absolute;  right: 80px;   top: 50px;
+}
+
 .admin-area-wrapper{
     width:140px;   height: 62px;
     border-radius: 20px;
-    position: absolute;
-    top: 50px;
-    right: 80px;
+    position: relative;
     transition: opacity 0.5s;
     background: linear-gradient(#665851,#7D7A79);
-    display: flex;   justify-content: center;   align-items: center;
-    text-align: center;
+    cursor: pointer;
+    border: 1px solid #735F53;
+}
+
+.admin-text{
+    position: relative; bottom:43px;  right: -12px; 
     font-size: 25px;
     color: white;
     font-family: Lato regular;
     font-size: 23px;
-    cursor: pointer;
+    pointer-events: none;
 }
 
 .user-enter{
@@ -137,7 +147,7 @@ p.small {
 	color: #888;
 }
 
-.login-box input:focus {
+.login-box input:focus{
 	outline: none;
 	border-color: #665851;
 	transition: 0.5s;

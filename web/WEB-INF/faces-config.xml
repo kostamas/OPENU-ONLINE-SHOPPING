@@ -8,8 +8,14 @@
         <from-view-id>index.xhtml</from-view-id>
         <navigation-case>
             <!--<from-action>#{navigationController.processPage1}</from-action>-->     // figure how to use this...
-            <from-outcome>home</from-outcome>
+            <from-outcome>home page</from-outcome>
             <to-view-id>home.xhtml</to-view-id>
+        </navigation-case>
+        
+         <navigation-case>
+            <!--<from-action>#{navigationController.processPage1}</from-action>-->     // figure how to use this...
+            <from-outcome>admin page</from-outcome>
+            <to-view-id>admin.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 
