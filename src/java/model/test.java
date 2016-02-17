@@ -42,8 +42,8 @@ public class test extends HttpServlet {
         
           String str = "org.apache.derby.jdbc.ClientDriver";
          try {
-            // connect method #1 - embedded driver
-             Class.forName("org.apache.derby.jdbc.ClientDriver"); 
+             System.out.println("sdfsdfsdfsdfsdfsdfsdf");
+            Class.forName("org.apache.derby.jdbc.ClientDriver"); 
             String dbURL2 = "jdbc:derby://localhost:1527/shoppingDB";
             String user = "kosta";
             String password = "123";
@@ -78,8 +78,11 @@ public class test extends HttpServlet {
             Connection conn2 = DriverManager.getConnection(dbURL2, user, password);
             Statement statement = conn2.createStatement();;
             
+            statement.executeUpdate("INSERT INTO USERS VALUES('dsfdfdfsfd')");
+            
             ResultSet results = statement.executeQuery("select * from users" );
             ResultSetMetaData rsmd = results.getMetaData();
+         
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -87,7 +90,6 @@ public class test extends HttpServlet {
             out.println("<title>Servlet test</title>");            
             out.println("</head>");
             out.println("<body>");
-             out.println(rsmd.getColumnLabel(1) + "");
             out.println("<h1>Servlet test at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
