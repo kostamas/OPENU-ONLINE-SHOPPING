@@ -14,7 +14,7 @@
         
          <navigation-case>
             <!--<from-action>#{navigationController.processPage1}</from-action>-->     // figure how to use this...
-            <from-outcome>admin page</from-outcome>
+            <from-outcome>admin area page</from-outcome>
             <to-view-id>admin.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>

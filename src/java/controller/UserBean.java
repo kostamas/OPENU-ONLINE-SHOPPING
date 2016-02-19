@@ -11,37 +11,30 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class UserBean {
+
     private String userName;
     private String password;
 
     public void setUserName(String userName) {
         this.userName = userName;
     }
-    
+
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
     public String getUserName() {
-        return userName ;
+        return userName;
     }
-    
+
     public String getPassword() {
         return password;
     }
-    
-    public String checkUserAuth(){
-        if(this.userName.equals("tr") && this.password.equals("123")){
+
+    public String checkUserAuth() {
+        if (this.userName.equals("tr") && this.password.equals("123")) {
             return "home page";
-        }else{
-            return "";
-        }
-    }
-    
-     public String checkAdminAuth(){
-        if(this.userName.equals("tr") && this.password.equals("123")){
-            return "home page";
-        }else{
+        } else {
             return "";
         }
     }

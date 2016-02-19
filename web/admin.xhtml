@@ -1,13 +1,123 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
-        <title>Facelet Title</title>
+        <h:outputStylesheet  name="css/admin.css"/>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
+
     </h:head>
     <h:body>
-        Admin
-        <h:outputText id="outtxt" value="#{userBean.userName}"/>
+        <h:outputScript library="js" name="form.js" />
+
+        <h:form>        
+            <h:commandButton class="back" value="back"  action="index"/>
+        </h:form> 
+        <div class="back-text">BACK</div>
+
+        <div id="login-wrapper">
+            <div class="login-user-icon"></div>
+            <div class="login-pass-icon"></div>
+
+            <h:form class="login-form">
+
+                <div class="header">
+                    <h1>LOG IN</h1>
+                    <span>Fill out the form below to login to your  store/s.</span>
+                </div>
+
+                <div class="content">
+                    <h:inputText p:placeholder="Admin Name" class="input login-username" id="inputText" value="#{adminLogin.adminName}" onfocus="this.value = ''"/>
+                    <h:inputSecret p:placeholder="Password" redisplay="true" class="input login-password" value="#{adminLogin.password}" onfocus="this.value = ''" />
+                </div>
+
+                <div class="footer">
+                    <h:commandButton class="button" style="cursor:pointer;" action="#{adminLogin.checkAdminAuth}" value="Login"/>
+                    <div  onClick="switchMode('register-wrapper', 'login-wrapper')" class="register">Register</div>
+                </div>
+            </h:form>
+
+        </div>
+
+        <div id="register-wrapper">
+            <div class="register-user-icon"></div>
+            <div class="register-pass-icon"></div>
+            <div class="first-name">First name</div>
+            <div class="last-name">Last name</div>
+            
+            <div class="registration-explanantion"> <span style="position: absolute; left: -12px;">*</span> Registration you able to create new stores...</div>
+
+            <h:form  class="login-form register-form">
+
+                <div class="header">
+                    <h1>Register</h1>
+                    <span>Fill out the form below to login to your  store/s.</span>
+                </div>
+
+                <div class="content">
+                    <h:inputText p:placeholder="Admin Name"  class="input register-username" value="#{adminLogin.adminName}"  onfocus="this.value = ''" />
+                    <h:inputSecret p:placeholder="Password" redisplay="true" value="#{adminLogin.adminName}" class="input register-password"  onfocus="this.value = ''" />
+                    <h:inputText p:placeholder="First Name" class="input first-name-input" value="First Name" onfocus="this.value = ''" />
+                    <h:inputText p:placeholder="Last Name" class="input last-name-input" value="Last Name" onfocus="this.value = ''" />
+
+                </div>
+
+                <div class="footer">
+                    <h:commandButton class="button" style="cursor:pointer;" action="#{adminLogin.checkAdminAuth}" value="Register"/>
+                    <div onClick="switchMode('login-wrapper', 'register-wrapper')"  class="switch-to-login register" > Login</div>
+                </div>
+            </h:form>
+
+        </div>
+
+        <div class="gradient"></div>
     </h:body>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".login-username").focus(function () {
+                $(".login-user-icon").css("left", "-48px");
+            });
+            $(".login-username").blur(function () {
+                $(".login-user-icon").css("left", "0px");
+            });
+
+            $(".login-password").focus(function () {
+                $(".login-pass-icon").css("left", "-48px");
+            });
+            $(".login-password").blur(function () {
+                $(".login-pass-icon").css("left", "0px");
+            });
+
+
+            $(".register-username").focus(function () {
+                $(".register-user-icon").css("left", "-48px");
+            });
+            $(".register-username").blur(function () {
+                $(".register-user-icon").css("left", "0px");
+            });
+
+            $(".register-password").focus(function () {
+                $(".register-pass-icon").css("left", "-48px");
+            });
+            $(".register-password").blur(function () {
+                $(".register-pass-icon").css("left", "0px");
+            });
+
+            $(".first-name-input").focus(function () {
+                $(".first-name").css("left", "-98px");
+            });
+            $(".first-name-input").blur(function () {
+                $(".first-name").css("left", "0px");
+            });
+            $(".last-name-input").focus(function () {
+                $(".last-name").css("left", "-98px");
+            });
+            $(".last-name-input").blur(function () {
+                $(".last-name").css("left", "0px");
+            });
+        });
+    </script>
 </html>
 
