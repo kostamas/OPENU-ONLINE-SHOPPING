@@ -62,8 +62,8 @@ body {
 }
 */
 
-.gradient {
-    /* Center Positioning */
+/*.gradient {
+     Center Positioning 
     width: 600px;
     height: 600px;
     position: fixed;
@@ -72,17 +72,17 @@ body {
     margin-left: -300px;
     margin-top: -300px;
 
-    /* Fallback */ 
+     Fallback  
     background-image: url(../images/gradient.png); 
     background-repeat: no-repeat; 
 
-    /* CSS3 Gradient */
+     CSS3 Gradient 
     background-image: -webkit-gradient(radial, 0% 0%, 0% 100%, from(rgba(213,246,255,1)), to(rgba(213,246,255,0)));
     background-image: -webkit-radial-gradient(50% 50%, 40% 40%, rgba(213,246,255,1), rgba(213,246,255,0));
     background-image: -moz-radial-gradient(50% 50%, 50% 50%, rgba(213,246,255,1), rgba(213,246,255,0));
     background-image: -ms-radial-gradient(50% 50%, 50% 50%, rgba(213,246,255,1), rgba(213,246,255,0));
     background-image: -o-radial-gradient(50% 50%, 50% 50%, rgba(213,246,255,1), rgba(213,246,255,0));
-}
+}*/
 
 /*******************
 LOGIN FORM
@@ -359,7 +359,7 @@ FOOTER
     height: 0; 
     border-top: 15px solid transparent;
     border-bottom: 15px solid transparent; 
-    border-right:30px solid #1414F1; 
+    border-right:30px solid #121294; 
     color:white;
     margin-left:30px;
     margin-top: 30px;

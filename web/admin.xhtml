@@ -28,12 +28,12 @@
                 </div>
 
                 <div class="content">
-                    <h:inputText p:placeholder="Admin Name" class="input login-username" id="inputText" value="#{adminLogin.adminName}" onfocus="this.value = ''"/>
-                    <h:inputSecret p:placeholder="Password" redisplay="true" class="input login-password" value="#{adminLogin.password}" onfocus="this.value = ''" />
+                    <h:inputText p:placeholder="Admin Name" class="input login-username" id="inputText" value="#{loginBean.name}" onfocus="this.value = ''"/>
+                    <h:inputSecret p:placeholder="Password" redisplay="true" class="input login-password" value="#{loginBean.password}" onfocus="this.value = ''" />
                 </div>
 
                 <div class="footer">
-                    <h:commandButton class="button" style="cursor:pointer;" action="#{adminLogin.checkAdminAuth}" value="Login"/>
+                    <h:commandButton class="button" style="cursor:pointer;" action="#{loginBean.adminLogin}" value="Login"/>
                     <div  onClick="switchMode('register-wrapper', 'login-wrapper')" class="register">Register</div>
                 </div>
             </h:form>
@@ -46,7 +46,7 @@
             <div class="first-name">First name</div>
             <div class="last-name">Last name</div>
             
-            <div class="registration-explanantion"> <span style="position: absolute; left: -12px;">*</span> Registration you able to create new stores...</div>
+            <div class="registration-explanantion"> <span style="position: absolute; left: -12px;">*</span> Registration allows you create new stores...</div>
 
             <h:form  class="login-form register-form">
 
@@ -56,16 +56,16 @@
                 </div>
 
                 <div class="content">
-                    <h:inputText p:placeholder="Admin Name"  class="input register-username" value="#{adminLogin.adminName}"  onfocus="this.value = ''" />
-                    <h:inputSecret p:placeholder="Password" redisplay="true" value="#{adminLogin.adminName}" class="input register-password"  onfocus="this.value = ''" />
+                    <h:inputText p:placeholder="Admin Name"  class="input register-username" value="#{registerBean.name}"  onfocus="this.value = ''" />
+                    <h:inputSecret p:placeholder="Password" redisplay="true" value="#{registerBean.password}" class="input register-password"  onfocus="this.value = ''" />
                     <h:inputText p:placeholder="First Name" class="input first-name-input" value="First Name" onfocus="this.value = ''" />
                     <h:inputText p:placeholder="Last Name" class="input last-name-input" value="Last Name" onfocus="this.value = ''" />
 
                 </div>
 
                 <div class="footer">
-                    <h:commandButton class="button" style="cursor:pointer;" action="#{adminLogin.checkAdminAuth}" value="Register"/>
-                    <div onClick="switchMode('login-wrapper', 'register-wrapper')"  class="switch-to-login register" > Login</div>
+                    <h:commandButton class="button" style="cursor:pointer;" action="home page" value="Register"/>
+                    <div onClick="switchMode('login-wrapper', 'register-wrapper')" class="switch-to-login register"> Login</div>
                 </div>
             </h:form>
 
