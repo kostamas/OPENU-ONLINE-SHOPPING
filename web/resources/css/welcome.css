@@ -227,3 +227,20 @@ p.small {
     bottom: 50px;
     pointer-events: none;
 }
+
+
+
+.register-header{
+    display: none;
+}
+
+.mode-button{
+    position: absolute;    top:22px;    left: 17px;
+    color: white;
+    font: Lato regular;
+    cursor: pointer;
+}
+
+.register-wrapper{
+    display: none;
+}

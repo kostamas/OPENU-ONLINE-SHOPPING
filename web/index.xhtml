@@ -7,7 +7,7 @@
         <h:outputStylesheet  name="css/welcome.css"/>
     </h:head>
     <h:body>
-       
+  <h:outputScript library="js" name="form.js" />
         <div class="container">
             <div class="top">
                 <h1 id="title" class="hidden"><span id="logo">Online Shopping</span></h1>
@@ -15,7 +15,7 @@
 
             <div class="admin-enter">
                 <h:form>        
-                    <h:commandButton class="admin-area-wrapper"  action="admin page"/>
+                    <h:commandButton class="admin-area-wrapper"  action="admin area page"/>
                 </h:form> 
                 <div class="admin-text">
                     Admin Area
@@ -30,23 +30,52 @@
                 </h:form>
 
                 <div class="login-box animated fadeInUp">
-                       <h:form> 
-                            <div class="box-header">
-                                <h2>Log In</h2>
+                    <h:form> 
+                        <div class="box-header">
+                            <div class="login-header">
+                                <h2>LOGIN</h2>
+                                <div class="mode-button" 
+                                     onClick="switchMode(['.register-header','.register-wrapper'], ['.login-header','.login-wrapper'])">
+                                    register
+                                </div>
                             </div>
-                           
+
+                            <div class="register-header">
+                                <h2>REGISTER</h2>
+                                <div class="mode-button"
+                                     onClick="switchMode(['.login-header','.login-wrapper'], ['.register-header','.register-wrapper'])">
+                                    login
+                                </div>
+                                
+                            </div>
+
+                            <div class="register"></div>
+                        </div>
+
+                        <div class="login-wrapper">
                             <label for="username">Username</label>
                             <br/>
-                            <h:inputText id="inputText" value="#{userBean.userName}"/>
+                            <h:inputText id="inputText" value="#{loginBean.name}"/>
                             <br/>
                             <label for="password">Password</label>
                             <br/>
-                            <h:inputText id="password" value="#{userBean.password}" />
+                            <h:inputText id="password" value="#{loginBean.password}" />
                             <br/>
-                            
-                            <h:commandButton style="cursor:pointer;" action="#{userBean.checkUserAuth}" value="Sign In"/>
-                               
-                       </h:form> 
+                            <h:commandButton style="cursor:pointer;" action="#{loginBean.userLogin}" value="Sign In"/>
+                        </div>
+                        
+                         <div class="register-wrapper">
+                            <label for="username">Username</label>
+                            <br/>
+                            <h:inputText class="inputText" value="#{registerBean.name}"/>
+                            <br/>
+                            <label for="password">Password</label>
+                            <br/>
+                            <h:inputText class="password"  value="#{registerBean.name}"/>
+                            <br/>
+                            <h:commandButton style="cursor:pointer;" action="#{registerBean.userRegister}" value="Register"/>
+                        </div>
+                    </h:form> 
                 </div>
             </div>
         </div>
