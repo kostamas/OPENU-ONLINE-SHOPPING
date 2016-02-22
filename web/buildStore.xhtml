@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet  name="css/build-store.css"/>
+
+    </h:head>
+    <h:body>
+        <script>
+            var toggle = true;
+            function toggleEditProfile(){
+                var editProfile = document.querySelector(".profile-wrapper");
+                if(toggle){
+                    editProfile.style.right = "75px";
+                }else{
+                     editProfile.style.right = "-215px";
+                }
+                toggle = !toggle;
+            }
+        </script>
+        
+        <div class="edit-profile-text" onClick="toggleEditProfile()">Edit profile</div>
+
+        <div class="profile-wrapper">
+            <h:form>
+                <label for="username">First Name</label>
+                <br/>
+                <h:inputText class="" value=""/>
+                <br/>
+                <label for="password">Last Name</label>
+                <br/>
+                <h:inputText class="" />
+                <br/>
+                <label for="username">Email</label>
+                <br/>
+                <h:inputText class="" value=""/>
+                <br/>
+                <label for="password">Password</label>
+                <br/>
+                <h:inputText class=""  />
+                <br/>
+                <h:commandButton class="save-profile" style="cursor:pointer;" action="#{loginBean.userLogin}" value="done"/>
+            </h:form>
+        </div>
+    </h:body>
+</html>
+
