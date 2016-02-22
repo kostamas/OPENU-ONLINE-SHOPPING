@@ -19,24 +19,19 @@ public class Auth {
 
     }
 
-    public boolean loginControl(String username, String password) {
-        Login l = em.createNamedQuery("Login.control", Login.class)
-                .setParameter("username", username).
-                setParameter("password", password)
-                .getSingleResult();
-
-        if (l != null) {
+    public boolean loginControl(String queryName, String firstQueryParameterName, String firstParameterValue, String secondQueryParameterName, String secondParameterValue) {
+        if(isLoginExists(queryName, firstQueryParameterName, firstParameterValue, secondQueryParameterName, secondParameterValue)){
             return true;
         }
         return false;
     }
 
     public boolean registerControl(Object entity, String queryName, String queryParameterName, String parameterValue) {
-      
-        if(isExists(queryName, queryParameterName, parameterValue)){
+
+        if (isRegisterExists(queryName, queryParameterName, parameterValue)) {
             return false;
         }
-      
+
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         em.persist(entity);
@@ -44,12 +39,24 @@ public class Auth {
         em.close();
         return true;
     }
-    
-    private boolean isExists(String queryName, String queryParameterName, String parameterValue){
-        int resultSize = em.createNamedQuery(queryName, Users.class)
-                            .setParameter(queryParameterName, parameterValue)
-                            .getResultList().size();
-        if(resultSize > 0){
+
+    private boolean isRegisterExists(String queryName, String queryParameterName, String parameterValue) {
+        int resultSize = em.createNamedQuery(queryName)
+                .setParameter(queryParameterName, parameterValue)
+                .getResultList().size();
+        if (resultSize > 0) {
+            return true;
+        }
+        return false;
+    }
+    // todo- check if can combine this two functions isRegisterExists & isLoginExists
+
+    private boolean isLoginExists(String queryName, String firstQueryParameterName, String firstParameterValue, String secondQueryParameterName, String secondParameterValue) {   ///   ugly parameters !!!
+        int resultSize = em.createNamedQuery(queryName)
+                .setParameter(firstQueryParameterName, firstParameterValue)
+                .setParameter(secondQueryParameterName, secondParameterValue)
+                .getResultList().size();
+        if (resultSize > 0) {
             return true;
         }
         return false;
