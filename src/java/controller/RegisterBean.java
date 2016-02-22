@@ -29,7 +29,7 @@ public class RegisterBean {
     }
 
     public String adminRegister() {                 // can't make generice since this fn used in xhtml and can't take paremters
-        Administrators admin = new Administrators(this.name, this.password);
+       Administrators admin = new Administrators(this.name, this.password);
         String queryName = "Administrators.findByAdminName";
         String queryParameterName = "adminName";
         String parameterValue = this.name;
