@@ -5,18 +5,37 @@
  */
 package controller;
 
+import Entities.Products;
+import Entities.Stores;
+import static controller.LoginBean.adminName;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
 import javax.faces.bean.*;
+import javax.servlet.http.Part;
+import model.StoreBuilder;
 
 @ManagedBean
 @ViewScoped
 public class BuildProductBean {
+
     private int stock;
     private int StoreId;
-    private String photoName;
+    private String productPhoto;
     private String description;
     private int price;
-    private String ProductName;
-    private int ProductId;
+    private String productName;
+    private int productId;
+    private Part file;
+    
+    public Part getFile() {
+        return file;
+    }
+
+    public void setFile(Part file) {
+        this.file = file;
+    }
 
     public int getStock() {
         return stock;
@@ -32,14 +51,6 @@ public class BuildProductBean {
 
     public void setStoreId(int StoreId) {
         this.StoreId = StoreId;
-    }
-
-    public String getPhotoName() {
-        return photoName;
-    }
-
-    public void setPhotoName(String photoName) {
-        this.photoName = photoName;
     }
 
     public String getDescription() {
@@ -59,22 +70,36 @@ public class BuildProductBean {
     }
 
     public String getProductName() {
-        return ProductName;
+        return productName;
     }
 
     public void setProductName(String ProductName) {
-        this.ProductName = ProductName;
+        this.productName = ProductName;
     }
 
-    public int getProductId() {
-        return ProductId;
-    }
+    public String createNewProduct() {
+        if (this.productName == null || this.description == null || this.stock < 1 || this.price < 1 || this.file == null) {
+            return null;
+        }
+        StoreBuilder storeDB = new StoreBuilder();
+        this.productId = storeDB.createProductId() + 1;
+        
+        if(this.productId < 1){
+            return null;
+        }
+        
+        String dirPath = "C:\\work space\\" + BuildStoreBean.storeId;
+        this.productPhoto = this.productId +  "product.jpg";
 
-    public void setProductId(int ProductId) {
-        this.ProductId = ProductId;
-    }
-    
-    public void f(){
-        int x = BuildStoreBean.storeId;
+        Products newProduct = new Products(productId, this.productName, this.price, this.description, BuildStoreBean.storeId, this.stock, this.productPhoto);
+
+        storeDB.save(newProduct);
+           try (InputStream input = file.getInputStream()) {
+            Files.copy(input, new File(dirPath, this.productPhoto).toPath());
+        } catch (IOException e) {
+            // Show faces message?
+        }
+        
+        return null;
     }
 }

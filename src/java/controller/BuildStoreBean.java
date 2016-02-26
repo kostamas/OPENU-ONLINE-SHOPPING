@@ -6,6 +6,7 @@
 package controller;
 
 import Entities.Stores;
+import static java.awt.PageAttributes.MediaType.C;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -80,7 +81,7 @@ public class BuildStoreBean {
 
         StoreBuilder storeDB = new StoreBuilder();
 
-        this.storeId = storeDB.createStoreId();
+        this.storeId = storeDB.createStoreId() + 1;
 
         String adminName;
         if (RegisterBean.adminName != null) {
@@ -89,9 +90,10 @@ public class BuildStoreBean {
             adminName = LoginBean.adminName;
         }
 
-        String dirPath = "C:\\work space\\online shopping\\web\\resources";
-        this.storePhoto = this.storeId + ".jpg";
-        
+        new File("C:\\work space\\"+ this.storeId).mkdir();
+        String dirPath = "C:\\work space\\" + this.storeId;
+        this.storePhoto = this.storeId + "store.jpg";
+
         Stores newStore = new Stores(this.storeId, this.storeName, adminName, this.description, this.storePhoto);
         storeDB.save(newStore);
         try (InputStream input = file.getInputStream()) {
