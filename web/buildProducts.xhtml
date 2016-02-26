@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet  name="css/build-product.css"/>
+
+    </h:head>
+    <h:body>
+        <h:outputScript library="js" name="buildStore.js" />
+        <h:form>        
+            <h:commandButton class="back" value="back"  action="buildStore?faces-redirect=true"/>
+        </h:form> 
+        <div class="back-text">BACK</div>
+
+        <!--*********************************profile************************-->
+
+        <div class="edit-profile-text" onClick="toggleEditProfile()">Edit profile</div>
+
+        <div class="profile-wrapper">
+            <h:form>
+                <label for="username">First Name</label>
+                <br/>
+                <h:inputText class="" value=""/>
+                <br/>
+                <label for="password">Last Name</label>
+                <br/>
+                <h:inputText class="" />
+                <br/>
+                <label for="username">Email</label>
+                <br/>
+                <h:inputText class="" value=""/>
+                <br/>
+                <label for="password">Password</label>
+                <br/>
+                <h:inputText class=""  />
+                <br/>
+                <h:commandButton class="save-profile" style="cursor:pointer;" action="#{buildProductBean.f()}" value="done"/>
+            </h:form>
+        </div>
+
+        <!--*********************************profile*********************************-->
+
+        <!--*********************************build product*********************************-->
+        <div class="build-product-wrapper">
+
+            <div class="new-product-wrapper">
+
+                <div class="new-product-settings-wrapper">
+                    <div class="product-settings-title"> Product Settings</div>
+
+                    <div class="new-product-settings">
+                        <h:form  enctype="multipart/form-data">
+                            <label for="username">Product Name</label>
+                            <br/>
+                            <h:inputText class="" />
+                            <br/>
+                            <label for="password">description</label>
+                            <br/>
+                            <h:inputTextarea cols="35" rows="3" />
+                            <br/>
+                            <div class="stock-and-price-wrapper">
+                                <div class="price-label" for="username">Price</div>  
+                                <div class="stock-label" for="username">Stock</div>
+                                <h:inputText class="price-input" />
+                                <h:inputText class="stock-input" />
+                            </div>
+                            <label  for="username">Image</label>
+                            <br/>
+                            <h:inputFile  value="file"/>
+                            <br/>                    
+                            <br/>
+                            <h:commandButton class="save-profile" style="cursor:pointer;" action="#{buildProductBean.f}" value="done"/>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!--*********************************build product*********************************-->
+
+
+
+        <!--*********************************view yor  stores*********************************-->
+
+        <h:form>
+            <h:commandButton class="View-Your-Stores-wrapper" style="cursor:pointer;" action="view your stores page" value="view Your Stores"/>
+        </h:form>
+
+
+        <!--*********************************view yor  stores*********************************-->
+
+    </h:body>
+</html>
+

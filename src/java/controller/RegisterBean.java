@@ -12,6 +12,9 @@ public class RegisterBean {
     private String name;
     private String password;
 
+    public static String userName ;
+    public static String adminName ;
+
     public String getName() {
         return name;
     }
@@ -29,11 +32,13 @@ public class RegisterBean {
     }
 
     public String adminRegister() {                 // can't make generice since this fn used in xhtml and can't take paremters
-       Administrators admin = new Administrators(this.name, this.password);
+        Administrators admin = new Administrators(this.name, this.password);
         String queryName = "Administrators.findByAdminName";
         String queryParameterName = "adminName";
         String parameterValue = this.name;
-
+ 
+         this.adminName = this.name; 
+         
         Auth authController = new Auth();
         if (authController.registerControl(admin, queryName, queryParameterName, parameterValue)) {    // return true if registration succeded
 
@@ -49,6 +54,8 @@ public class RegisterBean {
         String queryParameterName = "userName";
         String parameterValue = this.name;
 
+         this.userName = this.name;
+         
         Auth authController = new Auth();
         if (authController.registerControl(user, queryName, queryParameterName, parameterValue)) {    // return true if registration succeded
 

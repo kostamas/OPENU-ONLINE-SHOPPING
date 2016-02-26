@@ -1,0 +1,115 @@
+
+body {
+    background: url(../images/b.jpg) repeat;
+    background-size: 640px 400px;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight:300;
+    text-decoration: none;
+}
+
+/*********************************************************profile****************************************************/
+
+.edit-profile-text{
+    color:white;    font-size: 35px;    font-family: Lato regular;
+    position: absolute;
+    right: 14px;  top: 0px;
+    margin: 35px 85px 0 0;
+    background: rgba(4, 6, 68, 0.15);
+    background-color: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.edit-profile-text:hover{
+    color:#BFBBBB;
+}
+
+.profile-wrapper{
+    background: url(../images/z.jpg) repeat;
+    z-index: -1;
+    border-radius: 10px;
+    background-size: cover;
+    width: 200px;  height:300px;
+    position: absolute; right:-215px; top: 100px;
+    display: flex;     justify-content: center;  align-items: center;
+    background-color: white;
+    border:1px solid #968787;
+    padding-bottom: 4px;
+    color: #0B50D0;    font-family: Lato regular; font-size: 21px;  
+    transition: right 0.6s;
+}
+
+.profile-wrapper input{
+    margin-bottom: 10px;
+    background-color: rgba(106, 71, 138, 0.69);
+    height: 20px;
+}
+
+.profile-wrapper input[type="submit"]{
+    color:#0B50D0;   font-family: Lato;    font-size: 18px;
+    background-color: #E8E6E4;
+    border-radius: 13px;
+    width:65px;  height: 30px;
+    border: none;
+    padding-bottom: 5px;
+}
+
+
+/*****^^^^^^^^^^^^^^^^^^^^^^^^^^^^^************************profile******^^^^^^^^^^^^^^^^^^^^^^^^^^^^^***********/
+
+
+
+
+/******************************************************build store *******************************************/
+
+.build-store-wrapper{
+    margin: 90px auto 0 auto;
+    width:400px;  height: auto;
+    min-height: 400px;
+    background-color: #ECC98B;
+    border: 1px solid #A79A76;
+    position: relative;   left:70px;
+    border-radius: 10px;
+}
+
+.build-store-wrapper .build-store-title{
+    text-align: center;
+    font-family: Lato regular;  font-size: 25px;  color:#0B50D0;
+    margin-top: 20px;
+}
+
+.store-settings-title{
+    font-family: Lato regular;    font-size:25px;     color:#57576B;
+    text-align: center;
+   
+}
+
+.new-store-btn{
+    width: 160px;  height: 160px;
+    background-color: red;
+    position: relative;    left:120px;    top:110px;
+    display: flex;     justify-content: center;     align-items: center;
+    font-family: Lato regular;  font-size: 25px;  color:white;
+}
+
+.new-store-settings-wrapper{
+    display: none; 
+}
+
+.new-store-settings{
+    display: flex;    justify-content: center;    align-items: center;   height: 400px;
+    color: #0B50D0;    font-family: Lato regular; font-size: 21px;  
+}
+
+.new-store-settings input, .new-store-settings textArea{
+    margin-bottom: 13px;
+}
+
+
+/******************************************************build store *******************************************/
+
+
+.View-Your-Stores-wrapper{
+    background-color: green;
+    width: 120px;  height: 120px;
+    position: absolute;     top: 230px;     left: 30px;
+}

@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet  name="css/build-store.css"/>
+
+    </h:head>
+    <h:body>
+        <h:outputScript library="js" name="buildStore.js" />
+
+        <!--*********************************profile************************-->
+
+        <div class="edit-profile-text" onClick="toggleEditProfile()">Edit profile</div>
+
+        <div class="profile-wrapper">
+            <h:form>
+                <label for="username">First Name</label>
+                <br/>
+                <h:inputText class="" value=""/>
+                <br/>
+                <label for="password">Last Name</label>
+                <br/>
+                <h:inputText class="" />
+                <br/>
+                <label for="username">Email</label>
+                <br/>
+                <h:inputText class="" value=""/>
+                <br/>
+                <label for="password">Password</label>
+                <br/>
+                <h:inputText class=""  />
+                <br/>
+                <h:commandButton class="save-profile" style="cursor:pointer;" action="#{loginBean.userLogin}" value="done"/>
+            </h:form>
+        </div>
+
+        <!--*********************************profile*********************************-->
+
+        <!--*********************************build store*********************************-->
+        <div class="build-store-wrapper">
+
+            <div class="new-store-wrapper">
+
+                <div  onClick="switchMode('.new-store-settings-wrapper', '.new-store-btn')" class="new-store-btn" style="cursor:pointer;">New Store</div>
+
+
+                <div class="new-store-settings-wrapper">
+                    <div class="store-settings-title"> Store Settings</div>
+                    <div class="new-store-settings">
+                        <h:form  enctype="multipart/form-data">
+                            <label>Store Name</label>
+                            <br/>
+                            <h:inputText value="#{buildStoreBean.storeName}" />
+                            <br/>
+                            <label for="password">description</label>
+                            <br/>
+                            <h:inputTextarea cols="30" rows="7" value="#{buildStoreBean.description}"/>
+                            <br/>
+                            <label for="username">Image</label>
+                            <br/>
+                            <h:inputFile  value="#{buildStoreBean.file}"/>
+                            <br/>
+                            <h:commandButton class="save-profile" style="cursor:pointer;" action="#{buildStoreBean.createNewStore}" value="done"/>
+                                                    </h:form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--*********************************build store*********************************-->
+
+
+
+
+
+
+
+        <!--*********************************view yor  stores*********************************-->
+
+
+        <h:form>
+            <h:commandButton class="View-Your-Stores-wrapper" style="cursor:pointer;" action="view your stores page" value="view Your Stores"/>
+        </h:form>
+
+
+        <!--*********************************view yor  stores*********************************-->
+
+    </h:body>
+</html>
+

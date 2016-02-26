@@ -10,6 +10,8 @@
     <class>model.Login</class>
     <class>Entities.Users</class>
     <class>Entities.Administrators</class>
+    <class>Entities.Stores</class>
+    <class>Entities.Products</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/OPENU"/>
