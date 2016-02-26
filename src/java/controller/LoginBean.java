@@ -9,6 +9,9 @@ import model.Auth;
 @ViewScoped
 public class LoginBean {
 
+    public static String userName ;
+    public static String adminName ;
+    
     private String name;
     private String password;
 
@@ -35,6 +38,8 @@ public class LoginBean {
         String secondQueryParameterName = "password";
         String secondParameterValue = this.password;
         
+        this.adminName = this.name;
+        
         Auth auth = new Auth();
         if (auth.loginControl(queryName,firstQueryParameterName,firstParameterValue,secondQueryParameterName,secondParameterValue)) {
             return "store builder page";
@@ -49,6 +54,8 @@ public class LoginBean {
         String firstParameterValue = this.name;
         String secondQueryParameterName = "password";
         String secondParameterValue = this.password;
+        
+        this.userName = this.name;
         
         Auth auth = new Auth();
         if (auth.loginControl(queryName,firstQueryParameterName,firstParameterValue,secondQueryParameterName,secondParameterValue)) {
