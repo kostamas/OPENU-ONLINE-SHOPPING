@@ -55,24 +55,24 @@
                         <h:form  enctype="multipart/form-data">
                             <label for="username">Product Name</label>
                             <br/>
-                            <h:inputText class="" />
+                            <h:inputText value="#{buildProductBean.productName}" />
                             <br/>
                             <label for="password">description</label>
                             <br/>
-                            <h:inputTextarea cols="35" rows="3" />
+                            <h:inputTextarea cols="35" rows="3"  value="#{buildProductBean.description}"/>
                             <br/>
                             <div class="stock-and-price-wrapper">
                                 <div class="price-label" for="username">Price</div>  
                                 <div class="stock-label" for="username">Stock</div>
-                                <h:inputText class="price-input" />
-                                <h:inputText class="stock-input" />
+                                <h:inputText class="price-input" value="#{buildProductBean.price}"/>
+                                <h:inputText class="stock-input" value="#{buildProductBean.stock}"/>
                             </div>
                             <label  for="username">Image</label>
                             <br/>
-                            <h:inputFile  value="file"/>
+                            <h:inputFile value="#{buildProductBean.file}"/>
                             <br/>                    
                             <br/>
-                            <h:commandButton class="save-profile" style="cursor:pointer;" action="#{buildProductBean.f}" value="done"/>
+                            <h:commandButton class="save-profile" style="cursor:pointer;" action="#{buildProductBean.createNewProduct}" value="done"/>
                         </h:form>
                     </div>
                 </div>

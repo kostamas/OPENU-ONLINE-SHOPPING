@@ -29,9 +29,13 @@ public class StoreBuilder {
          return em.createNamedQuery("Stores.findAll").getResultList().size();
     }
     
-    public boolean save(Stores store){
+    public int createProductId(){
+     return em.createNamedQuery("Products.findAll").getResultList().size();
+    }
+    
+    public boolean save(Object entity){
        em.getTransaction().begin();
-        em.persist(store);
+        em.persist(entity);
         em.getTransaction().commit();
         em.close();
         return true;
