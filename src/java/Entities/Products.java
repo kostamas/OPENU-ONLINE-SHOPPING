@@ -27,10 +27,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Products.findByProductId", query = "SELECT p FROM Products p WHERE p.productId = :productId"),
     @NamedQuery(name = "Products.findByProductName", query = "SELECT p FROM Products p WHERE p.productName = :productName"),
     @NamedQuery(name = "Products.findByPrice", query = "SELECT p FROM Products p WHERE p.price = :price"),
-    @NamedQuery(name = "Products.findByDescription", query = "SELECT p FROM Products p WHERE p.description = :description"),
+    @NamedQuery(name = "Products.findByStock", query = "SELECT p FROM Products p WHERE p.stock = :stock"),
     @NamedQuery(name = "Products.findByPhoto", query = "SELECT p FROM Products p WHERE p.photo = :photo"),
     @NamedQuery(name = "Products.findByStoreId", query = "SELECT p FROM Products p WHERE p.storeId = :storeId"),
-    @NamedQuery(name = "Products.findByStock", query = "SELECT p FROM Products p WHERE p.stock = :stock")})
+    @NamedQuery(name = "Products.findByDescription", query = "SELECT p FROM Products p WHERE p.description = :description")})
 public class Products implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -45,16 +45,16 @@ public class Products implements Serializable {
     @Column(name = "PRICE")
     private int price;
     @Basic(optional = false)
-    @Column(name = "DESCRIPTION")
-    private String description;
+    @Column(name = "STOCK")
+    private int stock;
+    @Basic(optional = false)
     @Column(name = "PHOTO")
     private String photo;
     @Basic(optional = false)
     @Column(name = "STORE_ID")
     private int storeId;
-    @Basic(optional = false)
-    @Column(name = "STOCK")
-    private int stock;
+    @Column(name = "DESCRIPTION")
+    private String description;
 
     public Products() {
     }
@@ -63,23 +63,23 @@ public class Products implements Serializable {
         this.productId = productId;
     }
 
-    public Products(Integer productId, String productName, int price, String description, int storeId, int stock) {
+    public Products(Integer productId, String productName, int price, int stock, String photo, int storeId) {
         this.productId = productId;
         this.productName = productName;
         this.price = price;
-        this.description = description;
-        this.storeId = storeId;
-        this.stock = stock;
-    }
-    
-       public Products(Integer productId, String productName, int price, String description, int storeId, int stock, String photo) {
-        this.productId = productId;
-        this.productName = productName;
-        this.price = price;
-        this.description = description;
-        this.storeId = storeId;
         this.stock = stock;
         this.photo = photo;
+        this.storeId = storeId;
+    }
+    
+      public Products(Integer productId, String productName, int price, int stock, String photo, int storeId, String description) {
+        this.productId = productId;
+        this.productName = productName;
+        this.price = price;
+        this.stock = stock;
+        this.photo = photo;
+        this.storeId = storeId;
+        this.description = description;
     }
 
     public Integer getProductId() {
@@ -106,12 +106,12 @@ public class Products implements Serializable {
         this.price = price;
     }
 
-    public String getDescription() {
-        return description;
+    public int getStock() {
+        return stock;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 
     public String getPhoto() {
@@ -130,12 +130,12 @@ public class Products implements Serializable {
         this.storeId = storeId;
     }
 
-    public int getStock() {
-        return stock;
+    public String getDescription() {
+        return description;
     }
 
-    public void setStock(int stock) {
-        this.stock = stock;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override

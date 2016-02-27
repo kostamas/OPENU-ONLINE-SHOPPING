@@ -43,6 +43,7 @@ public class Users implements Serializable {
     private String password;
     @Column(name = "FIRST_NAME")
     private String firstName;
+    @Basic(optional = false)
     @Column(name = "LAST_NAME")
     private String lastName;
     @Column(name = "MAIL")
@@ -56,10 +57,16 @@ public class Users implements Serializable {
     public Users(String userName) {
         this.userName = userName;
     }
-
+    
     public Users(String userName, String password) {
         this.userName = userName;
         this.password = password;
+    }
+
+    public Users(String userName, String password, String lastName) {
+        this.userName = userName;
+        this.password = password;
+        this.lastName = lastName;
     }
 
     public String getUserName() {
