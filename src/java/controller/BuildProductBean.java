@@ -91,7 +91,7 @@ public class BuildProductBean {
         String dirPath = "C:\\work space\\" + BuildStoreBean.storeId;
         this.productPhoto = this.productId +  "product.jpg";
 
-        Products newProduct = new Products(productId, this.productName, this.price, this.description, BuildStoreBean.storeId, this.stock, this.productPhoto);
+        Products newProduct = new Products(this.productId, this.productName, this.price, this.stock , this.productPhoto,  BuildStoreBean.storeId, this.description);
 
         storeDB.save(newProduct);
            try (InputStream input = file.getInputStream()) {
@@ -102,4 +102,5 @@ public class BuildProductBean {
         
         return null;
     }
+    
 }

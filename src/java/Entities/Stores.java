@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Stores.findAll", query = "SELECT s FROM Stores s"),
-    @NamedQuery(name = "Stores.findByStoresId", query = "SELECT s FROM Stores s WHERE s.storesId = :storesId"),
+    @NamedQuery(name = "Stores.findByStoreId", query = "SELECT s FROM Stores s WHERE s.storeId = :storeId"),
     @NamedQuery(name = "Stores.findByStoreName", query = "SELECT s FROM Stores s WHERE s.storeName = :storeName"),
     @NamedQuery(name = "Stores.findByStoreAdmin", query = "SELECT s FROM Stores s WHERE s.storeAdmin = :storeAdmin"),
     @NamedQuery(name = "Stores.findByDescription", query = "SELECT s FROM Stores s WHERE s.description = :description"),
@@ -34,8 +34,8 @@ public class Stores implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "STORES_ID")
-    private Integer storesId;
+    @Column(name = "STORE_ID")
+    private Integer storeId;
     @Basic(optional = false)
     @Column(name = "STORE_NAME")
     private String storeName;
@@ -45,37 +45,31 @@ public class Stores implements Serializable {
     @Basic(optional = false)
     @Column(name = "DESCRIPTION")
     private String description;
+    @Basic(optional = false)
     @Column(name = "STORE_PHOTO")
     private String storePhoto;
 
     public Stores() {
     }
 
-    public Stores(Integer storesId) {
-        this.storesId = storesId;
+    public Stores(Integer storeId) {
+        this.storeId = storeId;
     }
 
-    public Stores(Integer storesId, String storeName, String storeAdmin, String description) {
-        this.storesId = storesId;
-        this.storeName = storeName;
-        this.storeAdmin = storeAdmin;
-        this.description = description;
-    }
-    
-      public Stores(Integer storesId, String storeName, String storeAdmin, String description, String storePhoto) {
-        this.storesId = storesId;
+    public Stores(Integer storeId, String storeName, String storeAdmin, String description, String storePhoto) {
+        this.storeId = storeId;
         this.storeName = storeName;
         this.storeAdmin = storeAdmin;
         this.description = description;
         this.storePhoto = storePhoto;
     }
 
-    public Integer getStoresId() {
-        return storesId;
+    public Integer getStoreId() {
+        return storeId;
     }
 
-    public void setStoresId(Integer storesId) {
-        this.storesId = storesId;
+    public void setStoreId(Integer storeId) {
+        this.storeId = storeId;
     }
 
     public String getStoreName() {
@@ -113,7 +107,7 @@ public class Stores implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (storesId != null ? storesId.hashCode() : 0);
+        hash += (storeId != null ? storeId.hashCode() : 0);
         return hash;
     }
 
@@ -124,7 +118,7 @@ public class Stores implements Serializable {
             return false;
         }
         Stores other = (Stores) object;
-        if ((this.storesId == null && other.storesId != null) || (this.storesId != null && !this.storesId.equals(other.storesId))) {
+        if ((this.storeId == null && other.storeId != null) || (this.storeId != null && !this.storeId.equals(other.storeId))) {
             return false;
         }
         return true;
@@ -132,7 +126,7 @@ public class Stores implements Serializable {
 
     @Override
     public String toString() {
-        return "Entities.Stores[ storesId=" + storesId + " ]";
+        return "Entities.Stores[ storeId=" + storeId + " ]";
     }
     
 }
