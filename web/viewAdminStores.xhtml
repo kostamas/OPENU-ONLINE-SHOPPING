@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet  name="css/view-admin-stores.css"/>
+
+    </h:head>
+    <h:body>
+        <div class="back-wrapper">
+            <h:form>        
+                <h:commandButton class="back" value="back"  action="buildStore?faces-redirect=true"/>
+            </h:form> 
+        </div>
+        <div class="back-text">BACK</div>
+
+        <h2 class="your-stores-title">Your Stores</h2>
+        <div class="table-wrapper">
+            <h:dataTable value="#{storesViewer.stores}" var="store">
+                <h:column>
+                    <div class="store-description-title">
+                        <div style="text-align: center; font-size: 21px; text-decoration: underline;">description</div>
+                        #{store.description}
+                    </div>
+                </h:column>
+
+                <h:column>
+                    <div class="store-name-title">#{store.storeName}</div>
+                    <h:graphicImage value="/image/#{store.storeId}/#{store.storePhoto}" height="150px;" width="170px;"/>
+                </h:column>
+                <h:column>
+                    <h:form>        
+                        <h:commandButton class="admin-area-wrapper" value="edit"  action="admin area page"/>
+                    </h:form> 
+                </h:column>
+            </h:dataTable>
+        </div>
+    </h:body>
+</html>
+

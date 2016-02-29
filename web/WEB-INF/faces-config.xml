@@ -43,8 +43,9 @@
         <from-view-id>buildStore.xhtml</from-view-id>
         <navigation-case>
             <!--<from-action>#{navigationController.processPage1}</from-action>-->     // figure how to use this...
-            <from-outcome>view your stores page</from-outcome>
-            <to-view-id>viewYourStores.xhtml</to-view-id>
+            <from-outcome>view admin stores page</from-outcome>
+            <to-view-id>viewAdminStores.xhtml</to-view-id>
+            <redirect/>
         </navigation-case>
         
          <navigation-case>
