@@ -22,6 +22,8 @@ public class BuildStoreBean {
     public static int storeId;
     private String storeName;
     private String storePhoto;
+    private String storeAdmin;
+    private String description;
     private Part file;
 
     public int getStoreId() {
@@ -71,8 +73,6 @@ public class BuildStoreBean {
     public void setFile(Part file) {
         this.file = file;
     }
-    private String storeAdmin;
-    private String description;
 
     public String createNewStore() {
         if (this.description == null || this.storeName == null || this.file == null) {
@@ -90,7 +90,7 @@ public class BuildStoreBean {
             adminName = LoginBean.adminName;
         }
 
-        String dirPath = "C:\\onlineShopping\\"+ this.storeId;
+        String dirPath = "C:\\onlineShopping\\" + this.storeId;
         new File(dirPath).mkdir();
         this.storePhoto = this.storeId + "store.jpg";
 

@@ -29,17 +29,17 @@
                     <h:form  enctype="multipart/form-data">
                         <label>Store Name</label>
                         <br/>
-                        <h:inputText value="#{buildStoreBean.storeName}" />
+                        <h:inputText value="#{storesViewer.storeName}" />
                         <br/>
                         <label for="password">description</label>
                         <br/>
-                        <h:inputTextarea cols="30" rows="7" value="#{buildStoreBean.description}"/>
+                        <h:inputTextarea cols="30" rows="7" value="#{storesViewer.description}"/>
                         <br/>
                         <label for="username">Image</label>
                         <br/>
-                        <h:inputFile  value="#{buildStoreBean.file}"/>
+                        <h:inputFile  value="#{storesViewer.file}"/>
                         <br/>
-                        <h:commandButton class="save-profile" style="cursor:pointer;" action="#{buildStoreBean.createNewStore}" value="done"/>
+                        <h:commandButton class="save-profile" style="cursor:pointer;" action="#{storesViewer.update}" value="done"/>
                     </h:form>
                 </div>
             </div>
