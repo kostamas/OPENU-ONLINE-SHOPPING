@@ -1,13 +1,16 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
         <h:outputStylesheet  name="css/view-admin-stores.css"/>
 
     </h:head>
     <h:body>
+        <h:outputScript library="js" name="switchClasses.js" />
+
         <div class="back-wrapper">
             <h:form>        
                 <h:commandButton class="back" value="back"  action="buildStore?faces-redirect=true"/>
@@ -16,8 +19,49 @@
         <div class="back-text">BACK</div>
 
         <h2 class="your-stores-title">Your Stores</h2>
+
+        <!--********************************* store  edit*********************************-->
+
+        <div class="edit-store-wrapper">
+            <div class="new-store-settings-wrapper">
+                <div class="store-settings-title"> Store Settings</div>
+                <div class="new-store-settings">
+                    <h:form  enctype="multipart/form-data">
+                        <label>Store Name</label>
+                        <br/>
+                        <h:inputText value="#{buildStoreBean.storeName}" />
+                        <br/>
+                        <label for="password">description</label>
+                        <br/>
+                        <h:inputTextarea cols="30" rows="7" value="#{buildStoreBean.description}"/>
+                        <br/>
+                        <label for="username">Image</label>
+                        <br/>
+                        <h:inputFile  value="#{buildStoreBean.file}"/>
+                        <br/>
+                        <h:commandButton class="save-profile" style="cursor:pointer;" action="#{buildStoreBean.createNewStore}" value="done"/>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!--********************************* store  edit*********************************-->
+
         <div class="table-wrapper">
             <h:dataTable value="#{storesViewer.stores}" var="store">
+                <h:column>
+                    <h:form>        
+                        <h:commandButton class="edit-btn-wrapper" 
+                                         onclick="toggle('.edit-store-wrapper', 'left', '30px', '-350px')" 
+                                         value="Edit"  action="#{storesViewer.saveStoreId}">
+                            <f:param name="storeId" value="#{store.storeId}"/>
+                            <f:ajax execute="@this"/>
+                        </h:commandButton>
+                    </h:form> 
+                </h:column>
                 <h:column>
                     <div class="store-description-title">
                         <div style="text-align: center; font-size: 21px; text-decoration: underline;">description</div>
@@ -28,11 +72,6 @@
                 <h:column>
                     <div class="store-name-title">#{store.storeName}</div>
                     <h:graphicImage value="/image/#{store.storeId}/#{store.storePhoto}" height="150px;" width="170px;"/>
-                </h:column>
-                <h:column>
-                    <h:form>        
-                        <h:commandButton class="admin-area-wrapper" value="edit"  action="admin area page"/>
-                    </h:form> 
                 </h:column>
             </h:dataTable>
         </div>
