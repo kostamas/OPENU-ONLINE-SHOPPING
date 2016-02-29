@@ -45,6 +45,7 @@
             <!--<from-action>#{navigationController.processPage1}</from-action>-->     // figure how to use this...
             <from-outcome>view admin stores page</from-outcome>
             <to-view-id>viewAdminStores.xhtml</to-view-id>
+            <redirect/>
         </navigation-case>
         
          <navigation-case>
