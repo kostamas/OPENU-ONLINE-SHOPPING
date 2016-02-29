@@ -88,7 +88,7 @@ public class BuildProductBean {
             return null;
         }
         
-        String dirPath = "C:\\work space\\" + BuildStoreBean.storeId;
+        String dirPath = "C:\\onlineShopping\\"+BuildStoreBean.storeId;
         this.productPhoto = this.productId +  "product.jpg";
 
         Products newProduct = new Products(this.productId, this.productName, this.price, this.stock , this.productPhoto,  BuildStoreBean.storeId, this.description);

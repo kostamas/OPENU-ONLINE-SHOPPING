@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet  name="css/view-admin-stores.css"/>
+
+    </h:head>
+    <h:body>
+
+        <h2 class="your-stores-title">Your Stores</h2>
+        <h:dataTable value="#{storesViewer.stores}" var="store">
+            <h:column>
+                #{store.storeName}
+            </h:column>
+            <h:column>
+                #{store.description}
+            </h:column>
+
+            <h:column>
+                <h:graphicImage value="image/1/1store.jpg" width="70px;"/>
+            </h:column>
+        </h:dataTable>
+    </h:body>
+</html>
+

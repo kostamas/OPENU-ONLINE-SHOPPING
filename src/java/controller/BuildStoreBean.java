@@ -90,8 +90,8 @@ public class BuildStoreBean {
             adminName = LoginBean.adminName;
         }
 
-        new File("C:\\work space\\"+ this.storeId).mkdir();
-        String dirPath = "C:\\work space\\" + this.storeId;
+        String dirPath = "C:\\onlineShopping\\"+ this.storeId;
+        new File(dirPath).mkdir();
         this.storePhoto = this.storeId + "store.jpg";
 
         Stores newStore = new Stores(this.storeId, this.storeName, adminName, this.description, this.storePhoto);

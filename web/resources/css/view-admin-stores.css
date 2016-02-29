@@ -1,0 +1,30 @@
+
+body {
+    background: url(../images/a3.jpg) repeat;
+    background-size: 300px 200px;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight:300;
+    text-decoration: none;
+}
+
+.your-stores-title{
+    text-align: center;
+    margin: 40px 0;
+
+}
+
+table{
+    margin: 0 auto;
+    background-color: rgba(241, 15, 80, 0.15);
+}
+table tr{
+    margin: 30px;
+    display: block;
+}
+
+table tr td{
+    margin: 20px;
+    display: inline-block;
+    background-color: red;
+}
+
