@@ -18,14 +18,14 @@
             30
         </session-timeout>
     </session-config>
-<!--     <servlet>
+     <servlet>
         <servlet-name>ImageServlet</servlet-name>
         <servlet-class>controller.ImageServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ImageServlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
-    </servlet-mapping>-->
+    </servlet-mapping>
     <welcome-file-list>
         <welcome-file>faces/index.xhtml</welcome-file>
     </welcome-file-list>

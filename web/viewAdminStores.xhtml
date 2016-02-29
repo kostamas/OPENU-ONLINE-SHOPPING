@@ -8,21 +8,34 @@
 
     </h:head>
     <h:body>
-<h:graphicImage value="/image/1/1store.jpg" width="70px;"/>
-        
-        <h2 class="your-stores-title">Your Stores</h2>
-        <h:dataTable value="#{storesViewer.stores}" var="store">
-            <h:column>
-                #{store.storeName}
-            </h:column>
-            <h:column>
-                #{store.description}
-            </h:column>
+        <div class="back-wrapper">
+            <h:form>        
+                <h:commandButton class="back" value="back"  action="buildStore?faces-redirect=true"/>
+            </h:form> 
+        </div>
+        <div class="back-text">BACK</div>
 
-            <h:column>
-                <h:graphicImage value="/image/1/1store.jpg" width="70px;"/>
-            </h:column>
-        </h:dataTable>
+        <h2 class="your-stores-title">Your Stores</h2>
+        <div class="table-wrapper">
+            <h:dataTable value="#{storesViewer.stores}" var="store">
+                <h:column>
+                    <div class="store-description-title">
+                        <div style="text-align: center; font-size: 21px; text-decoration: underline;">description</div>
+                        #{store.description}
+                    </div>
+                </h:column>
+
+                <h:column>
+                    <div class="store-name-title">#{store.storeName}</div>
+                    <h:graphicImage value="/image/#{store.storeId}/#{store.storePhoto}" height="150px;" width="170px;"/>
+                </h:column>
+                <h:column>
+                    <h:form>        
+                        <h:commandButton class="admin-area-wrapper" value="edit"  action="admin area page"/>
+                    </h:form> 
+                </h:column>
+            </h:dataTable>
+        </div>
     </h:body>
 </html>
 
