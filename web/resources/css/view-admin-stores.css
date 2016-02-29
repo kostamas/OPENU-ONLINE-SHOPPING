@@ -96,13 +96,13 @@ table tr td{
 }
 table .store-name-title{
     text-align: center;
-    font-size: 23px;   font-family: lato regular;      color:white;
+    font-size: 23px;   font-family: lato regular;      color:black;
     margin-bottom: 10px;
 }
 
 table .store-description-title{
     padding:5px;
-    font-size: 18px;   font-family: lato regular;      color:black;
+    font-size: 16px;   font-family: lato regular;      color:black;
     margin-bottom: -30px;
     width: 200px;   height:140px;
     border: 1px solid black;
@@ -120,3 +120,84 @@ table img{
     border: 1px solid black;
 }
 
+ .edit-btn-wrapper{
+    width: 60px;   height: 30px;
+    position: relative;      right: 13px;  top: 15px;
+    display: flex;    justify-content: center;      align-items: center;
+    background-color: #0D5A0D;
+    color:white;
+    font-family: Lato regular;
+    border-radius: 14px;
+    cursor: pointer;
+    border: 1px solid black;
+    font-family: lato regular;
+    font-size:18px;
+}
+
+.edit-btn-wrapper:focus{
+    outline: none;
+}
+
+.edit-btn-wrapper:active{
+    background-color: green;
+}
+
+.edit-btn-wrapper:hover{
+    opacity: 0.9;
+}
+
+
+
+
+
+
+
+
+/***************************edit store*******************************/
+
+.edit-store-wrapper{
+    margin: 90px auto 0 auto;
+    width:320px;  height: auto;
+    min-height: 400px;
+    background-color: #ECC98B;
+    border: 1px solid #A79A76;
+    position: absolute;   left:-350px;  top: 33px;
+    border-radius: 10px;
+    transition: left 0.5s ease-out;
+}
+
+.edit-store-wrapper .build-store-title{
+    text-align: center;
+    font-family: Lato regular;  font-size: 25px;  color:#0B50D0;
+    margin-top: 20px;
+}
+
+.store-settings-title{
+    font-family: Lato regular;    font-size:25px;     color:#57576B;
+    text-align: center;
+   
+}
+
+.new-store-btn{
+    width: 160px;  height: 160px;
+    background-color: red;
+    position: relative;    left:120px;    top:110px;
+    display: flex;     justify-content: center;     align-items: center;
+    font-family: Lato regular;  font-size: 25px;  color:white;
+}
+
+.new-store-settings-wrapper{
+    display: block; 
+}
+
+.new-store-settings{
+    display: flex;    justify-content: center;    align-items: center;   height: 400px;
+    color: #0B50D0;    font-family: Lato regular; font-size: 21px;  
+}
+
+.new-store-settings input, .new-store-settings textArea{
+    margin-bottom: 13px;
+}
+
+
+/***************************edit store*******************************/
