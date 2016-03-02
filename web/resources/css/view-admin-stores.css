@@ -41,18 +41,33 @@ body {
 
 .your-stores-title{
     text-align: center;
-    margin: 30px 0;
-
+    font-size: 25px;
+    margin: 10px auto;
+    background-color: #A8B75C;
+    width: 550px;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    position: relative;
+    top: 11px;
 }
 
 
-
-.table-wrapper{
-    margin: 0 auto;
+.store-list-wrapper{
+    position: relative;
     width: 550px;
-    height: 490px;
+    height: 510px;
+    margin: 28px auto 0 auto;
+}
+.table-wrapper{
+    position: relative;
+    width: 550px;
+    height: 510px;
     overflow-y: scroll;
-    border: 1px solid black;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+
     background: rgba(164,179,87,1);
     background: -moz-linear-gradient(top, rgba(164,179,87,1) 0%, rgba(214,227,143,1) 54%, rgba(117,137,12,1) 100%);
     background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(164,179,87,1)), color-stop(54%, rgba(214,227,143,1)), color-stop(100%, rgba(117,137,12,1)));
@@ -85,7 +100,7 @@ body {
 
 
 table tr{
-    margin: 30px;
+    margin: 0 30px 30px 30px;
     display: block;
 }
 
@@ -124,7 +139,7 @@ table img{
     position: relative;
     bottom: 5px;
 }
- .edit-btn-wrapper, .products-page-btn-wrapper, .delete-store-btn-wrapper{
+.edit-btn-wrapper, .products-page-btn-wrapper, .delete-store-btn-wrapper{
     width: 70px;   height: 30px;
     position: relative;      right: 13px;  top: 15px;
     display: flex;    justify-content: center;      align-items: center;
@@ -180,7 +195,7 @@ table img{
 .store-settings-title{
     font-family: Lato regular;    font-size:25px;     color:#57576B;
     text-align: center;
-   
+
 }
 
 .new-store-btn{

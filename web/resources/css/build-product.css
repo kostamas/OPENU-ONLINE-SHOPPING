@@ -92,6 +92,7 @@ body {
     border: 1px solid #A79A76;
     position: absolute;   left:-350px;    bottom:70px;
     border-radius: 10px;
+    transition: left 0.6s ease-out;
 }
 
 
@@ -173,7 +174,11 @@ input[type="file"]{
 
 .store-name{
     text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 10px;
 }
+
 .table-wrapper{
     margin: 0 auto;
     width: 550px;
@@ -212,7 +217,7 @@ input[type="file"]{
 
 
 table tr{
-    margin: 30px;
+    margin: 0 30px 30px 30px;
     display: block;
 }
 

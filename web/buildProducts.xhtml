@@ -7,10 +7,12 @@
     <h:head>
         <title>Facelet Title</title>
         <h:outputStylesheet  name="css/build-product.css"/>
-
+        <h:outputScript  name="js/buildStore.js" />
     </h:head>
+
     <h:body>
-        <h:outputScript library="js" name="buildStore.js" />
+
+
         <h:form>        
             <h:commandButton class="back" value="back"  action="buildStore?faces-redirect=true"/>
         </h:form> 
@@ -18,7 +20,7 @@
 
         <!--*********************************profile************************-->
 
-        <div class="edit-profile-text" onClick="toggleEditProfile()">Edit profile</div>
+        <div class="edit-profile-text">Edit profile</div>
 
         <div class="profile-wrapper">
             <h:form>
@@ -73,7 +75,8 @@
                             <h:inputFile value="#{buildProductBean.file}"/>
                             <br/>                    
                             <br/>
-                            <h:commandButton class="save-profile" style="cursor:pointer;" action="#{buildProductBean.createNewProduct}" value="done"/>
+                            <h:commandButton class="create-product" style="cursor:pointer;" action="#{buildProductBean.createNewProduct}" value="create"/>
+                            <h:commandButton class="update-product" style="cursor:pointer;" action="#{buildProductBean.updateProduct}" value="update"/>
                         </h:form>
                     </div>
                 </div>
@@ -81,17 +84,21 @@
 
         </div>
 
-        <!--*********************************build product*********************************-->
+        <!--********************************* build product *********************************-->
 
-  <div class="table-wrapper">
-      <h2 class="store-name">#{buildProductBean.storeName} </h2>
+        <!--********************************* product list *********************************-->
+
+
+        <div class="table-wrapper">
+            <h:commandButton class="create-product" style="cursor:pointer;" action="#{buildProductBean.createNewProduct}" value="create"/>
+            <div class="store-name">Store: <span style="color:#2E0080;">#{buildProductBean.storeName}</span> </div>
             <h:dataTable value="#{buildProductBean.productsList}" var="product">
                 <h:column>
                     <h:form class="product-buttons-wrapper">        
                         <h:commandButton class="edit-btn-wrapper" 
-                                         onclick="toggle('.edit-store-wrapper', 'left', '30px', '-350px')" 
-                                         value="Edit"  action="#{product.saveProductId}">
-                            <f:param name="storeId" value="#{product.productId}"/>
+                                         onclick="updateProduct('.build-product-wrapper', '.create-product', '30px')" 
+                                         value="Edit"  action="#{buildProductBean.saveProductId}">
+                            <f:param name="selectedProductId" value="#{product.productId}"/>
                             <f:ajax execute="@this"/>
                         </h:commandButton>
 
@@ -115,10 +122,13 @@
             </h:dataTable>
         </div>
 
+        <!--********************************* product list *********************************-->
+
+
         <!--*********************************view yor  stores*********************************-->
 
         <h:form>
-            <h:commandButton class="View-Your-Stores-wrapper" style="cursor:pointer;" action="view your stores page" value="view Your Stores"/>
+            <h:commandButton class="View-Your-Stores-wrapper" style="cursor:pointer;" action="viewAdminStores?faces-redirect=true" value="view Your Stores"/>
         </h:form>
 
 

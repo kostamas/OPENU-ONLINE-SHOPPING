@@ -132,10 +132,9 @@ public class StoresViewer {
             Logger.getLogger(StoresViewer.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        String dirPath = "C:\\onlineShopping\\" + storeToUpdate.getStoreId();
-        new File(dirPath).mkdir();
-
         if (this.file != null) {
+            String dirPath = "C:\\onlineShopping\\" + storeToUpdate.getStoreId();
+            new File(dirPath).mkdir();
             File oldImage = new File(dirPath + "\\" + storeToUpdate.getStorePhoto());     // deleting old image
             oldImage.delete();
 

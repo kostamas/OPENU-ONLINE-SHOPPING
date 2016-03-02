@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.bean.*;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -24,11 +26,14 @@ import model.StoreBuilder;
 import model.StoreQueary;
 
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class BuildProductBean {
 
+    @ManagedProperty(value = "#{param.selectedProductId}")
+    private int selectedProductId;
+    private static int currentProductId;    // static - patch...
     private int stock;
-    private int storeId;                   // th current store id
+    private int storeId;                   // the current store id
     private String storeName;
     private String productPhoto;
     private String description;
@@ -38,6 +43,14 @@ public class BuildProductBean {
     private Part file;
     private ProductsJpaController productsJpaCtrl;
     private List<Products> productsList;
+
+    public int getSelectedProductId() {
+        return selectedProductId;
+    }
+
+    public void setSelectedProductId(int selectedProductId) {
+        this.selectedProductId = selectedProductId;
+    }
 
     public String getStoreName() {
         return storeName;
@@ -160,6 +173,55 @@ public class BuildProductBean {
         }
 
         return null;
+    }
+
+    public void updateProduct() {
+
+        Products productToUpdate = getProducteById(this.currentProductId);
+        if (this.productName.length() > 1) {
+            productToUpdate.setProductName(this.productName);
+        }
+        if (this.description.length() > 1) {
+            productToUpdate.setDescription(this.description);
+        }
+        if (this.stock > 1) {
+            productToUpdate.setStock(this.stock);
+        }
+        if (this.price > 1) {
+            productToUpdate.setPrice(this.price);
+        }
+
+        try {
+            productsJpaCtrl.edit(productToUpdate);
+        } catch (Exception ex) {
+            Logger.getLogger(StoresViewer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        if (this.file != null) {
+            String dirPath = "C:\\onlineShopping\\" + this.storeId;
+            String imgPath = dirPath + "\\" + productToUpdate.getPhoto();
+            File oldImage = new File(imgPath);     // deleting old image
+            oldImage.delete();
+
+            try (InputStream input = this.file.getInputStream()) {
+                Files.copy(input, new File(dirPath, "\\" + productToUpdate.getPhoto()).toPath());
+            } catch (IOException e) {
+                // Show faces message?
+            }
+        }
+    }
+
+    private Products getProducteById(int id) {
+        for (Products tmpProduct : productsList) {
+            if (tmpProduct.getProductId() == id) {
+                return tmpProduct;
+            }
+        }
+        return null;
+    }
+
+    public void saveProductId() {
+        this.currentProductId = this.selectedProductId;
     }
 
 }

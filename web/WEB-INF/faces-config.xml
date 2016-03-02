@@ -12,7 +12,7 @@
             <to-view-id>home.xhtml</to-view-id>
         </navigation-case>
         
-         <navigation-case>
+        <navigation-case>
             <from-outcome>admin area page</from-outcome>
             <to-view-id>admin.xhtml</to-view-id>
         </navigation-case>
@@ -28,7 +28,7 @@
             <redirect/>
         </navigation-case>
         
-         <navigation-case>
+        <navigation-case>
             <from-outcome>admin area page</from-outcome>
             <to-view-id>admin.xhtml</to-view-id>
         </navigation-case>
@@ -36,7 +36,7 @@
     </navigation-rule>
     
     
-     <navigation-rule>
+    <navigation-rule>
         <from-view-id>buildStore.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>view admin stores page</from-outcome>
@@ -44,7 +44,7 @@
             <redirect/>
         </navigation-case>
         
-         <navigation-case>
+        <navigation-case>
             <from-outcome>build products page</from-outcome>
             <to-view-id>buildProducts.xhtml</to-view-id>
             <redirect/>
@@ -53,27 +53,28 @@
     </navigation-rule>
 
 
-  <navigation-rule>
+    <navigation-rule>
         <from-view-id>buildProduct.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>store builder page</from-outcome>
             <to-view-id>buildStore.xhtml</to-view-id>
-             <redirect/>
+            <redirect/>
         </navigation-case>
         
-      
-        
+        <navigation-case>
+            <from-outcome>view Your Stores</from-outcome>
+            <to-view-id>buildStore.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
     </navigation-rule>
     
-      <navigation-rule>
+    
+    <navigation-rule>
         <from-view-id>viewAdminStores.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>build products page</from-outcome>
             <to-view-id>buildProducts.xhtml</to-view-id>
-             <redirect/>
+            <redirect/>
         </navigation-case>
-        
-      
-        
     </navigation-rule>
 </faces-config>
