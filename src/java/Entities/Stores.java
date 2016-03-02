@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "STORES")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Stores.findByAdmin", query = "SELECT s FROM Stores s WHERE s.storeAdmin = :storeAdmin"),
+    @NamedQuery(name = "Stores.findByAdmin", query = "SELECT s FROM Stores s WHERE s.storeAdmin = :storeAdmin"),  // opssss... alrady exists!!!
     @NamedQuery(name = "Stores.findAll", query = "SELECT s FROM Stores s"),
     @NamedQuery(name = "Stores.findByStoreId", query = "SELECT s FROM Stores s WHERE s.storeId = :storeId"),
     @NamedQuery(name = "Stores.findByStoreName", query = "SELECT s FROM Stores s WHERE s.storeName = :storeName"),

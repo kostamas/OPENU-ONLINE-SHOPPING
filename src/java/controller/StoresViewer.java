@@ -30,9 +30,12 @@ public class StoresViewer {
 
     StoresJpaController storeCtrl;
     private List<Stores> storesList;
-    @ManagedProperty(value = "#{param.storeId}")
-    private int storeId; // +setter
+    @ManagedProperty(value = "#{param.selectedStoreId}")
+    private int selectedStoreId;
     static private int currentStoreId;    // patch- if it's not static we goona lose store id becuase
+    @ManagedProperty(value = "#{param.selectedStoreName}")
+    private String selectedStoreName;
+    static private String currentStoreName;    // patch- if it's not static we goona lose store id becuase
     private String storeName;              // at some point (when update method invoked) all variables values changing to zero
     private String storePhoto;
     private Part file;
@@ -74,7 +77,7 @@ public class StoresViewer {
     public StoresViewer() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("online_shoppingPU");
         storeCtrl = new StoresJpaController(emf);            // crud
-          if (RegisterBean.adminName != null) {
+        if (RegisterBean.adminName != null) {
             this.adminName = RegisterBean.adminName;
         } else {
             this.adminName = LoginBean.adminName;
@@ -83,12 +86,12 @@ public class StoresViewer {
         storesList = storeQueary.getStoresByAdmin(this.adminName);   // get all admins stores
     }
 
-    public int getStoreId() {
-        return storeId;
+    public int getSelectedStoreId() {
+        return selectedStoreId;
     }
 
-    public void setStoreId(int storeId) {
-        this.storeId = storeId;
+    public void setSelectedStoreId(int selectedStoreId) {
+        this.selectedStoreId = selectedStoreId;
     }
 
     public List<Stores> getStores() {
@@ -99,15 +102,24 @@ public class StoresViewer {
         this.storesList = stores;
     }
 
-    public void saveStoreId() {            // invoked from client...
-        currentStoreId = this.storeId;
+    public void saveCurrentStore() {            // invoked from client...
+        currentStoreId = this.selectedStoreId;
+        currentStoreName = this.selectedStoreName;
+
+    }
+
+    public String getSelectedStoreName() {
+        return selectedStoreName;
+    }
+
+    public void setSelectedStoreName(String selectedStoreName) {
+        this.selectedStoreName = selectedStoreName;
     }
 
     public void update() {
 
         Stores storeToUpdate = getStoreById(this.currentStoreId);
 
-        storeToUpdate = getStoreById(this.currentStoreId);
         if (this.description.length() > 0) {
             storeToUpdate.setDescription(this.description);
         }
@@ -142,5 +154,14 @@ public class StoresViewer {
             }
         }
         return null;
+    }
+
+    public String viewStoreProduts() {
+        currentStoreId = this.selectedStoreId;       // static ...
+        BuildStoreBean.currentStoreId = currentStoreId;    // go to products page with this selected store...
+
+        currentStoreName = this.selectedStoreName;       // static ...
+        BuildStoreBean.currentStoreName = currentStoreName;    // go to pro
+        return "build products page";
     }
 }

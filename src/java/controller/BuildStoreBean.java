@@ -16,10 +16,12 @@ import javax.servlet.http.Part;
 import model.StoreBuilder;
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class BuildStoreBean {
 
-    public static int storeId;
+    public static int currentStoreId;
+    public static String currentStoreName;
+    private int storeId;
     private String storeName;
     private String storePhoto;
     private String storeAdmin;
@@ -27,11 +29,11 @@ public class BuildStoreBean {
     private Part file;
 
     public int getStoreId() {
-        return storeId;
+        return currentStoreId;
     }
 
     public void setStoreId(int storeId) {
-        this.storeId = storeId;
+        this.currentStoreId = storeId;
     }
 
     public String getStorePhoto() {

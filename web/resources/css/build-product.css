@@ -86,11 +86,11 @@ body {
 /**********************************build products**************************/
 .build-product-wrapper{
     margin: 90px auto 0 auto;
-    width:400px;  height: auto;
+    width:300px;  height: auto;
     min-height: 400px;
     background-color: #ECC98B;
     border: 1px solid #A79A76;
-    position: relative;   left:78px;    bottom:70px;
+    position: absolute;   left:-350px;    bottom:70px;
     border-radius: 10px;
 }
 
@@ -113,14 +113,14 @@ body {
 
 .product-settings-title{
     font-family: Lato regular;    font-size:25px;     color:#57576B;
-    text-align: center;
+    margin-left: 10px;
 }
 
 .new-product-settings{
     display: flex;    justify-content: center;    align-items: center;  
     height: 385px;
     color: #0B50D0;    font-family: Lato regular; font-size: 21px;  
-    margin-left: 30px;
+    margin-left: 10px;
 }
 
 .new-product-settings .stock-and-price-wrapper{
@@ -163,5 +163,120 @@ input[type="file"]{
 .View-Your-Stores-wrapper{
     background-color: green;
     width: 120px;  height: 120px;
-    position: absolute;     top: 230px;     left: 30px;
+    position: absolute;     top: 230px;     right: 30px;
 }
+
+
+
+
+/**************************   product list   *****************************/
+
+.store-name{
+    text-align: center;
+}
+.table-wrapper{
+    margin: 0 auto;
+    width: 550px;
+    height: 490px;
+    overflow-y: scroll;
+    border: 1px solid black;
+    background: rgba(164,179,87,1);
+    background: -moz-linear-gradient(top, rgba(164,179,87,1) 0%, rgba(214,227,143,1) 54%, rgba(117,137,12,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(164,179,87,1)), color-stop(54%, rgba(214,227,143,1)), color-stop(100%, rgba(117,137,12,1)));
+    background: -webkit-linear-gradient(top, rgba(164,179,87,1) 0%, rgba(214,227,143,1) 54%, rgba(117,137,12,1) 100%);
+    background: -o-linear-gradient(top, rgba(164,179,87,1) 0%, rgba(214,227,143,1) 54%, rgba(117,137,12,1) 100%);
+    background: -ms-linear-gradient(top, rgba(164,179,87,1) 0%, rgba(214,227,143,1) 54%, rgba(117,137,12,1) 100%);
+    background: linear-gradient(to bottom, rgba(164,179,87,1) 0%, rgba(214,227,143,1) 54%, rgba(117,137,12,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a4b357', endColorstr='#75890c', GradientType=0 );
+}
+
+.table-wrapper::-webkit-scrollbar-track
+{
+    border: 1px solid black;
+    background-color: #F5F5F5;
+    border-radius: 30px;
+}
+
+.table-wrapper::-webkit-scrollbar
+{
+    width: 15px;
+    background-color: #F5F5F5;
+    border-radius: 30px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb
+{
+    background-color: #90947E;	
+    border-radius: 30px;
+}
+
+
+table tr{
+    margin: 30px;
+    display: block;
+}
+
+table tr td{
+    margin: 20px 0px 20px 0px;
+    display: inline-block;
+    border: 1px;
+}
+table .product-name-title{
+    text-align: center;
+    font-size: 23px;   font-family: lato regular;      color:black;
+    margin-bottom: 10px;
+}
+
+table .product-description-title{
+    padding:5px;
+    font-size: 16px;   font-family: lato regular;      color:black;
+    margin-bottom: -30px;
+    width: 200px;   height:140px;
+    border: 1px solid black;
+    background: rgba(245,242,245,1);
+    background: -moz-linear-gradient(top, rgba(245,242,245,1) 0%, rgba(255,255,255,1) 47%, rgba(250,242,250,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(245,242,245,1)), color-stop(47%, rgba(255,255,255,1)), color-stop(100%, rgba(250,242,250,1)));
+    background: -webkit-linear-gradient(top, rgba(245,242,245,1) 0%, rgba(255,255,255,1) 47%, rgba(250,242,250,1) 100%);
+    background: -o-linear-gradient(top, rgba(245,242,245,1) 0%, rgba(255,255,255,1) 47%, rgba(250,242,250,1) 100%);
+    background: -ms-linear-gradient(top, rgba(245,242,245,1) 0%, rgba(255,255,255,1) 47%, rgba(250,242,250,1) 100%);
+    background: linear-gradient(to bottom, rgba(245,242,245,1) 0%, rgba(255,255,255,1) 47%, rgba(250,242,250,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f2f5', endColorstr='#faf2fa', GradientType=0 );
+}
+
+table img{
+    border: 1px solid black;
+}
+
+.product-buttons-wrapper{
+    position: relative;
+    bottom: 5px;
+}
+ .edit-btn-wrapper, .delete-product-btn-wrapper{
+    width: 70px;   height: 30px;
+    position: relative;      right: 13px;  top: 15px;
+    display: flex;    justify-content: center;      align-items: center;
+    background-color: #0D5A0D;
+    color:white;
+    font-family: Lato regular;
+    border-radius: 14px;
+    cursor: pointer;
+    border: 1px solid black;
+    font-family: lato regular;
+    font-size:15px;
+    margin-top: 10px;
+}
+
+.edit-btn-wrapper:focus, .delete-produc-btn-wrapper:focus{
+    outline: none;
+}
+
+.edit-btn-wrapper:active, .delete-product-btn-wrapper:active{
+    background-color: green;
+}
+
+.edit-btn-wrapper:hover, .delete-product-btn-wrapper:hovers{
+    opacity: 0.9;
+}
+
+
+/**************************   product list   *****************************/

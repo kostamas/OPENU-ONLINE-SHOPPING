@@ -53,13 +53,26 @@
         <div class="table-wrapper">
             <h:dataTable value="#{storesViewer.stores}" var="store">
                 <h:column>
-                    <h:form>        
+                    <h:form class="store-buttons-wrapper">        
                         <h:commandButton class="edit-btn-wrapper" 
                                          onclick="toggle('.edit-store-wrapper', 'left', '30px', '-350px')" 
-                                         value="Edit"  action="#{storesViewer.saveStoreId}">
-                            <f:param name="storeId" value="#{store.storeId}"/>
+                                         value="Edit"  action="#{storesViewer.saveCurrentStore}">
+                            <f:param name="selectedStoreId" value="#{store.storeId}"/>
+                            <f:param name="selectedStoreName" value="#{store.storeName}"/>
+
                             <f:ajax execute="@this"/>
                         </h:commandButton>
+
+                        <h:commandButton class="products-page-btn-wrapper" action="#{storesViewer.viewStoreProduts}" value="products">
+                            <f:param name="selectedStoreId" value="#{store.storeId}"/>
+                            <f:param name="selectedStoreName" value="#{store.storeName}"/>
+                        </h:commandButton>
+
+                        <h:commandButton class="delete-store-btn-wrapper" action="#{storesViewer.viewStoreProduts}" value="Delete">
+                            <f:param name="selectedStoreId" value="#{store.storeId}"/>
+                            <f:param name="selectedStoreName" value="#{store.storeName}"/>
+                        </h:commandButton>
+
                     </h:form> 
                 </h:column>
                 <h:column>

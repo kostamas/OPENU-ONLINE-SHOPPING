@@ -120,8 +120,12 @@ table img{
     border: 1px solid black;
 }
 
- .edit-btn-wrapper{
-    width: 60px;   height: 30px;
+.store-buttons-wrapper{
+    position: relative;
+    bottom: 5px;
+}
+ .edit-btn-wrapper, .products-page-btn-wrapper, .delete-store-btn-wrapper{
+    width: 70px;   height: 30px;
     position: relative;      right: 13px;  top: 15px;
     display: flex;    justify-content: center;      align-items: center;
     background-color: #0D5A0D;
@@ -131,18 +135,19 @@ table img{
     cursor: pointer;
     border: 1px solid black;
     font-family: lato regular;
-    font-size:18px;
+    font-size:15px;
+    margin-top: 10px;
 }
 
-.edit-btn-wrapper:focus{
+.edit-btn-wrapper:focus, .products-page-btn-wrapper:focus, .delete-store-btn-wrapper:focus{
     outline: none;
 }
 
-.edit-btn-wrapper:active{
+.edit-btn-wrapper:active, .products-page-btn-wrapper:active, .delete-store-btn-wrapper:active{
     background-color: green;
 }
 
-.edit-btn-wrapper:hover{
+.edit-btn-wrapper:hover, .products-page-btn-wrapper:hover, .delete-store-btn-wrapper:hovers{
     opacity: 0.9;
 }
 
