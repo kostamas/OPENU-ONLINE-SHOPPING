@@ -22,20 +22,22 @@ import javax.faces.bean.ViewScoped;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.servlet.http.Part;
+import model.StoreQueary;
 
 @ManagedBean
 @RequestScoped
 public class StoresViewer {
 
     StoresJpaController storeCtrl;
-    private List<Stores> stores;
+    private List<Stores> storesList;
     @ManagedProperty(value = "#{param.storeId}")
     private int storeId; // +setter
-    static private int currentStoreId;    // hack- if it's not static at some point (when update method invoked)
-    private String storeName;              // all variables values changing to zero
+    static private int currentStoreId;    // patch- if it's not static we goona lose store id becuase
+    private String storeName;              // at some point (when update method invoked) all variables values changing to zero
     private String storePhoto;
     private Part file;
     private String description;
+    private String adminName;                         // get admin name
 
     public String getStoreName() {
         return storeName;
@@ -71,8 +73,14 @@ public class StoresViewer {
 
     public StoresViewer() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("online_shoppingPU");
-        storeCtrl = new StoresJpaController(emf);
-        stores = storeCtrl.findStoresEntities();
+        storeCtrl = new StoresJpaController(emf);            // crud
+          if (RegisterBean.adminName != null) {
+            this.adminName = RegisterBean.adminName;
+        } else {
+            this.adminName = LoginBean.adminName;
+        }
+        StoreQueary storeQueary = new StoreQueary();
+        storesList = storeQueary.getStoresByAdmin(this.adminName);   // get all admins stores
     }
 
     public int getStoreId() {
@@ -84,20 +92,21 @@ public class StoresViewer {
     }
 
     public List<Stores> getStores() {
-        return stores;
+        return storesList;
     }
 
     public void setStores(List<Stores> stores) {
-        this.stores = stores;
+        this.storesList = stores;
     }
 
-    public void saveStoreId() {
+    public void saveStoreId() {            // invoked from client...
         currentStoreId = this.storeId;
     }
 
     public void update() {
 
-        Stores storeToUpdate;
+        Stores storeToUpdate = getStoreById(this.currentStoreId);
+
         storeToUpdate = getStoreById(this.currentStoreId);
         if (this.description.length() > 0) {
             storeToUpdate.setDescription(this.description);
@@ -110,13 +119,14 @@ public class StoresViewer {
         } catch (Exception ex) {
             Logger.getLogger(StoresViewer.class.getName()).log(Level.SEVERE, null, ex);
         }
-         String dirPath = "C:\\onlineShopping\\" + storeToUpdate.getStoreId();
+
+        String dirPath = "C:\\onlineShopping\\" + storeToUpdate.getStoreId();
         new File(dirPath).mkdir();
-        
+
         if (this.file != null) {
             File oldImage = new File(dirPath + "\\" + storeToUpdate.getStorePhoto());     // deleting old image
             oldImage.delete();
-            
+
             try (InputStream input = this.file.getInputStream()) {
                 Files.copy(input, new File(dirPath, storeToUpdate.getStorePhoto()).toPath());
             } catch (IOException e) {
@@ -126,7 +136,7 @@ public class StoresViewer {
     }
 
     private Stores getStoreById(int id) {
-        for (Stores tmpStore : stores) {
+        for (Stores tmpStore : storesList) {
             if (tmpStore.getStoreId() == id) {
                 return tmpStore;
             }
