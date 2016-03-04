@@ -20,29 +20,29 @@
         <!--*********************************profile************************-->
 
         <div class="edit-profile-text" onClick="toggleEditProfileProduct()">Edit profile</div>
-
-        <div class="profile-wrapper">
-            <h:form>
-                <label for="username">First Name</label>
-                <br/>
-                <h:inputText class="" value=""/>
-                <br/>
-                <label for="password">Last Name</label>
-                <br/>
-                <h:inputText class="" />
-                <br/>
-                <label for="username">Email</label>
-                <br/>
-                <h:inputText class="" value=""/>
-                <br/>
-                <label for="password">Password</label>
-                <br/>
-                <h:inputText class=""  />
-                <br/>
-                <h:commandButton class="save-profile" style="cursor:pointer;" action="#{buildProductBean.f()}" value="done"/>
-            </h:form>
+        <div class="profile-container">
+            <div class="profile-wrapper">
+                <h:form>
+                    <label for="username">First Name</label>
+                    <br/>
+                    <h:inputText class="" value=""/>
+                    <br/>
+                    <label for="password">Last Name</label>
+                    <br/>
+                    <h:inputText class="" />
+                    <br/>
+                    <label for="username">Email</label>
+                    <br/>
+                    <h:inputText class="" value=""/>
+                    <br/>
+                    <label for="password">Password</label>
+                    <br/>
+                    <h:inputText class=""  />
+                    <br/>
+                    <h:commandButton class="save-profile" style="cursor:pointer;" action="#{buildProductBean.f()}" value="done"/>
+                </h:form>
+            </div>
         </div>
-
         <!--*********************************profile*********************************-->
 
         <!--*********************************build product*********************************-->
