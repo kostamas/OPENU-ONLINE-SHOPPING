@@ -41,6 +41,22 @@ public class BuildStoreBean {
     public static String currentStoreName;
     StoresJpaController storeCtrl;
     private List<Stores> storesList;
+
+    public static int getCurrentStoreId() {
+        return currentStoreId;
+    }
+
+    public static void setCurrentStoreId(int currentStoreId) {
+        BuildStoreBean.currentStoreId = currentStoreId;
+    }
+
+    public static String getCurrentStoreName() {
+        return currentStoreName;
+    }
+
+    public static void setCurrentStoreName(String currentStoreName) {
+        BuildStoreBean.currentStoreName = currentStoreName;
+    }
     private int storeId;
     private String storeName;
     private String storePhoto;
@@ -51,14 +67,27 @@ public class BuildStoreBean {
     public BuildStoreBean() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("online_shoppingPU");
         storeCtrl = new StoresJpaController(emf);            // crud
+        if (RegisterBean.adminName != null) {
+            this.storeAdmin = RegisterBean.adminName;
+        } else {
+            this.storeAdmin = LoginBean.adminName;
+        }
 
         StoreQueary storeQueary = new StoreQueary();
-        storesList = storeQueary.getStoresByAdmin(this.currentStoreName);   // get all admins stores
+        storesList = storeQueary.getStoresByAdmin(this.storeAdmin);   // get all admins stores
     }
 
     /**
      * ******************** seeters & getters ********************
      */
+    public String getSelectedStoreName() {
+        return selectedStoreName;
+    }
+
+    public void setSelectedStoreName(String selectedStoreName) {
+        this.selectedStoreName = selectedStoreName;
+    }
+
     public int getSelectedStoreId() {
         return selectedStoreId;
     }
@@ -136,7 +165,7 @@ public class BuildStoreBean {
 
         StoreBuilder storeDB = new StoreBuilder();
 
-        this.storeId = storeDB.createStoreId() + 1;
+        this.storeId = storeDB.createStoreId();
 
         String adminName;
         if (RegisterBean.adminName != null) {
@@ -151,13 +180,43 @@ public class BuildStoreBean {
 
         Stores newStore = new Stores(this.storeId, this.storeName, adminName, this.description, this.storePhoto);
         storeDB.save(newStore);
+        storesList.add(newStore);
         try (InputStream input = file.getInputStream()) {
             Files.copy(input, new File(dirPath, this.storePhoto).toPath());
         } catch (IOException e) {
-            // Show faces message?
+            Logger.getLogger(BuildStoreBean.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return null;
+    }
+
+    public void update() {
+
+        Stores storeToUpdate = getStoreById(this.currentStoreId);
+
+        if (this.description.length() > 0) {
+            storeToUpdate.setDescription(this.description);
+        }
+        if (this.storeName.length() > 0) {
+            storeToUpdate.setStoreName(this.storeName);
+        }
+        try {
+            storeCtrl.edit(storeToUpdate);
+        } catch (Exception ex) {
+            Logger.getLogger(StoresViewer.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return "build products page";
+        if (this.file != null) {
+            String dirPath = "C:\\onlineShopping\\" + storeToUpdate.getStoreId();
+            new File(dirPath).mkdir();
+            File oldImage = new File(dirPath + "\\" + storeToUpdate.getStorePhoto());     // deleting old image
+            oldImage.delete();
+
+            try (InputStream input = this.file.getInputStream()) {
+                Files.copy(input, new File(dirPath, storeToUpdate.getStorePhoto()).toPath());
+            } catch (IOException e) {
+                // Show faces message?
+            }
+        }
     }
 
     public void deleteStore() {
@@ -179,6 +238,15 @@ public class BuildStoreBean {
             }
         }
         return null;
+    }
+
+    public String viewStoreProduts() {
+        currentStoreId = this.selectedStoreId;       // static ...
+        BuildStoreBean.currentStoreId = currentStoreId;    // go to products page with this selected store...
+
+        currentStoreName = this.selectedStoreName;       // static ...
+        BuildStoreBean.currentStoreName = currentStoreName;    // go to pro
+        return "build products page";
     }
 
     private void deleteAllStoreProds(int storeIdToDelete) {

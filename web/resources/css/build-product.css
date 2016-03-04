@@ -14,11 +14,11 @@ body {
     border-bottom: 15px solid transparent; 
     border-right:30px solid #121294; 
     color:white;
-    margin-left:30px;
-    margin-top: 30px;
     background: transparent;
     cursor: pointer;
     border-left: none;
+    position: absolute;
+    left: 30px;   top: 28px;
 }
 
 .back-text{
@@ -30,7 +30,7 @@ body {
     top: 32px;
 }
 
-.back-text:focus{
+.back:focus {
     outline: none;
 }
 /*********************************************************profile****************************************************/
@@ -196,7 +196,7 @@ input[type="file"]{
     position: relative;
     width: 550px;
     height: 510px;
-    margin: auto;
+    margin: 60px auto 0 auto;
 }
 
 .new-product-btn-wrapper{
@@ -207,7 +207,7 @@ input[type="file"]{
 
 .new-product-btn-wrapper{
     width: 125px;   height: 30px;
-    position: absolute;      left: 13px;  top: -3px;
+    position: absolute;      left: 13px;  top: 0px;
     display: flex;    justify-content: center;      align-items: center;
     background-color: #071B9A;
     color:white;

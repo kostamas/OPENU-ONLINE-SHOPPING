@@ -8,16 +8,18 @@
         <title>Facelet Title</title>
         <h:outputStylesheet  name="css/build-product.css"/>
         <h:outputScript  name="js/buildStore.js" />
-           <h:outputScript  name="js/switchClasses.js" />
+        <h:outputScript  name="js/switchClasses.js" />
     </h:head>
 
     <h:body>
 
-        <div class="back" onClick="goBack()"></div>
+        <h:form>        
+            <h:commandButton class="back" value="back"  action="buildStore?faces-redirect=true"/>
+        </h:form> 
         <div class="back-text">BACK</div>
         <!--*********************************profile************************-->
 
-        <div class="edit-profile-text">Edit profile</div>
+        <div class="edit-profile-text" onClick="toggleEditProfileProduct()">Edit profile</div>
 
         <div class="profile-wrapper">
             <h:form>
@@ -91,7 +93,7 @@
 
         <div class="product-list-wrapper"> 
             <div class="store-name">Store: <span style="color:#2E0080;">#{buildProductBean.storeName}</span> </div>
-            <div class="new-product-btn-wrapper" onClick="updateProduct('.build-product-wrapper', '.update-btn', '45px','529px')">New Product</div>
+            <div class="new-product-btn-wrapper" onClick="updateProduct('.build-product-wrapper', '.update-btn', '45px', '529px')">New Product</div>
             <div class="product-list-mask" onClick="returnProductsView('.build-product-wrapper')"> </div>
 
             <div class="table-wrapper">
@@ -127,16 +129,6 @@
             </div>
         </div>
         <!--********************************* product list *********************************-->
-
-
-        <!--*********************************view yor  stores*********************************-->
-
-        <h:form>
-            <h:commandButton class="View-Your-Stores-wrapper" style="cursor:pointer;" action="viewAdminStores?faces-redirect=true" value="view Your Stores"/>
-        </h:form>
-
-
-        <!--*********************************view yor  stores*********************************-->
 
     </h:body>
 </html>

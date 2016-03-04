@@ -13,7 +13,7 @@
 
         <!--*********************************profile************************-->
 
-        <div class="edit-profile-text" onClick="toggleEditProfile()">Edit profile</div>
+        <div class="edit-profile-text" onClick="toggleEditProfileStore()">Edit profile</div>
 
         <div class="profile-wrapper">
             <h:form>
@@ -60,8 +60,8 @@
                             <br/>
                             <h:inputFile  value="#{buildStoreBean.file}"/>
                             <br/>
-                            <h:commandButton class="update-btn" style="cursor:pointer;" action="#{buildStoreBean.createNewStore}" value="done"/>
-                            <h:commandButton class="create-btn" style="cursor:pointer;" action="#{buildProductBean.createNewProduct}" value="create"/>
+                            <h:commandButton class="update-btn" style="cursor:pointer;" action="#{buildStoreBean.update}" value="done"/>
+                            <h:commandButton class="create-btn" style="cursor:pointer;" action="#{buildStoreBean.createNewStore}" value="create"/>
                             <div class="cancle-btn" onClick="returnProductsView('.build-store-wrapper')">Cancle</div>
                         </h:form>
                     </div>
@@ -75,7 +75,7 @@
         <!--*******************************  store list ********************************-->
 
         <div class="store-list-wrapper"> 
-            <div class="new-store-btn-wrapper" onClick="updateProduct('.build-store-wrapper', '.update-btn', '45px', '529px')">New Product</div>
+            <div class="new-store-btn-wrapper" onClick="updateProduct('.build-store-wrapper', '.update-btn', '45px', '529px')">New Store</div>
             <div class="your-stores-title">Your Stores</div>
             <div class="product-list-mask" onClick="returnProductsView('.build-store-wrapper')"> </div>
 
@@ -84,8 +84,8 @@
                     <h:column>
                         <h:form class="store-buttons-wrapper">        
                             <h:commandButton class="edit-btn-wrapper" 
-                                             onclick="updateProduct('.build-store-wrapper', '.create-btn', '30px', '538px')" 
-                                             value="Edit"  action="#{storesViewer.saveCurrentStore}">
+                                             onclick="updateProduct('.build-store-wrapper', '.create-btn', '30px', '530px')" 
+                                             value="Edit"  action="#{buildStoreBean.saveCurrentStore}">
                                 <f:param name="selectedStoreId" value="#{store.storeId}"/>
                                 <f:param name="selectedStoreName" value="#{store.storeName}"/>
                                 <f:ajax execute="@this"/>

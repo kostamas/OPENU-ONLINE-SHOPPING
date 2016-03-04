@@ -27,24 +27,32 @@ public class StoreBuilder {
         em = emf.createEntityManager();
     }
 
-    public int createStoreId(){
-         return em.createNamedQuery("Stores.findAll").getResultList().size();
+    public int createStoreId() {
+        em.createNamedQuery("Stores.findAll").getResultList().size();
+        int numberOfStores = em.createNamedQuery("Stores.findAll").getResultList().size();
+        for (int i = 1; i < numberOfStores + 1; i++) {
+            int resultSize = em.createNamedQuery("Stores.findByStoreId").setParameter("storeId", i).getResultList().size();
+            if (resultSize == 0) {
+                return i;
+            }
+        }
+        return numberOfStores + 1;
     }
-    
-    public int createProductId(){
-        
-     int numberOfProducts = em.createNamedQuery("Products.findAll").getResultList().size();
-     for(int i = 1; i < numberOfProducts + 1; i++){
-         int resultSize = em.createNamedQuery("Products.findByProductId").setParameter("productId",i).getResultList().size();
-         if( resultSize == 0){
-             return i;
-         }
-     }
-     return numberOfProducts + 1;
+
+    public int createProductId() {
+
+        int numberOfProducts = em.createNamedQuery("Products.findAll").getResultList().size();
+        for (int i = 1; i < numberOfProducts + 1; i++) {
+            int resultSize = em.createNamedQuery("Products.findByProductId").setParameter("productId", i).getResultList().size();
+            if (resultSize == 0) {
+                return i;
+            }
+        }
+        return numberOfProducts + 1;
     }
-    
-    public boolean save(Object entity){
-       em.getTransaction().begin();
+
+    public boolean save(Object entity) {
+        em.getTransaction().begin();
         em.persist(entity);
         em.getTransaction().commit();
         em.close();
