@@ -30,4 +30,9 @@ public class StoreQueary {
                 .setParameter("storeAdmin", adminName)
                 .getResultList();
     }
+
+    public List<Stores> getAllStores() {
+        return em.createNamedQuery("Stores.findAll")
+                .getResultList();
+    }
 }

@@ -1,13 +1,20 @@
-
 body {
-    background: url(../images/b.jpg) repeat;
-    background-size: 640px 400px;
+    /*background: url(../images/d.jpg) repeat;*/
+    background-size: cover;
     font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     font-weight:300;
     text-decoration: none;
 }
 
-/*********************************************************profile****************************************************/
+.bg-cover{
+    background: url(../images/d.jpg) repeat;
+    background-size: cover;
+    width: 100%;
+    height:100%;
+    position:absolute;    top: 0;    left: 0;
+    opacity: 0.7;
+}
+/******************************  profile  *******************/
 
 .edit-profile-text{
     color:white;    font-size: 35px;    font-family: Lato regular;
@@ -61,71 +68,10 @@ body {
 }
 
 
-/*****^^^^^^^^^^^^^^^^^^^^^^^^^^^^^************************profile******^^^^^^^^^^^^^^^^^^^^^^^^^^^^^***********/
+/******************************  profile  *******************/
 
 
-
-
-/******************************************************build store *******************************************/
-
-.build-store-wrapper{
-    margin: 90px auto 0 auto;
-    width:300px;  height: auto;
-    min-height: 400px;
-    background-color: #ECC98B;
-    border: 1px solid #A79A76;
-    position: absolute;   left:-350px;
-    border-radius: 10px;
-    transition: left 0.8s ease-out;
-}
-
-.build-store-wrapper .build-store-title{
-    text-align: center;
-    font-family: Lato regular;  font-size: 25px;  color:#0B50D0;
-    margin-top: 20px;
-}
-
-.store-settings-title{
-    font-family: Lato regular;    font-size:25px;     color:#57576B;
-    margin:15px 0  0 30px;   
-}
-
-.new-store-settings{
-    display: flex;    justify-content: center;    align-items: center;   height: 360px;
-    color: #0B50D0;    font-family: Lato regular; font-size: 21px;  
-}
-
-.new-store-settings input, .new-store-settings textArea{
-    margin-bottom: 13px;
-}
-
-.cancle-btn{
-    width: 100px;    height:30px;
-    display: inline-block;
-    position: relative;   left:15px;     top:5px;
-    font-size: 23px;
-    cursor: pointer;    
-}
-
-.cancle-btn:hover{
-    color:#0B10F3;
-}
-
-.product-list-mask{
-    width: 551px;
-    background-color: black;
-    position: absolute;    top:12px;   left:0;    z-index: 5;
-    opacity: 0;
-    transition: opacity 0.4s;
-    cursor: pointer;
-}
-
-/******************************************************build store *******************************************/
-
-
-
-/************************************** store list ****************************************/
-
+/************************* stores list  *************************/
 
 .your-stores-title{
     text-align: center;
@@ -141,6 +87,7 @@ body {
     padding-top: 7px;
     font-size: 30px;
     font-weight: bold;
+    color: #001BA7;
 }
 
 .new-store-btn-wrapper{
@@ -282,6 +229,4 @@ table img{
     opacity: 0.9;
 }
 
-
-/************************************** store list ****************************************/
-
+/************************* stores list  *************************/

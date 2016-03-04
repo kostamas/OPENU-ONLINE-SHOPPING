@@ -84,7 +84,7 @@
                 <h:dataTable value="#{buildStoreBean.storesList}" var="store">
                     <h:column>
                         <h:form class="store-buttons-wrapper">        
-                            <h:commandButton class="edit-btn-wrapper" 
+                            <h:commandButton class="edit-btn-wrapper btn" 
                                              onclick="updateProduct('.build-store-wrapper', '.create-btn', '30px', '530px')" 
                                              value="Edit"  action="#{buildStoreBean.saveCurrentStore}">
                                 <f:param name="selectedStoreId" value="#{store.storeId}"/>
@@ -92,12 +92,12 @@
                                 <f:ajax execute="@this"/>
                             </h:commandButton>
 
-                            <h:commandButton class="products-page-btn-wrapper" action="#{buildStoreBean.viewStoreProduts}" value="products">
+                            <h:commandButton class="products-page-btn-wrapper btn" action="#{buildStoreBean.viewStoreProduts}" value="products">
                                 <f:param name="selectedStoreId" value="#{store.storeId}"/>
                                 <f:param name="selectedStoreName" value="#{store.storeName}"/>
                             </h:commandButton>
 
-                            <h:commandButton class="delete-store-btn-wrapper" action="#{buildStoreBean.deleteStore}" value="Delete">
+                            <h:commandButton class="delete-store-btn-wrapper btn" action="#{buildStoreBean.deleteStore}" value="Delete">
                                 <f:param name="selectedStoreId" value="#{store.storeId}"/>
                             </h:commandButton>
 

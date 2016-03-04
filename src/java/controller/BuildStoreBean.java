@@ -28,7 +28,6 @@ import model.StoreQueary;
 
 @ManagedBean
 @RequestScoped
-
 public class BuildStoreBean {
 
     @ManagedProperty(value = "#{param.selectedStoreId}")
