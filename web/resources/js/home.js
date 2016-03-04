@@ -1,10 +1,11 @@
 
+toggleProfileHome = true;
 function toggleEditProfile() {
     var editProfile = document.querySelector(".profile-wrapper");
-    if (toggleProfileProduct) {
+    if (toggleProfileHome) {
         editProfile.style.right = "0px";
     } else {
         editProfile.style.right = "-270px";
     }
-    toggleProfileProduct = !toggleProfileProduct;
+    toggleProfileHome = !toggleProfileHome;
 }

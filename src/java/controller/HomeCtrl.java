@@ -28,8 +28,8 @@ public class HomeCtrl {
 
     public static int currentStoreId;
     public static String currentStoreName;
-
-    String userName;
+    static public String userName;
+    
     private List<Stores> storesList;
     private boolean isLoggedIn;
     private String title;

@@ -5,8 +5,8 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
-        <h:outputStylesheet  name="css/home-page.css"/>
-        <h:outputScript library="js" name="buildStore.js" />
+        <h:outputStylesheet  name="css/home-products.css"/>
+        <h:outputScript library="js" name="home.js" />
     </h:head>
     <body>
 
@@ -43,32 +43,46 @@
 
         <!--*******************************  store list ********************************-->
 
+        <div class="checkout-wrapper">
+
+            <h:form>        
+                <h:commandButton class="checkout-btn" action="checkout?faces-redirect=true" value="Checkout"/>
+            </h:form>
+            <div class="product-count">Cost: #{buyProductCtrl.cost}</div>
+        </div>
+        
         <div class="store-list-wrapper"> 
-            <div class="your-stores-title">#{homeCtrl.title}</div>
+            <div class="your-stores-title">Store Name: #{buyProductCtrl.storeName}</div>
             <div class="product-list-mask" onClick="returnProductsView('.build-store-wrapper')"> </div>
 
             <div class="table-wrapper">
-                <h:dataTable value="#{homeCtrl.storesList}" var="store">
+                <h:dataTable value="#{buyProductCtrl.productsList}" var="product">
                     <h:column>
                         <h:form class="store-buttons-wrapper">        
-                           
-                            <h:commandButton class="products-page-btn-wrapper btn" action="#{homeCtrl.viewStoreProduts}" value="ENTER">
-                                <f:param name="selectedStoreId" value="#{store.storeId}"/>
-                                <f:param name="selectedStoreName" value="#{store.storeName}"/>
+
+
+                            <h:commandButton class="products-page-btn-wrapper cart-action" action="#{buyProductCtrl.addToCart}" >
+                                <f:param name="selectedProductId" value="#{product.productId}"/>
+                                <div class="cart-img"></div>
                             </h:commandButton>
-                            
+
+                            <h:commandButton class="products-page-btn-wrapper btn" action="#{buyProductCtrl.buyProduct}" value="Buy">
+                                <f:param name="selectedStoreId" value="#{product.productId}"/>
+                            </h:commandButton>
+
                         </h:form> 
                     </h:column>
                     <h:column>
                         <div class="store-description-title">
                             <div style="text-align: center; font-size: 21px; text-decoration: underline;">description</div>
-                            #{store.description}
+                            #{product.description}
                         </div>
                     </h:column>
 
+
                     <h:column>
-                        <div class="store-name-title">#{store.storeName}</div>
-                        <h:graphicImage value="/image/#{store.storeId}/#{store.storePhoto}" height="150px;" width="170px;"/>
+                        <div class="store-name-title">#{product.productName}</div>
+                        <h:graphicImage value="/image/#{product.storeId}/#{product.photo}" height="150px;" width="170px;"/>
                     </h:column>
                 </h:dataTable>
             </div>

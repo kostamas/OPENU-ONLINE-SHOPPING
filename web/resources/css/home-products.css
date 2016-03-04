@@ -1,0 +1,287 @@
+body {
+    background-size: cover;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight:300;
+    text-decoration: none;
+}
+
+
+.bg-cover{
+    background: url(../images/t.jpg) repeat;
+    background-size: cover;
+    width: 100%;
+    height:100%;
+    position:absolute;    top: 0;    left: 0;   z-index: -1;
+    opacity: 0.7;
+}
+/******************************  profile  *******************/
+
+.edit-profile-text{
+    color:white;    font-size: 35px;    font-family: Lato regular;
+    position: absolute;
+    right: -3px;  top: 0px;
+    margin: 35px 85px 0 0;
+    background: rgba(4, 6, 68, 0.15);
+    background-color: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.edit-profile-text:hover{
+    color:#BFBBBB;
+}
+
+.profile-container{
+    position: absolute;
+    top:100px;   right: 0px;
+    overflow: hidden;
+    width:245px;
+}
+
+.profile-wrapper{
+    background: url(../images/z.jpg) repeat;
+    z-index: 1;
+    border-radius: 10px;
+    background-size: cover;
+    width: 200px;  height:300px;
+    position: relative; right:-270px; top: 0px;
+    display: flex;     justify-content: center;  align-items: center;
+    background-color: white;
+    border:1px solid #968787;
+    padding-bottom: 4px;
+    color: #0B50D0;    font-family: Lato regular; font-size: 21px;  
+    transition: right 0.6s;
+}
+
+.profile-wrapper input{
+    margin-bottom: 10px;
+    background-color: rgba(106, 71, 138, 0.69);
+    height: 20px;
+}
+
+.profile-wrapper input[type="submit"]{
+    color:#0B50D0;   font-family: Lato;    font-size: 18px;
+    background-color: #E8E6E4;
+    border-radius: 13px;
+    width:65px;  height: 30px;
+    border: none;
+    padding-bottom: 5px;
+}
+
+
+/******************************  profile  *******************/
+
+
+/************************* stores list  *************************/
+
+.your-stores-title{
+    text-align: center;
+    font-size: 25px;
+    margin: 10px auto;
+    background-color: #A8B75C;
+    width: 550px;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    position: relative;
+    top: 11px;
+    padding-top: 7px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #001BA7;
+}
+
+.new-store-btn-wrapper{
+    width: 125px;   height: 30px;
+    position: absolute;      left: 13px;  top: 12px;
+    display: flex;    justify-content: center;      align-items: center;
+    background-color: #071B9A;
+    color:white;
+    font-family: Lato regular;
+    border-radius: 14px;
+    cursor: pointer;
+    border: 1px solid black;
+    font-family: lato regular;
+    font-size:15px;
+    margin-top: 10px;
+    z-index: 1;
+}
+
+.new-store-btn-wrapper:hover{
+    background-color: #1128B9;
+}
+
+.new-store-btn-wrapper:active{
+    opacity: 0.8;
+    background-color: #0A00CE;
+}
+
+
+.store-list-wrapper{
+    position: relative;
+    width: 550px;
+    height: 510px;
+    margin: 50px auto 0 auto;
+}
+.table-wrapper{
+    position: relative;
+    width: 550px;
+    height: 490px;
+    overflow-y: scroll;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+
+    background: rgba(164,179,87,1);
+    background: -moz-linear-gradient(top, rgba(164,179,87,1) 0%, rgba(214,227,143,1) 54%, rgba(117,137,12,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(164,179,87,1)), color-stop(54%, rgba(214,227,143,1)), color-stop(100%, rgba(117,137,12,1)));
+    background: -webkit-linear-gradient(top, rgba(164,179,87,1) 0%, rgba(214,227,143,1) 54%, rgba(117,137,12,1) 100%);
+    background: -o-linear-gradient(top, rgba(164,179,87,1) 0%, rgba(214,227,143,1) 54%, rgba(117,137,12,1) 100%);
+    background: -ms-linear-gradient(top, rgba(164,179,87,1) 0%, rgba(214,227,143,1) 54%, rgba(117,137,12,1) 100%);
+    background: linear-gradient(to bottom, rgba(164,179,87,1) 0%, rgba(214,227,143,1) 54%, rgba(117,137,12,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a4b357', endColorstr='#75890c', GradientType=0 );
+}
+
+.table-wrapper::-webkit-scrollbar-track
+{
+    border: 1px solid black;
+    background-color: #F5F5F5;
+    border-radius: 30px;
+}
+
+.table-wrapper::-webkit-scrollbar
+{
+    width: 15px;
+    background-color: #F5F5F5;
+    border-radius: 30px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb
+{
+    background-color: #90947E;	
+    border-radius: 30px;
+}
+
+
+table tr{
+    margin: 0 30px 30px 30px;
+    display: block;
+}
+
+table tr td{
+    margin: 20px 0px 20px 0px;
+    display: inline-block;
+    border: 1px;
+}
+table .store-name-title{
+    text-align: center;
+    font-size: 23px;   font-family: lato regular;      color:black;
+    margin-bottom: 10px;
+}
+
+table .store-description-title{
+    padding:5px;
+    font-size: 16px;   font-family: lato regular;      color:black;
+    margin-bottom: -30px;
+    width: 200px;   height:140px;
+    border: 1px solid black;
+    background: rgba(245,242,245,1);
+    background: -moz-linear-gradient(top, rgba(245,242,245,1) 0%, rgba(255,255,255,1) 47%, rgba(250,242,250,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(245,242,245,1)), color-stop(47%, rgba(255,255,255,1)), color-stop(100%, rgba(250,242,250,1)));
+    background: -webkit-linear-gradient(top, rgba(245,242,245,1) 0%, rgba(255,255,255,1) 47%, rgba(250,242,250,1) 100%);
+    background: -o-linear-gradient(top, rgba(245,242,245,1) 0%, rgba(255,255,255,1) 47%, rgba(250,242,250,1) 100%);
+    background: -ms-linear-gradient(top, rgba(245,242,245,1) 0%, rgba(255,255,255,1) 47%, rgba(250,242,250,1) 100%);
+    background: linear-gradient(to bottom, rgba(245,242,245,1) 0%, rgba(255,255,255,1) 47%, rgba(250,242,250,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f2f5', endColorstr='#faf2fa', GradientType=0 );
+}
+
+table img{
+    border: 1px solid black;
+}
+
+.store-buttons-wrapper{
+    position: relative;
+    bottom: 5px;
+}
+.btn{
+    width: 70px;   height: 30px;
+    position: relative;      right: 13px;  top: 15px;
+    display: flex;    justify-content: center;      align-items: center;
+    background-color: #0D5A0D;
+    color:white;
+    font-family: Lato regular;
+    border-radius: 14px;
+    cursor: pointer;
+    border: 1px solid black;
+    font-family: lato regular;
+    font-size:15px;
+    margin-top: 10px;
+}
+
+.btn:focus{
+    outline: none;
+}
+
+.btn:active{
+    background-color: green;
+}
+
+.btn:hover{
+    opacity: 0.9;
+}
+
+.cart-img{
+    background: url(../images/cart.jpg) repeat;
+    background-size: 40px 40px;
+    width:40px;   height:40px;
+    position: absolute;   top:0;   left:0;
+    pointer-events: none;
+}
+
+.cart-action{
+    width:40px;   height:40px;
+    cursor: pointer;
+}
+/************************* stores list  *************************/
+
+
+
+/********************** products checkout  ************************/
+
+.checkout-wrapper {
+    position: absolute;    top:6px;    left:0;
+    width: 235px;   height: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-count{
+    font-family: Lato regular;
+    font-size:25px;
+    position: relative;
+    top: 2px;
+    left: 20px;
+    color:white;
+}
+
+.checkout-btn{
+    border:none;
+    background: transparent;
+    width: 110px;   height: 40px;
+    border-radius:22px;
+    background-color: green;
+    font-family: Lat regular;
+    font-size: 23px;
+    float: left;
+    cursor: pointer;
+    color: white;
+    border: 1px solid #C0C1B7;
+    background-color: rgba(0, 0, 0, 0.24);
+}
+
+.checkout-btn:hover,  .checkout-btn:active,  .checkout-btn:focus{
+    outline: none;
+    background-color:rgba(0, 0, 0, 0.40);
+}
+
+/********************** products checkout  ************************/

@@ -5,35 +5,25 @@
  */
 package model;
 
-import Entities.Products;
-import Entities.Stores;
+import Entities.UsersCart;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-/**
- *
- * @author dell
- */
-public class ProductQueary {
+public class UserCartQuary {
 
     EntityManagerFactory emf;
     EntityManager em;
 
-    public ProductQueary() {
+    public UserCartQuary() {
         emf = Persistence.createEntityManagerFactory("online_shoppingPU");
         em = emf.createEntityManager();
     }
-
-    public List<Products> getProductsByStoreId(int storeId) {
-        return em.createNamedQuery("Products.findByStoreId")
-                .setParameter("storeId", storeId)
-                .getResultList();
-    }
     
-     public List<Products> getProductByProductId(int prodId) {
-        return em.createNamedQuery("Products.findByProductId")
+    public List<UsersCart> getUserCart(String userName, int prodId){
+        return em.createNamedQuery("UsersCart.findUserCart")
+                .setParameter("userName", userName)
                 .setParameter("productId", prodId)
                 .getResultList();
     }
