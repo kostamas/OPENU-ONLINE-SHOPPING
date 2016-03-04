@@ -63,12 +63,13 @@ body {
 
 .build-store-wrapper{
     margin: 90px auto 0 auto;
-    width:400px;  height: auto;
+    width:300px;  height: auto;
     min-height: 400px;
     background-color: #ECC98B;
     border: 1px solid #A79A76;
-    position: relative;   left:70px;
+    position: absolute;   left:-350px;
     border-radius: 10px;
+    transition: left 0.8s ease-out;
 }
 
 .build-store-wrapper .build-store-title{
@@ -79,24 +80,11 @@ body {
 
 .store-settings-title{
     font-family: Lato regular;    font-size:25px;     color:#57576B;
-    text-align: center;
-   
-}
-
-.new-store-btn{
-    width: 160px;  height: 160px;
-    background-color: red;
-    position: relative;    left:120px;    top:110px;
-    display: flex;     justify-content: center;     align-items: center;
-    font-family: Lato regular;  font-size: 25px;  color:white;
-}
-
-.new-store-settings-wrapper{
-    display: none; 
+    margin:15px 0  0 30px;   
 }
 
 .new-store-settings{
-    display: flex;    justify-content: center;    align-items: center;   height: 400px;
+    display: flex;    justify-content: center;    align-items: center;   height: 360px;
     color: #0B50D0;    font-family: Lato regular; font-size: 21px;  
 }
 
@@ -104,12 +92,189 @@ body {
     margin-bottom: 13px;
 }
 
+.cancle-btn{
+    width: 100px;    height:30px;
+    display: inline-block;
+    position: relative;   left:15px;     top:5px;
+    font-size: 23px;
+    cursor: pointer;    
+}
+
+.cancle-btn:hover{
+    color:#0B10F3;
+}
+
+.product-list-mask{
+    width: 551px;
+    background-color: black;
+    position: absolute;    top:12px;   left:0;    z-index: 5;
+    opacity: 0;
+    transition: opacity 0.4s;
+    cursor: pointer;
+}
 
 /******************************************************build store *******************************************/
 
 
-.View-Your-Stores-wrapper{
-    background-color: green;
-    width: 120px;  height: 120px;
-    position: absolute;     top: 230px;     left: 30px;
+
+/************************************** store list ****************************************/
+
+
+.your-stores-title{
+    text-align: center;
+    font-size: 25px;
+    margin: 10px auto;
+    background-color: #A8B75C;
+    width: 550px;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    position: relative;
+    top: 11px;
+    padding-top: 7px;
+    font-size: 30px;
+    font-weight: bold;
 }
+
+.new-store-btn-wrapper{
+    width: 125px;   height: 30px;
+    position: absolute;      left: 13px;  top: 12px;
+    display: flex;    justify-content: center;      align-items: center;
+    background-color: #071B9A;
+    color:white;
+    font-family: Lato regular;
+    border-radius: 14px;
+    cursor: pointer;
+    border: 1px solid black;
+    font-family: lato regular;
+    font-size:15px;
+    margin-top: 10px;
+    z-index: 1;
+}
+
+.new-store-btn-wrapper:hover{
+    background-color: #1128B9;
+}
+
+.new-store-btn-wrapper:active{
+    opacity: 0.8;
+    background-color: #0A00CE;
+}
+
+
+.store-list-wrapper{
+    position: relative;
+    width: 550px;
+    height: 510px;
+    margin: 50px auto 0 auto;
+}
+.table-wrapper{
+    position: relative;
+    width: 550px;
+    height: 490px;
+    overflow-y: scroll;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+
+    background: rgba(164,179,87,1);
+    background: -moz-linear-gradient(top, rgba(164,179,87,1) 0%, rgba(214,227,143,1) 54%, rgba(117,137,12,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(164,179,87,1)), color-stop(54%, rgba(214,227,143,1)), color-stop(100%, rgba(117,137,12,1)));
+    background: -webkit-linear-gradient(top, rgba(164,179,87,1) 0%, rgba(214,227,143,1) 54%, rgba(117,137,12,1) 100%);
+    background: -o-linear-gradient(top, rgba(164,179,87,1) 0%, rgba(214,227,143,1) 54%, rgba(117,137,12,1) 100%);
+    background: -ms-linear-gradient(top, rgba(164,179,87,1) 0%, rgba(214,227,143,1) 54%, rgba(117,137,12,1) 100%);
+    background: linear-gradient(to bottom, rgba(164,179,87,1) 0%, rgba(214,227,143,1) 54%, rgba(117,137,12,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a4b357', endColorstr='#75890c', GradientType=0 );
+}
+
+.table-wrapper::-webkit-scrollbar-track
+{
+    border: 1px solid black;
+    background-color: #F5F5F5;
+    border-radius: 30px;
+}
+
+.table-wrapper::-webkit-scrollbar
+{
+    width: 15px;
+    background-color: #F5F5F5;
+    border-radius: 30px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb
+{
+    background-color: #90947E;	
+    border-radius: 30px;
+}
+
+
+table tr{
+    margin: 0 30px 30px 30px;
+    display: block;
+}
+
+table tr td{
+    margin: 20px 0px 20px 0px;
+    display: inline-block;
+    border: 1px;
+}
+table .store-name-title{
+    text-align: center;
+    font-size: 23px;   font-family: lato regular;      color:black;
+    margin-bottom: 10px;
+}
+
+table .store-description-title{
+    padding:5px;
+    font-size: 16px;   font-family: lato regular;      color:black;
+    margin-bottom: -30px;
+    width: 200px;   height:140px;
+    border: 1px solid black;
+    background: rgba(245,242,245,1);
+    background: -moz-linear-gradient(top, rgba(245,242,245,1) 0%, rgba(255,255,255,1) 47%, rgba(250,242,250,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(245,242,245,1)), color-stop(47%, rgba(255,255,255,1)), color-stop(100%, rgba(250,242,250,1)));
+    background: -webkit-linear-gradient(top, rgba(245,242,245,1) 0%, rgba(255,255,255,1) 47%, rgba(250,242,250,1) 100%);
+    background: -o-linear-gradient(top, rgba(245,242,245,1) 0%, rgba(255,255,255,1) 47%, rgba(250,242,250,1) 100%);
+    background: -ms-linear-gradient(top, rgba(245,242,245,1) 0%, rgba(255,255,255,1) 47%, rgba(250,242,250,1) 100%);
+    background: linear-gradient(to bottom, rgba(245,242,245,1) 0%, rgba(255,255,255,1) 47%, rgba(250,242,250,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f2f5', endColorstr='#faf2fa', GradientType=0 );
+}
+
+table img{
+    border: 1px solid black;
+}
+
+.store-buttons-wrapper{
+    position: relative;
+    bottom: 5px;
+}
+.edit-btn-wrapper, .products-page-btn-wrapper, .delete-store-btn-wrapper{
+    width: 70px;   height: 30px;
+    position: relative;      right: 13px;  top: 15px;
+    display: flex;    justify-content: center;      align-items: center;
+    background-color: #0D5A0D;
+    color:white;
+    font-family: Lato regular;
+    border-radius: 14px;
+    cursor: pointer;
+    border: 1px solid black;
+    font-family: lato regular;
+    font-size:15px;
+    margin-top: 10px;
+}
+
+.edit-btn-wrapper:focus, .products-page-btn-wrapper:focus, .delete-store-btn-wrapper:focus{
+    outline: none;
+}
+
+.edit-btn-wrapper:active, .products-page-btn-wrapper:active, .delete-store-btn-wrapper:active{
+    background-color: green;
+}
+
+.edit-btn-wrapper:hover, .products-page-btn-wrapper:hover, .delete-store-btn-wrapper:hovers{
+    opacity: 0.9;
+}
+
+
+/************************************** store list ****************************************/
+

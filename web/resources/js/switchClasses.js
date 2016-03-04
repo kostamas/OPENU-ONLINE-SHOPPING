@@ -31,13 +31,3 @@ function switchMode(selectorToShow, selectorToHide) {
         }
     }
 }
-var viewAdminStore = true;
-function toggle(className, styleType, newValue, oldValue) {
-    if (viewAdminStore) {
-        document.querySelector(className).style[styleType] = newValue;
-        viewAdminStore = !viewAdminStore;
-    } else {
-        document.querySelector(className).style[styleType] = oldValue;
-        viewAdminStore = !viewAdminStore;
-    }
-}

@@ -8,16 +8,13 @@
         <title>Facelet Title</title>
         <h:outputStylesheet  name="css/build-product.css"/>
         <h:outputScript  name="js/buildStore.js" />
+           <h:outputScript  name="js/switchClasses.js" />
     </h:head>
 
     <h:body>
 
-
-        <h:form>        
-            <h:commandButton class="back" value="back"  action="buildStore?faces-redirect=true"/>
-        </h:form> 
+        <div class="back" onClick="goBack()"></div>
         <div class="back-text">BACK</div>
-
         <!--*********************************profile************************-->
 
         <div class="edit-profile-text">Edit profile</div>
@@ -75,8 +72,9 @@
                             <h:inputFile value="#{buildProductBean.file}"/>
                             <br/>                    
                             <br/>
-                            <h:commandButton class="create-product" style="cursor:pointer;" action="#{buildProductBean.createNewProduct}" value="create"/>
-                            <h:commandButton class="update-product" style="cursor:pointer;" action="#{buildProductBean.updateProduct}" value="update"/>
+                            <h:commandButton class="create-btn" style="cursor:pointer;" action="#{buildProductBean.createNewProduct}" value="create"/>
+                            <h:commandButton class="update-btn" style="cursor:pointer;" action="#{buildProductBean.updateProduct}" value="update"/>
+                            <div class="cancle-btn" onClick="returnProductsView('.build-product-wrapper')">Cancle</div>
                         </h:form>
                     </div>
                 </div>
@@ -86,42 +84,48 @@
 
         <!--********************************* build product *********************************-->
 
+
         <!--********************************* product list *********************************-->
 
 
-        <div class="table-wrapper">
-            <h:commandButton class="create-product" style="cursor:pointer;" action="#{buildProductBean.createNewProduct}" value="create"/>
+
+        <div class="product-list-wrapper"> 
             <div class="store-name">Store: <span style="color:#2E0080;">#{buildProductBean.storeName}</span> </div>
-            <h:dataTable value="#{buildProductBean.productsList}" var="product">
-                <h:column>
-                    <h:form class="product-buttons-wrapper">        
-                        <h:commandButton class="edit-btn-wrapper" 
-                                         onclick="updateProduct('.build-product-wrapper', '.create-product', '30px')" 
-                                         value="Edit"  action="#{buildProductBean.saveProductId}">
-                            <f:param name="selectedProductId" value="#{product.productId}"/>
-                            <f:ajax execute="@this"/>
-                        </h:commandButton>
+            <div class="new-product-btn-wrapper" onClick="updateProduct('.build-product-wrapper', '.update-btn', '45px','529px')">New Product</div>
+            <div class="product-list-mask" onClick="returnProductsView('.build-product-wrapper')"> </div>
 
-                        <h:commandButton class="delete-product-btn-wrapper" action="#{buildProductBean.viewStoreProduts}" value="Delete">
-                            <f:param name="storeId" value="#{product.productId}"/>
-                        </h:commandButton>
+            <div class="table-wrapper">
 
-                    </h:form> 
-                </h:column>
-                <h:column>
-                    <div class="product-description-title">
-                        <div style="text-align: center; font-size: 21px; text-decoration: underline;">description</div>
-                        #{product.description}
-                    </div>
-                </h:column>
+                <h:dataTable value="#{buildProductBean.productsList}" var="product">
+                    <h:column>
+                        <h:form class="product-buttons-wrapper">        
+                            <h:commandButton class="edit-btn-wrapper" 
+                                             onclick="updateProduct('.build-product-wrapper', '.create-btn', '45px', '529px')" 
+                                             value="Edit"  action="#{buildProductBean.saveProductId}">
+                                <f:param name="selectedProductId" value="#{product.productId}"/>
+                                <f:ajax execute="@this"/>
+                            </h:commandButton>
 
-                <h:column>
-                    <div class="product-name-title">#{product.productName}</div>
-                    <h:graphicImage value="/image/#{product.storeId}/#{product.photo}" height="150px;" width="170px;"/>
-                </h:column>
-            </h:dataTable>
+                            <h:commandButton class="delete-product-btn-wrapper" action="#{buildProductBean.deleteProduct}" value="Delete">
+                                <f:param name="selectedProductId" value="#{product.productId}"/>
+                            </h:commandButton>
+
+                        </h:form> 
+                    </h:column>
+                    <h:column>
+                        <div class="product-description-title">
+                            <div style="text-align: center; font-size: 21px; text-decoration: underline;">description</div>
+                            #{product.description}
+                        </div>
+                    </h:column>
+
+                    <h:column>
+                        <div class="product-name-title">#{product.productName}</div>
+                        <h:graphicImage value="/image/#{product.storeId}/#{product.photo}" height="150px;" width="170px;"/>
+                    </h:column>
+                </h:dataTable>
+            </div>
         </div>
-
         <!--********************************* product list *********************************-->
 
 

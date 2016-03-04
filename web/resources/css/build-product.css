@@ -26,8 +26,8 @@ body {
     color:black;
     font-family: Lato regular;
     position: absolute;
-    left: 100px;
-    top: 40px;
+    left: 84px;
+    top: 32px;
 }
 
 .back-text:focus{
@@ -92,7 +92,7 @@ body {
     border: 1px solid #A79A76;
     position: absolute;   left:-350px;    bottom:70px;
     border-radius: 10px;
-    transition: left 0.6s ease-out;
+    transition: left 0.8s ease-out;
 }
 
 
@@ -147,7 +147,7 @@ body {
 /*********************************build product **********************************/
 
 .new-product-settings{
-     display: flex;    justify-content: center;    align-items: center;   height: 385px;
+    display: flex;    justify-content: center;    align-items: center;   height: 385px;
     color: #0B50D0;    font-family: Lato regular; font-size: 21px; 
 }
 
@@ -156,7 +156,7 @@ body {
 }
 
 input[type="file"]{
-      margin-bottom: 5px;
+    margin-bottom: 5px;
 }
 /*********************************build product **********************************/
 
@@ -172,11 +172,74 @@ input[type="file"]{
 
 /**************************   product list   *****************************/
 
+.cancle-btn{
+    width: 100px;    height:30px;
+    display: inline-block;
+    position: relative;   left:15px;     top:5px;
+    font-size: 23px;
+    cursor: pointer;    
+}
+
+.cancle-btn:hover{
+    color:#0B10F3;
+}
+
+.product-list-mask{
+    width: 551px;
+    background-color: black;
+    position: absolute;    top:0px;   left:0;    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.4s;
+    cursor: pointer;
+}
+.product-list-wrapper{
+    position: relative;
+    width: 550px;
+    height: 510px;
+    margin: auto;
+}
+
+.new-product-btn-wrapper{
+    position: absolute;
+    top: -15px;
+    left:45px;
+}
+
+.new-product-btn-wrapper{
+    width: 125px;   height: 30px;
+    position: absolute;      left: 13px;  top: -3px;
+    display: flex;    justify-content: center;      align-items: center;
+    background-color: #071B9A;
+    color:white;
+    font-family: Lato regular;
+    border-radius: 14px;
+    cursor: pointer;
+    border: 1px solid black;
+    font-family: lato regular;
+    font-size:15px;
+    margin-top: 10px;
+}
+
+.new-product-btn-wrapper:hover{
+    background-color: #1128B9;
+}
+
+.new-product-btn-wrapper:active{
+    opacity: 0.8;
+    background-color: #0A00CE;
+}
+
+
 .store-name{
     text-align: center;
     font-size: 25px;
     font-weight: bold;
-    margin-top: 10px;
+    background-color: #A8B75C;
+    width: 550px;
+    padding-top: 10px;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
 }
 
 .table-wrapper{
@@ -184,7 +247,9 @@ input[type="file"]{
     width: 550px;
     height: 490px;
     overflow-y: scroll;
-    border: 1px solid black;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
     background: rgba(164,179,87,1);
     background: -moz-linear-gradient(top, rgba(164,179,87,1) 0%, rgba(214,227,143,1) 54%, rgba(117,137,12,1) 100%);
     background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(164,179,87,1)), color-stop(54%, rgba(214,227,143,1)), color-stop(100%, rgba(117,137,12,1)));
@@ -256,7 +321,7 @@ table img{
     position: relative;
     bottom: 5px;
 }
- .edit-btn-wrapper, .delete-product-btn-wrapper{
+.edit-btn-wrapper, .delete-product-btn-wrapper{
     width: 70px;   height: 30px;
     position: relative;      right: 13px;  top: 15px;
     display: flex;    justify-content: center;      align-items: center;
@@ -271,7 +336,7 @@ table img{
     margin-top: 10px;
 }
 
-.edit-btn-wrapper:focus, .delete-produc-btn-wrapper:focus{
+.edit-btn-wrapper:focus, .delete-produc-btn-wrapper:focus, .new-product:focus{
     outline: none;
 }
 
@@ -279,7 +344,7 @@ table img{
     background-color: green;
 }
 
-.edit-btn-wrapper:hover, .delete-product-btn-wrapper:hovers{
+.edit-btn-wrapper:hover, .delete-product-btn-wrapper:hover{
     opacity: 0.9;
 }
 

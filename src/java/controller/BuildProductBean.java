@@ -9,6 +9,7 @@ import Entities.Products;
 import Entities.ProductsJpaController;
 import Entities.Stores;
 import Entities.StoresJpaController;
+import Entities.exceptions.NonexistentEntityException;
 import static controller.LoginBean.adminName;
 import java.io.File;
 import java.io.IOException;
@@ -154,18 +155,16 @@ public class BuildProductBean {
             return null;
         }
         StoreBuilder storeDB = new StoreBuilder();
-        this.productId = storeDB.createProductId() + 1;
+        this.productId = storeDB.createProductId();
 
-        if (this.productId < 1) {
-            return null;
-        }
-
-        String dirPath = "C:\\onlineShopping\\" + BuildStoreBean.currentStoreName;
+        String dirPath = "C:\\onlineShopping\\" + BuildStoreBean.currentStoreId;
         this.productPhoto = this.productId + "product.jpg";
 
         Products newProduct = new Products(this.productId, this.productName, this.price, this.stock, this.productPhoto, BuildStoreBean.currentStoreId, this.description);
 
         storeDB.save(newProduct);
+        productsList.add(newProduct);
+
         try (InputStream input = file.getInputStream()) {
             Files.copy(input, new File(dirPath, this.productPhoto).toPath());
         } catch (IOException e) {
@@ -196,7 +195,7 @@ public class BuildProductBean {
         } catch (Exception ex) {
             Logger.getLogger(StoresViewer.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         if (this.file != null) {
             String dirPath = "C:\\onlineShopping\\" + this.storeId;
             String imgPath = dirPath + "\\" + productToUpdate.getPhoto();
@@ -209,6 +208,13 @@ public class BuildProductBean {
                 // Show faces message?
             }
         }
+    }
+
+    public void deleteProduct() throws NonexistentEntityException {
+        int _selectedProductId = this.selectedProductId;
+        productsJpaCtrl.destroy(_selectedProductId);
+        Products product = getProducteById(_selectedProductId);
+        productsList.remove(product);
     }
 
     private Products getProducteById(int id) {

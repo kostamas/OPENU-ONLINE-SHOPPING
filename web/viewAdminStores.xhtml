@@ -51,48 +51,7 @@
         <!--********************************* store  edit*********************************-->
 
 
-        <div class="store-list-wrapper"> 
-            <div class="your-stores-title">Your Stores</div>
-            
-            <div class="table-wrapper">
-                <h:dataTable value="#{storesViewer.stores}" var="store">
-                    <h:column>
-                        <h:form class="store-buttons-wrapper">        
-                            <h:commandButton class="edit-btn-wrapper" 
-                                             onclick="toggle('.edit-store-wrapper', 'left', '30px', '-350px')" 
-                                             value="Edit"  action="#{storesViewer.saveCurrentStore}">
-                                <f:param name="selectedStoreId" value="#{store.storeId}"/>
-                                <f:param name="selectedStoreName" value="#{store.storeName}"/>
-
-                                <f:ajax execute="@this"/>
-                            </h:commandButton>
-
-                            <h:commandButton class="products-page-btn-wrapper" action="#{storesViewer.viewStoreProduts}" value="products">
-                                <f:param name="selectedStoreId" value="#{store.storeId}"/>
-                                <f:param name="selectedStoreName" value="#{store.storeName}"/>
-                            </h:commandButton>
-
-                            <h:commandButton class="delete-store-btn-wrapper" action="#{storesViewer.viewStoreProduts}" value="Delete">
-                                <f:param name="selectedStoreId" value="#{store.storeId}"/>
-                                <f:param name="selectedStoreName" value="#{store.storeName}"/>
-                            </h:commandButton>
-
-                        </h:form> 
-                    </h:column>
-                    <h:column>
-                        <div class="store-description-title">
-                            <div style="text-align: center; font-size: 21px; text-decoration: underline;">description</div>
-                            #{store.description}
-                        </div>
-                    </h:column>
-
-                    <h:column>
-                        <div class="store-name-title">#{store.storeName}</div>
-                        <h:graphicImage value="/image/#{store.storeId}/#{store.storePhoto}" height="150px;" width="170px;"/>
-                    </h:column>
-                </h:dataTable>
-            </div>
-        </div>
+       
     </h:body>
 </html>
 

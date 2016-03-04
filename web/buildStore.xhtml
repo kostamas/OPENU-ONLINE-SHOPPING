@@ -44,9 +44,6 @@
 
             <div class="new-store-wrapper">
 
-                <div  onClick="switchMode('.new-store-settings-wrapper', '.new-store-btn')" class="new-store-btn" style="cursor:pointer;">New Store</div>
-
-
                 <div class="new-store-settings-wrapper">
                     <div class="store-settings-title"> Store Settings</div>
                     <div class="new-store-settings">
@@ -63,7 +60,9 @@
                             <br/>
                             <h:inputFile  value="#{buildStoreBean.file}"/>
                             <br/>
-                            <h:commandButton class="save-profile" style="cursor:pointer;" action="#{buildStoreBean.createNewStore}" value="done"/>
+                            <h:commandButton class="update-btn" style="cursor:pointer;" action="#{buildStoreBean.createNewStore}" value="done"/>
+                            <h:commandButton class="create-btn" style="cursor:pointer;" action="#{buildProductBean.createNewProduct}" value="create"/>
+                            <div class="cancle-btn" onClick="returnProductsView('.build-store-wrapper')">Cancle</div>
                         </h:form>
                     </div>
                 </div>
@@ -73,20 +72,52 @@
         <!--*********************************build store*********************************-->
 
 
+        <!--*******************************  store list ********************************-->
 
+        <div class="store-list-wrapper"> 
+            <div class="new-store-btn-wrapper" onClick="updateProduct('.build-store-wrapper', '.update-btn', '45px', '529px')">New Product</div>
+            <div class="your-stores-title">Your Stores</div>
+            <div class="product-list-mask" onClick="returnProductsView('.build-store-wrapper')"> </div>
 
+            <div class="table-wrapper">
+                <h:dataTable value="#{buildStoreBean.storesList}" var="store">
+                    <h:column>
+                        <h:form class="store-buttons-wrapper">        
+                            <h:commandButton class="edit-btn-wrapper" 
+                                             onclick="updateProduct('.build-store-wrapper', '.create-btn', '30px', '538px')" 
+                                             value="Edit"  action="#{storesViewer.saveCurrentStore}">
+                                <f:param name="selectedStoreId" value="#{store.storeId}"/>
+                                <f:param name="selectedStoreName" value="#{store.storeName}"/>
+                                <f:ajax execute="@this"/>
+                            </h:commandButton>
 
+                            <h:commandButton class="products-page-btn-wrapper" action="#{buildStoreBean.viewStoreProduts}" value="products">
+                                <f:param name="selectedStoreId" value="#{store.storeId}"/>
+                                <f:param name="selectedStoreName" value="#{store.storeName}"/>
+                            </h:commandButton>
 
+                            <h:commandButton class="delete-store-btn-wrapper" action="#{buildStoreBean.deleteStore}" value="Delete">
+                                <f:param name="selectedStoreId" value="#{store.storeId}"/>
+                            </h:commandButton>
 
-        <!--*********************************view yor  stores*********************************-->
+                        </h:form> 
+                    </h:column>
+                    <h:column>
+                        <div class="store-description-title">
+                            <div style="text-align: center; font-size: 21px; text-decoration: underline;">description</div>
+                            #{store.description}
+                        </div>
+                    </h:column>
 
+                    <h:column>
+                        <div class="store-name-title">#{store.storeName}</div>
+                        <h:graphicImage value="/image/#{store.storeId}/#{store.storePhoto}" height="150px;" width="170px;"/>
+                    </h:column>
+                </h:dataTable>
+            </div>
+        </div>
 
-        <h:form>
-            <h:commandButton class="View-Your-Stores-wrapper" style="cursor:pointer;" action="view admin stores page" value="view Your Stores"/>
-        </h:form>
-
-
-        <!--*********************************view yor  stores*********************************-->
+        <!--*******************************  store list ********************************-->
 
     </h:body>
 </html>

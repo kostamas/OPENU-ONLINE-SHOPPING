@@ -5,7 +5,9 @@
  */
 package model;
 
+import Entities.Products;
 import Entities.Stores;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -30,7 +32,15 @@ public class StoreBuilder {
     }
     
     public int createProductId(){
-     return em.createNamedQuery("Products.findAll").getResultList().size();
+        
+     int numberOfProducts = em.createNamedQuery("Products.findAll").getResultList().size();
+     for(int i = 1; i < numberOfProducts + 1; i++){
+         int resultSize = em.createNamedQuery("Products.findByProductId").setParameter("productId",i).getResultList().size();
+         if( resultSize == 0){
+             return i;
+         }
+     }
+     return numberOfProducts + 1;
     }
     
     public boolean save(Object entity){
