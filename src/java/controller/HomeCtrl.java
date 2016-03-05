@@ -47,7 +47,7 @@ public class HomeCtrl {
         storesList = storeQueary.getAllStores();   // get
 
         if (this.isLoggedIn) {
-            this.title = this.userName;
+            this.title = "Welcom " + this.userName;
         } else {
             this.title = "Welcome to ONLINE SHOPPING";
         }

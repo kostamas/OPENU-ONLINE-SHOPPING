@@ -27,7 +27,11 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "UsersCart.findAll", query = "SELECT u FROM UsersCart u"),
     @NamedQuery(name = "UsersCart.findByUserName", query = "SELECT u FROM UsersCart u WHERE u.usersCartPK.userName = :userName"),
     @NamedQuery(name = "UsersCart.findByProductId", query = "SELECT u FROM UsersCart u WHERE u.usersCartPK.productId = :productId"),
-    @NamedQuery(name = "UsersCart.findByQuantity", query = "SELECT u FROM UsersCart u WHERE u.quantity = :quantity")})
+    @NamedQuery(name = "UsersCart.findByQuantity", query = "SELECT u FROM UsersCart u WHERE u.quantity = :quantity"),
+    @NamedQuery(name = "UsersCart.findByProductPrice", query = "SELECT u FROM UsersCart u WHERE u.productPrice = :productPrice"),
+    @NamedQuery(name = "UsersCart.findByStoreId", query = "SELECT u FROM UsersCart u WHERE u.storeId = :storeId"),
+    @NamedQuery(name = "UsersCart.findByProductName", query = "SELECT u FROM UsersCart u WHERE u.productName = :productName"),
+    @NamedQuery(name = "UsersCart.findByStoreName", query = "SELECT u FROM UsersCart u WHERE u.storeName = :storeName")})
 public class UsersCart implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -36,6 +40,14 @@ public class UsersCart implements Serializable {
     @Basic(optional = false)
     @Column(name = "QUANTITY")
     private int quantity;
+    @Column(name = "PRODUCT_PRICE")
+    private Integer productPrice;
+    @Column(name = "STORE_ID")
+    private Integer storeId;
+    @Column(name = "PRODUCT_NAME")
+    private String productName;
+    @Column(name = "STORE_NAME")
+    private String storeName;
 
     public UsersCart() {
     }
@@ -44,9 +56,13 @@ public class UsersCart implements Serializable {
         this.usersCartPK = usersCartPK;
     }
 
-    public UsersCart(UsersCartPK usersCartPK, int quantity) {
+    public UsersCart(UsersCartPK usersCartPK, int price, int storeId, String prodName, String storeName) {
         this.usersCartPK = usersCartPK;
-        this.quantity = quantity;
+        this.quantity = 1;
+        this.productPrice = price;
+        this.storeId = storeId;
+        this.productName = prodName;
+        this.storeName = storeName;
     }
 
     public UsersCart(String userName, int productId) {
@@ -67,6 +83,38 @@ public class UsersCart implements Serializable {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public Integer getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(Integer productPrice) {
+        this.productPrice = productPrice;
+    }
+
+    public Integer getStoreId() {
+        return storeId;
+    }
+
+    public void setStoreId(Integer storeId) {
+        this.storeId = storeId;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public String getStoreName() {
+        return storeName;
+    }
+
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
     }
 
     @Override

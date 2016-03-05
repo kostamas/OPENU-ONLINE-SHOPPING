@@ -9,7 +9,49 @@
     </h:head>
     <body>
         <div class="bg-cover"></div>
-        
-        
+
+
+        <div class="store-list-wrapper"> 
+            <div class="product-list-mask" onClick="returnProductsView('.build-store-wrapper')"> </div>
+
+            <div class="table-container">
+                <div class="your-cart-title"> Your Cart</div>
+
+                <div class="table-wrapper">
+                    <div class="table-header">
+                        <div class="product-name-t">Product name</div>
+                        <div class="store-name-t">Store name</div>
+                        <div class="product-price-t">Product price</div>
+                        <div class="product-quantity-t">Poduct quantity</div>
+
+                    </div>
+                    <h:form>
+                        <h:dataTable value="#{checkout.cartList}" var="product">
+
+                            <h:column >                     
+                                #{product.productName}
+                            </h:column>
+                            <h:column>
+                                #{product.storeName}
+                            </h:column>
+                            <h:column>
+                                #{product.productPrice}
+                            </h:column>
+                            <h:column>
+                                #{product.quantity}
+                            </h:column>
+                            <h:column>
+                                <h:commandButton class="delete-order" action="#{checkout.deleteOrder}">
+                                    <f:param name="selectedProductId" value="#{product.usersCartPK.productId}"/>
+                                </h:commandButton>
+                            </h:column>
+                        </h:dataTable>
+                    </h:form>
+                </div>
+
+            </div>
+        </div>
+
+
     </body>
 </html>

@@ -230,3 +230,46 @@ table img{
 }
 
 /************************* stores list  *************************/
+
+
+
+/********************** products checkout  ************************/
+
+.checkout-wrapper {
+    position: absolute;    top:6px;    left:0;
+    width: 235px;   height: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-count{
+    font-family: Lato regular;
+    font-size:25px;
+    position: relative;
+    top: 2px;
+    left: 20px;
+    color:white;
+}
+
+.checkout-btn{
+    border:none;
+    background: transparent;
+    width: 110px;   height: 40px;
+    border-radius:22px;
+    background-color: green;
+    font-family: Lat regular;
+    font-size: 23px;
+    float: left;
+    cursor: pointer;
+    color: white;
+    border: 1px solid #C0C1B7;
+    background-color: rgba(0, 0, 0, 0.24);
+}
+
+.checkout-btn:hover,  .checkout-btn:active,  .checkout-btn:focus{
+    outline: none;
+    background-color:rgba(0, 0, 0, 0.40);
+}
+
+/********************** products checkout  ************************/

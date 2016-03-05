@@ -20,11 +20,21 @@ public class UserCartQuary {
         emf = Persistence.createEntityManagerFactory("online_shoppingPU");
         em = emf.createEntityManager();
     }
-    
-    public List<UsersCart> getUserCart(String userName, int prodId){
+
+    public List<UsersCart> getUserProduct(String userName, int prodId) {
         return em.createNamedQuery("UsersCart.findUserCart")
                 .setParameter("userName", userName)
                 .setParameter("productId", prodId)
+                .getResultList();
+    }
+
+    static public List<UsersCart> getUserCart(String userName) {
+        EntityManagerFactory emfTemp;
+        EntityManager emTemp;
+        emfTemp = Persistence.createEntityManagerFactory("online_shoppingPU");
+        emTemp = emfTemp.createEntityManager();
+        return emTemp.createNamedQuery("UsersCart.findByUserName")
+                .setParameter("userName", userName)
                 .getResultList();
     }
 }

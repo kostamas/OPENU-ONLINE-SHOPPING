@@ -42,6 +42,13 @@
 
 
         <!--*******************************  store list ********************************-->
+        <div class="checkout-wrapper">
+
+            <h:form>        
+                <h:commandButton class="checkout-btn" action="checkout?faces-redirect=true" value="Checkout"/>
+            </h:form>
+            <div class="product-count">Cost: #{buyProductCtrl.cost}<span style="font-size: 16px;">NS</span></div>
+        </div>
 
         <div class="store-list-wrapper"> 
             <div class="your-stores-title">#{homeCtrl.title}</div>
@@ -51,12 +58,12 @@
                 <h:dataTable value="#{homeCtrl.storesList}" var="store">
                     <h:column>
                         <h:form class="store-buttons-wrapper">        
-                           
+
                             <h:commandButton class="products-page-btn-wrapper btn" action="#{homeCtrl.viewStoreProduts}" value="ENTER">
                                 <f:param name="selectedStoreId" value="#{store.storeId}"/>
                                 <f:param name="selectedStoreName" value="#{store.storeName}"/>
                             </h:commandButton>
-                            
+
                         </h:form> 
                     </h:column>
                     <h:column>

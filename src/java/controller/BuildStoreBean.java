@@ -181,6 +181,9 @@ public class BuildStoreBean {
         storeDB.save(newStore);
         storesList.add(newStore);
         try (InputStream input = file.getInputStream()) {
+            new File(dirPath).mkdir();
+            File oldImage = new File(dirPath + "\\" + this.storePhoto);     // deleting old image
+            oldImage.delete();
             Files.copy(input, new File(dirPath, this.storePhoto).toPath());
         } catch (IOException e) {
             Logger.getLogger(BuildStoreBean.class.getName()).log(Level.SEVERE, null, e);

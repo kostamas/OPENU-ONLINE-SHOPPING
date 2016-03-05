@@ -7,7 +7,7 @@ function switchMode(selectorToShow, selectorToHide) {
         for (var i = 0; i < selectorToShow.length; i++) {
             document.querySelector(selectorToShow[i]).style.display = "block";
         }
-        
+
     } else {
         var elementToHide = document.getElementById(selectorToHide);     /////////////  by id !!!!!!
         var elementToShow = document.getElementById(selectorToShow);
