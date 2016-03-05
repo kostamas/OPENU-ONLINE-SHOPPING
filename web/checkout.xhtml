@@ -12,7 +12,12 @@
 
 
         <div class="store-list-wrapper"> 
-            <div class="total-cost-title">Total cost: #{checkout.cost}<span style="font-size: 18px;">NS</span></div>
+            <div class="total-cost-title">Total cost: #{checkout.cost}<span class="ns">NS</span></div>
+            
+            <h:form>
+                <h:commandButton class="pay-btn" action="#{checkout.deleteOrder}"/>
+            </h:form>
+
 
             <div class="product-list-mask" onClick="returnProductsView('.build-store-wrapper')"> </div>
 

@@ -141,7 +141,7 @@ public class BuyProductCtrl {
         this.cost += product.getPrice();
         int newStock = product.getStock() - 1;
         if (newStock == 0) {
-            productCtrl.destroy(product.getProductId());
+            productCtrl.edit(product);
             productsList.remove(product);
         } else {
             product.setStock(newStock);

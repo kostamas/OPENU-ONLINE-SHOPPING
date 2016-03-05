@@ -36,13 +36,12 @@ public class Checkout {
         cartList = UserCartQuary.getUserCart(HomeCtrl.userName);
         userCartrl = new UsersCartJpaController(emf);
         productsCtrl = new ProductsJpaController(emf);
-        
+
         calcTotalCost();
-        
+
     }
 
     // ****************** setters & getters   ********************//
-    
     public List<UsersCart> getCartList() {
         return cartList;
     }
@@ -66,7 +65,6 @@ public class Checkout {
     public void setCost(int cost) {
         this.cost = cost;
     }
-    
 
     // ****************** setters & getters   ********************//
     public void deleteOrder() throws Exception {
@@ -74,22 +72,29 @@ public class Checkout {
         product.setStock(product.getStock() + 1); // stock++;
         productsCtrl.edit(product);                        // updateDb
 
+        UsersCart productToRemove = null;
         for (UsersCart productTemp : this.cartList) {
-            productTemp.setQuantity(productTemp.getQuantity() - 1);
+            if (this.selectedProductId == productTemp.getUsersCartPK().getProductId()) {
+                productTemp.setQuantity(productTemp.getQuantity() - 1);
 
-            if (productTemp.getQuantity() < 1) {
-                userCartrl.destroy(productTemp.getUsersCartPK());       // update DB
-                this.cartList.remove(productTemp);
-            } else {
-                userCartrl.edit(productTemp);
+                if (productTemp.getQuantity() < 1) {
+                    productToRemove = productTemp;
+                } else {
+                    userCartrl.edit(productTemp);
+                }
             }
+        }
+        if (productToRemove != null) {
+            userCartrl.destroy(productToRemove.getUsersCartPK());       // update DB
+            this.cartList.remove(productToRemove);
 
         }
+
     }
-    
-    public void calcTotalCost(){
-          for (UsersCart product : cartList) {
-                this.cost += product.getQuantity() * product.getProductPrice();
-            }
+
+    public void calcTotalCost() {
+        for (UsersCart product : cartList) {
+            this.cost += product.getQuantity() * product.getProductPrice();
+        }
     }
 }
