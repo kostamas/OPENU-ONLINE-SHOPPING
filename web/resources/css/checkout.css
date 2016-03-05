@@ -15,6 +15,26 @@ body {
     opacity: 0.7;
 }
 
+.store-list-wrapper{
+    margin: 0 auto;
+    width:850px;
+    height: 400px;
+    display: flex;
+}
+
+.total-cost-title{
+    font-family: Lato regular;
+    font-size: 25px;
+    color: white;
+    width: 200px;
+    background-color: #6A6B6D;
+    text-align: center;
+    display: inline-block;  
+    height: 30px;
+    margin-top: 80px;
+    position: relative;    right: 30px;    top:50px;
+}
+
 .your-cart-title{
     text-align: center;
     margin: 0 auto;
@@ -85,7 +105,7 @@ td{
 
 td:last-child{
     position: absolute;
-    right: -14pxs;
+    right: -14px;
     width: 0;
     top: 12px;
 }

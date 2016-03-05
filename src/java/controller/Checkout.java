@@ -29,15 +29,20 @@ public class Checkout {
     String userName;
     UsersCartJpaController userCartrl;
     ProductsJpaController productsCtrl;
+    private int cost;
 
     public Checkout() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("online_shoppingPU");
         cartList = UserCartQuary.getUserCart(HomeCtrl.userName);
         userCartrl = new UsersCartJpaController(emf);
         productsCtrl = new ProductsJpaController(emf);
+        
+        calcTotalCost();
+        
     }
 
     // ****************** setters & getters   ********************//
+    
     public List<UsersCart> getCartList() {
         return cartList;
     }
@@ -53,6 +58,15 @@ public class Checkout {
     public void setSelectedProductId(int selectedProductId) {
         this.selectedProductId = selectedProductId;
     }
+
+    public int getCost() {
+        return cost;
+    }
+
+    public void setCost(int cost) {
+        this.cost = cost;
+    }
+    
 
     // ****************** setters & getters   ********************//
     public void deleteOrder() throws Exception {
@@ -71,5 +85,11 @@ public class Checkout {
             }
 
         }
+    }
+    
+    public void calcTotalCost(){
+          for (UsersCart product : cartList) {
+                this.cost += product.getQuantity() * product.getProductPrice();
+            }
     }
 }
