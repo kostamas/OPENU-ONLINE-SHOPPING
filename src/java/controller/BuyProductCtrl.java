@@ -47,7 +47,7 @@ public class BuyProductCtrl {
         this.storeId = BuildStoreBean.currentStoreId;
         this.storeName = BuildStoreBean.currentStoreName;
         ProductQueary productQueary = new ProductQueary();
-        productsList = productQueary.getProductsByStoreId(this.storeId);
+        productsList = productQueary.getProductsWithQuantity(this.storeId);
         userCartDB = new UserCartQuary();
 
         this.cost = 0;
@@ -140,13 +140,11 @@ public class BuyProductCtrl {
 
         this.cost += product.getPrice();
         int newStock = product.getStock() - 1;
-        if (newStock == 0) {
-            productCtrl.edit(product);
+        if (newStock < 1) {
             productsList.remove(product);
-        } else {
-            product.setStock(newStock);
-            productCtrl.edit(product);
         }
+        product.setStock(newStock);
+        productCtrl.edit(product);
     }
 
     public String buyProduct() {

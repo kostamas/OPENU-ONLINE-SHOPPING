@@ -72,28 +72,40 @@ public class Checkout {
         product.setStock(product.getStock() + 1); // stock++;
         productsCtrl.edit(product);                        // updateDb
 
-        UsersCart productToRemove = null;
+        UsersCart currentProduct = null;
+        boolean productRemove = false;
+
         for (UsersCart productTemp : this.cartList) {
             if (this.selectedProductId == productTemp.getUsersCartPK().getProductId()) {
-                productTemp.setQuantity(productTemp.getQuantity() - 1);
+                currentProduct
+                        = currentProduct = productTemp;
 
-                if (productTemp.getQuantity() < 1) {
-                    productToRemove = productTemp;
+                if (currentProduct.getQuantity() < 2) {
+                    productRemove = true;
                 } else {
-                    userCartrl.edit(productTemp);
+                    productRemove = false;
                 }
             }
         }
-        if (productToRemove != null) {
-            userCartrl.destroy(productToRemove.getUsersCartPK());       // update DB
-            this.cartList.remove(productToRemove);
-
+        if (productRemove) {
+            userCartrl.destroy(currentProduct.getUsersCartPK());       // update DB
+            this.cartList.remove(currentProduct);
+        } else {
+            currentProduct.setQuantity(currentProduct.getQuantity() - 1);
+            userCartrl.edit(currentProduct);
         }
-
+        this.cartList = UserCartQuary.getUserCart(HomeCtrl.userName);   // get updated list
+        calcTotalCost();
+    }
+    
+    public void userPay(){
+        TransactionCtrl transactionCtrl = new TransactionCtrl();
+        transactionCtrl.transactionHandler(this.cartList, this.cost, HomeCtrl.userName);
     }
 
     public void calcTotalCost() {
-        for (UsersCart product : cartList) {
+        this.cost = 0;
+        for (UsersCart product : this.cartList) {
             this.cost += product.getQuantity() * product.getProductPrice();
         }
     }

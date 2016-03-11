@@ -28,7 +28,6 @@ public class StoreBuilder {
     }
 
     public int createStoreId() {
-        em.createNamedQuery("Stores.findAll").getResultList().size();
         int numberOfStores = em.createNamedQuery("Stores.findAll").getResultList().size();
         for (int i = 1; i < numberOfStores + 1; i++) {
             int resultSize = em.createNamedQuery("Stores.findByStoreId").setParameter("storeId", i).getResultList().size();

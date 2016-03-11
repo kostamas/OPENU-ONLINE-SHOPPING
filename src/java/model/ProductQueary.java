@@ -31,10 +31,17 @@ public class ProductQueary {
                 .setParameter("storeId", storeId)
                 .getResultList();
     }
-    
-     public List<Products> getProductByProductId(int prodId) {
+
+    public List<Products> getProductByProductId(int prodId) {
         return em.createNamedQuery("Products.findByProductId")
                 .setParameter("productId", prodId)
                 .getResultList();
     }
+
+    public List<Products> getProductsWithQuantity(int storeId) {
+        return em.createNamedQuery("Products.findByProductIdWithQuantity")
+                 .setParameter("storeId", storeId)
+                .getResultList();
+    }
+
 }

@@ -9,7 +9,10 @@
         <h:outputScript library="js" name="home.js" />
     </h:head>
     <body>
-
+        <h:form>        
+            <h:commandButton class="back" value="back"  action="home?faces-redirect=true"/>
+        </h:form> 
+        <div class="back-text">BACK</div>
         <div class="bg-cover"></div>
 
         <div class="edit-profile-text" onClick="toggleEditProfile()">Edit profile</div>
@@ -50,7 +53,7 @@
             </h:form>
             <div class="product-count">Cost: #{buyProductCtrl.cost}</div>
         </div>
-        
+
         <div class="store-list-wrapper"> 
             <div class="your-stores-title">Store Name: #{buyProductCtrl.storeName}</div>
             <div class="product-list-mask" onClick="returnProductsView('.build-store-wrapper')"> </div>

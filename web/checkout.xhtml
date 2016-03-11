@@ -13,9 +13,10 @@
 
         <div class="store-list-wrapper"> 
             <div class="total-cost-title">Total cost: #{checkout.cost}<span class="ns">NS</span></div>
-            
+
             <h:form>
-                <h:commandButton class="pay-btn" action="#{checkout.deleteOrder}"/>
+                <h:commandButton class="pay-btn" action="#{checkout.userPay}"/>                                    <f:param name="selectedProductId" value="#{product.usersCartPK.productId}"/>
+                <f:param name="userCart" value="#{checkout.cartList}"/>
             </h:form>
 
 
