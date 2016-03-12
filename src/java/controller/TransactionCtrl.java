@@ -9,6 +9,8 @@ import Entities.ProductsSold;
 import Entities.ProductsSoldPK;
 import Entities.Transactions;
 import Entities.UsersCart;
+import Entities.UsersCartJpaController;
+import Entities.exceptions.NonexistentEntityException;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -18,9 +20,9 @@ import model.TransactionQueary;
 @ManagedBean
 @RequestScoped
 public class TransactionCtrl {
-    
+
     private List<UsersCart> userCart;
-    
+
     public void transactionHandler(List<UsersCart> userCart, int cost, String userName) {
         TransactionQueary transactionDB = new TransactionQueary();
         int transactionId = transactionDB.createTransactionId();
@@ -34,4 +36,11 @@ public class TransactionCtrl {
         }
     }
     
+    public void emptyUserCart(List<UsersCart> userCart,  UsersCartJpaController userCartrl) throws NonexistentEntityException{
+        for (UsersCart product : userCart) {
+            userCartrl.destroy(product.getUsersCartPK());
+        }
+        userCart.clear();
+    }
+
 }

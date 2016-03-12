@@ -5,6 +5,32 @@ body {
     text-decoration: none;
 }
 
+.back {
+    width: 0; 
+    height: 0; 
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent; 
+    border-right:30px solid #121294; 
+    color:white;
+    background: transparent;
+    cursor: pointer;
+    border-left: none;
+    position: absolute;
+    left: 30px;   top: 28px;
+}
+
+.back-text{
+    font-size: 23px;
+    color:black;
+    font-family: Lato regular;
+    position: absolute;
+    left: 84px;
+    top: 32px;
+}
+
+.back:focus, .back:active {
+    outline: none;
+}
 
 .bg-cover{
     background: url(../images/g.jpg) repeat;

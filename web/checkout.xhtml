@@ -10,6 +10,11 @@
     <body>
         <div class="bg-cover"></div>
 
+        <h:form>        
+            <h:commandButton class="back" value="back"  action="homeProducts?faces-redirect=true"/>
+        </h:form> 
+        <div class="back-text">BACK</div>
+
 
         <div class="store-list-wrapper"> 
             <div class="total-cost-title">Total cost: #{checkout.cost}<span class="ns">NS</span></div>

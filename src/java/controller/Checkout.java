@@ -9,6 +9,7 @@ import Entities.Products;
 import Entities.ProductsJpaController;
 import Entities.UsersCart;
 import Entities.UsersCartJpaController;
+import Entities.exceptions.NonexistentEntityException;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -97,10 +98,13 @@ public class Checkout {
         this.cartList = UserCartQuary.getUserCart(HomeCtrl.userName);   // get updated list
         calcTotalCost();
     }
-    
-    public void userPay(){
+
+    public void userPay() throws NonexistentEntityException {
         TransactionCtrl transactionCtrl = new TransactionCtrl();
         transactionCtrl.transactionHandler(this.cartList, this.cost, HomeCtrl.userName);
+        transactionCtrl.emptyUserCart(this.cartList, userCartrl);
+        this.cartList.clear();
+        this.cost = 0;
     }
 
     public void calcTotalCost() {
