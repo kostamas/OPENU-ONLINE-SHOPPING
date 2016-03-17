@@ -7,6 +7,8 @@ package model;
 
 import Entities.ProductsSold;
 import Entities.Transactions;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -44,12 +46,33 @@ public class TransactionQueary {
         em.getTransaction().commit();
         em.close();
     }
-    
-    public void savSoldProduct(ProductsSold productSold){
-     em = emf.createEntityManager();
+
+    public void savSoldProduct(ProductsSold productSold) {
+        em = emf.createEntityManager();
         em.getTransaction().begin();
         em.persist(productSold);
         em.getTransaction().commit();
         em.close();
     }
+
+    public List<ProductsSold> getUserHistory(String userName) {   // todo - make join table with jpa !!!!!
+        em = emf.createEntityManager();                          // ugly function !!!!
+        List<Transactions> transactionList = em.createNamedQuery("Transactions.findByUserName")
+                .setParameter("userName", userName)
+                .getResultList();
+        List<ProductsSold> productsSold = em.createNamedQuery("ProductsSold.findAll")
+                .getResultList();
+        List<ProductsSold> result = new ArrayList<ProductsSold>();
+
+        for (ProductsSold product : productsSold) {
+            for (Transactions transaction : transactionList) {
+                if (product.getProductsSoldPK().getTransactionId() == transaction.getTransactionId()) {
+                    result.add(product);
+                }
+            }
+        }
+
+        return result;
+    }
+
 }

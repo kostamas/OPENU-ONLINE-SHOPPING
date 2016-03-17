@@ -5,6 +5,7 @@
  */
 package model;
 
+import Entities.Stores;
 import Entities.UsersCart;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -36,5 +37,16 @@ public class UserCartQuary {
         return emTemp.createNamedQuery("UsersCart.findByUserName")
                 .setParameter("userName", userName)
                 .getResultList();
+    }
+    
+      static public String getAdminName(int storeId) {
+        EntityManagerFactory emfTemp;
+        EntityManager emTemp;
+        emfTemp = Persistence.createEntityManagerFactory("online_shoppingPU");
+        emTemp = emfTemp.createEntityManager();
+        List<Stores> store = emTemp.createNamedQuery("Stores.findByStoreId")
+                .setParameter("storeId", storeId)
+                .getResultList();
+        return store.get(0).getStoreAdmin();
     }
 }

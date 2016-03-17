@@ -16,6 +16,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import model.TransactionQueary;
+import model.UserCartQuary;
 
 @ManagedBean
 @RequestScoped
@@ -31,12 +32,14 @@ public class TransactionCtrl {
         for (UsersCart product : userCart) {
             ProductsSoldPK productsSoldPK = new ProductsSoldPK(transactionId, product.getUsersCartPK().getProductId());
             ProductsSold productSold;
-            productSold = new ProductsSold(productsSoldPK, product.getQuantity(), product.getStoreId(), product.getProductPrice());
+            UserCartQuary userCartDB = new UserCartQuary();
+            String adminName = userCartDB.getAdminName(product.getStoreId());
+            productSold = new ProductsSold(productsSoldPK, product.getQuantity(), product.getStoreId(), product.getProductPrice(), adminName);
             transactionDB.savSoldProduct(productSold);
         }
     }
-    
-    public void emptyUserCart(List<UsersCart> userCart,  UsersCartJpaController userCartrl) throws NonexistentEntityException{
+
+    public void emptyUserCart(List<UsersCart> userCart, UsersCartJpaController userCartrl) throws NonexistentEntityException {
         for (UsersCart product : userCart) {
             userCartrl.destroy(product.getUsersCartPK());
         }

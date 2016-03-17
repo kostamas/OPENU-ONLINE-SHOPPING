@@ -5,6 +5,7 @@
  */
 package controller;
 
+import Entities.ProductsSold;
 import Entities.Stores;
 import static controller.BuildStoreBean.currentStoreId;
 import static controller.BuildStoreBean.currentStoreName;
@@ -15,6 +16,7 @@ import javax.faces.bean.RequestScoped;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import model.StoreQueary;
+import model.TransactionQueary;
 
 @ManagedBean
 @RequestScoped
@@ -29,10 +31,11 @@ public class HomeCtrl {
     public static int currentStoreId;
     public static String currentStoreName;
     static public String userName;
-    
+
     private List<Stores> storesList;
     private boolean isLoggedIn;
     private String title;
+    private List<ProductsSold> userHistoryList;
 
     public HomeCtrl() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("online_shoppingPU");
@@ -51,9 +54,27 @@ public class HomeCtrl {
         } else {
             this.title = "Welcome to ONLINE SHOPPING";
         }
+
+        if (this.isLoggedIn) {               // user history
+            // implement - user unlogged;
+            TransactionQueary transactionDB = new TransactionQueary();
+            this.userHistoryList = transactionDB.getUserHistory(this.userName);
+
+            this.userHistoryList.remove(0);
+            this.userHistoryList.remove(0);
+        }
+
     }
 
     // ****************** setters & getters   ********************//
+    public List<ProductsSold> getUserHistoryList() {
+        return userHistoryList;
+    }
+
+    public void setUserHistoryList(List<ProductsSold> userHistoryList) {
+        this.userHistoryList = userHistoryList;
+    }
+
     public String getUserName() {
         return userName;
     }
@@ -93,8 +114,6 @@ public class HomeCtrl {
     public void setSelectedStoreName(String selectedStoreName) {
         this.selectedStoreName = selectedStoreName;
     }
-    
-    
 
     // ****************** setters & getters   ********************//
     public String viewStoreProduts() {
@@ -104,6 +123,10 @@ public class HomeCtrl {
         currentStoreName = this.selectedStoreName;       // static ...
         BuildStoreBean.currentStoreName = currentStoreName;    // go to pro
         return "home products page";
+    }
+
+    public void userHistory() {
+
     }
 
 }

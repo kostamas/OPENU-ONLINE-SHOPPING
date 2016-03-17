@@ -28,7 +28,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "ProductsSold.findByProductId", query = "SELECT p FROM ProductsSold p WHERE p.productsSoldPK.productId = :productId"),
     @NamedQuery(name = "ProductsSold.findByQuantity", query = "SELECT p FROM ProductsSold p WHERE p.quantity = :quantity"),
     @NamedQuery(name = "ProductsSold.findByStoreId", query = "SELECT p FROM ProductsSold p WHERE p.storeId = :storeId"),
-    @NamedQuery(name = "ProductsSold.findByPrice", query = "SELECT p FROM ProductsSold p WHERE p.price = :price")})
+    @NamedQuery(name = "ProductsSold.findByPrice", query = "SELECT p FROM ProductsSold p WHERE p.price = :price"),
+    @NamedQuery(name = "ProductsSold.findByAdminName", query = "SELECT p FROM ProductsSold p WHERE p.adminName = :adminName")})
 public class ProductsSold implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,6 +44,8 @@ public class ProductsSold implements Serializable {
     @Basic(optional = false)
     @Column(name = "PRICE")
     private int price;
+    @Column(name = "ADMIN_NAME")
+    private String adminName;
 
     public ProductsSold() {
     }
@@ -51,11 +54,12 @@ public class ProductsSold implements Serializable {
         this.productsSoldPK = productsSoldPK;
     }
 
-    public ProductsSold(ProductsSoldPK productsSoldPK, int quantity, int storeId, int price) {
+    public ProductsSold(ProductsSoldPK productsSoldPK, int quantity, int storeId, int price, String adminName) {
         this.productsSoldPK = productsSoldPK;
         this.quantity = quantity;
         this.storeId = storeId;
         this.price = price;
+        this.adminName = adminName;
     }
 
     public ProductsSold(int transactionId, int productId) {
@@ -92,6 +96,14 @@ public class ProductsSold implements Serializable {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public String getAdminName() {
+        return adminName;
+    }
+
+    public void setAdminName(String adminName) {
+        this.adminName = adminName;
     }
 
     @Override

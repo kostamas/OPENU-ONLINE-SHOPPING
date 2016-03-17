@@ -9,3 +9,19 @@ function toggleEditProfile() {
     }
     toggleProfileHome = !toggleProfileHome;
 }
+
+toggleUserHistory = true;
+
+function historyToggle() {
+    var historyListElement = document.querySelector(".history-table-wrapper");
+    var storeListWrapper = document.querySelector(".store-list-wrapper");
+
+    if (toggleProfileHome) {
+        historyListElement.style.top = "250px";
+        storeListWrapper.style.opacity = "0"
+    } else {
+        historyListElement.style.top = "-425px";
+        storeListWrapper.style.opacity = "1"
+    }
+    toggleProfileHome = !toggleProfileHome;
+}

@@ -31,7 +31,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "UsersCart.findByProductPrice", query = "SELECT u FROM UsersCart u WHERE u.productPrice = :productPrice"),
     @NamedQuery(name = "UsersCart.findByStoreId", query = "SELECT u FROM UsersCart u WHERE u.storeId = :storeId"),
     @NamedQuery(name = "UsersCart.findByProductName", query = "SELECT u FROM UsersCart u WHERE u.productName = :productName"),
-    @NamedQuery(name = "UsersCart.findByStoreName", query = "SELECT u FROM UsersCart u WHERE u.storeName = :storeName")})
+    @NamedQuery(name = "UsersCart.findByStoreName", query = "SELECT u FROM UsersCart u WHERE u.storeName = :storeName"),
+    @NamedQuery(name = "UsersCart.findByAdminName", query = "SELECT u FROM UsersCart u WHERE u.adminName = :adminName")})
 public class UsersCart implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -48,6 +49,8 @@ public class UsersCart implements Serializable {
     private String productName;
     @Column(name = "STORE_NAME")
     private String storeName;
+    @Column(name = "ADMIN_NAME")
+    private String adminName;
 
     public UsersCart() {
     }
@@ -56,13 +59,14 @@ public class UsersCart implements Serializable {
         this.usersCartPK = usersCartPK;
     }
 
-    public UsersCart(UsersCartPK usersCartPK, int price, int storeId, String prodName, String storeName) {
+    public UsersCart(UsersCartPK usersCartPK, int quantity, int price, int storeId, String productName, String storeName, String adminName) {
         this.usersCartPK = usersCartPK;
-        this.quantity = 1;
+        this.quantity = quantity;
         this.productPrice = price;
         this.storeId = storeId;
-        this.productName = prodName;
+        this.productName = productName;
         this.storeName = storeName;
+        this.adminName = adminName;
     }
 
     public UsersCart(String userName, int productId) {
@@ -115,6 +119,14 @@ public class UsersCart implements Serializable {
 
     public void setStoreName(String storeName) {
         this.storeName = storeName;
+    }
+
+    public String getAdminName() {
+        return adminName;
+    }
+
+    public void setAdminName(String adminName) {
+        this.adminName = adminName;
     }
 
     @Override

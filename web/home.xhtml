@@ -12,6 +12,11 @@
     <body>
         <div class="bg-cover"></div>
 
+        <div class="logout-btn">LOGOUT</div>
+
+        <div class="user-histoy-toggle" onclick="historyToggle()">your history</div>
+
+
         <div class="edit-profile-text" onClick="toggleEditProfile()">Edit profile</div>
 
         <div class="profile-container">
@@ -39,6 +44,38 @@
         </div>
         <!--*********************************profile*********************************-->
 
+        <!--*******************************  user history ********************************-->
+
+
+        <div class="history-table-container">
+
+            <div class="history-table-wrapper">
+                <div class="table-header">
+                    <div class="product-name-t">Product name</div>
+                    <div class="store-name-t">Store name</div>
+                    <div class="product-price-t">Product price</div>
+                    <div class="product-quantity-t">Poduct quantity</div>
+
+                </div>
+                <h:dataTable value="#{homeCtrl.userHistoryList}" var="product">
+
+                    <h:column >                     
+                        #{product.productsSoldPK.transactionId}
+                    </h:column>
+                    <h:column>
+                        #{product.adminName}
+                    </h:column>
+                    <h:column>
+                        #{product.quantity}
+                    </h:column>
+                    <h:column>
+                        #{product.price}
+                    </h:column>
+                </h:dataTable>
+            </div>
+        </div>
+
+        <!--*******************************  user history ********************************-->
 
 
         <!--*******************************  store list ********************************-->

@@ -39,6 +39,7 @@ public class BuyProductCtrl {
     ProductsJpaController productCtrl;
     UserCartQuary userCartDB;
     List<UsersCart> cartList;
+    
 
     public BuyProductCtrl() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("online_shoppingPU");
@@ -128,8 +129,9 @@ public class BuyProductCtrl {
                 Logger.getLogger(BuyProductCtrl.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
+            String adminName = userCartDB.getAdminName(product.getStoreId());
             UsersCartPK userCartPk = new UsersCartPK(HomeCtrl.userName, _selectedProdId);
-            UsersCart userCart = new UsersCart(userCartPk, product.getPrice(), product.getStoreId(), product.getProductName(), this.storeName);
+            UsersCart userCart = new UsersCart(userCartPk, 1, product.getPrice(), product.getStoreId(), product.getProductName(), this.storeName, adminName);
             try {
 
                 userCartCtrl.create(userCart);
