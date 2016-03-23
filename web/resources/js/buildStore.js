@@ -56,3 +56,20 @@ function returnProductsView(className) {
         document.querySelector(".create-btn").style.display = 'inline-block';
     }, 500);
 }
+
+
+toggleUserHistory2 = true;
+
+function historyToggle2() {
+    var historyListElement = document.querySelector(".history-table-wrapper");
+    var storeListWrapper = document.querySelector(".store-list-wrapper");
+
+    if (toggleUserHistory2) {
+        historyListElement.style.top = "184px";
+        storeListWrapper.style.opacity = "0"
+    } else {
+        historyListElement.style.top = "-425px";
+        storeListWrapper.style.opacity = "1"
+    }
+    toggleUserHistory2 = !toggleUserHistory2;
+}

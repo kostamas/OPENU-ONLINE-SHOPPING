@@ -16,12 +16,12 @@ function historyToggle() {
     var historyListElement = document.querySelector(".history-table-wrapper");
     var storeListWrapper = document.querySelector(".store-list-wrapper");
 
-    if (toggleProfileHome) {
-        historyListElement.style.top = "250px";
+    if (toggleUserHistory) {
+        historyListElement.style.top = "184px";
         storeListWrapper.style.opacity = "0"
     } else {
         historyListElement.style.top = "-425px";
         storeListWrapper.style.opacity = "1"
     }
-    toggleProfileHome = !toggleProfileHome;
+    toggleUserHistory = !toggleUserHistory;
 }

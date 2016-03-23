@@ -149,8 +149,9 @@ public class BuyProductCtrl {
         productCtrl.edit(product);
     }
 
-    public String buyProduct() {
-        return "";
+    public String buyProduct() throws Exception {
+        this.addToCart();
+        return "checkout page";
     }
 
 }

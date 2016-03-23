@@ -7,7 +7,7 @@
     <navigation-rule>
         <from-view-id>index.xhtml</from-view-id>
         <navigation-case>
-            <!--<from-action>#{navigationController.processPage1}</from-action>-->     // figure how to use this...
+            <!--<from-action>#{navigationController.processPage1}</from-action>-->    
             <from-outcome>home page</from-outcome>
             <to-view-id>home.xhtml</to-view-id>
         </navigation-case>
@@ -83,6 +83,16 @@
         <navigation-case>
             <from-outcome>home products page</from-outcome>
             <to-view-id>homeProducts.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    
+     <navigation-rule>
+        <from-view-id>homeProducts.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>checkout page</from-outcome>
+            <to-view-id>checkout.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
