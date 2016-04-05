@@ -196,6 +196,7 @@ body {
     width: 550px;
     height: 510px;
     margin: 50px auto 0 auto;
+    transition: opacity 0.7s;
 }
 .table-wrapper{
     position: relative;
@@ -333,11 +334,11 @@ table img{
 }
 
 .history-table-container .table-header{
-    display: flex;
+    display: flex;   align-content: center;
     margin-bottom: 20px;
     margin-top: 14px;
     background-color: rgba(0, 128, 0, 0.1);
-    width: 600px;
+    width: 750px;
 }
 
 .product-name-t, .store-name-t, .product-price-t, .product-quantity-t{
@@ -351,7 +352,7 @@ table img{
 }
 
 .history-table-wrapper{
-    width: 650px;
+    width: 800px;
     background-color: aliceblue;
     height: 400px;
     overflow-y: scroll;
@@ -362,7 +363,7 @@ table img{
     border-left: 1px solid black;
     border-right: 1px solid black;
     position: absolute;
-    left: calc(50% + 35px);
+    left: calc(50% - 35px);
     transform: translateX(-50%);
     z-index: 1;
     top: -425px;
@@ -371,7 +372,7 @@ table img{
 
 
 .history-table-container tr{
-    width: 597px;
+    width: 750px;
     display:flex;
     border-bottom: 1px solid black;
     margin: 0;
@@ -386,7 +387,7 @@ table img{
 }
 
 .history-table-container td{
-    width: 135px;
+    width: 120px;
     display: inline-block;
     text-align: center;
     margin: 0;

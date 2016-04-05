@@ -6,7 +6,10 @@
 package model;
 
 import Entities.Products;
+import Entities.ProductsSold;
 import Entities.Stores;
+import Entities.Transactions;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -40,8 +43,15 @@ public class ProductQueary {
 
     public List<Products> getProductsWithQuantity(int storeId) {
         return em.createNamedQuery("Products.findByProductIdWithQuantity")
-                 .setParameter("storeId", storeId)
+                .setParameter("storeId", storeId)
                 .getResultList();
     }
 
+    public List<ProductsSold> getAdminHistory(String adminName) {   // todo - make join table with jpa !!!!!
+        em = emf.createEntityManager();                          // ugly function !!!!
+   
+        List<ProductsSold> productsSold = em.createNamedQuery("ProductsSold.findByAdminName")
+                .getResultList();
+        return productsSold;
+    }
 }

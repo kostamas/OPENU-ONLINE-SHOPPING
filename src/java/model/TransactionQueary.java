@@ -74,5 +74,24 @@ public class TransactionQueary {
 
         return result;
     }
+    
+    
+    public List<ProductsSold> getAdminHistory(String adminName) {   // todo - make join table with jpa !!!!!
+        em = emf.createEntityManager();                          // ugly function !!!!
+        List<ProductsSold> productsSoldList = em.createNamedQuery("ProductsSold.findByAdminName")
+                .setParameter("adminName", adminName)
+                .getResultList();
+        
+
+//        for (ProductsSold product : productsSold) {
+//            for (Transactions transaction : transactionList) {
+//                if (product.getProductsSoldPK().getTransactionId() == transaction.getTransactionId()) {
+//                    result.add(product);
+//                }
+//            }
+//        }
+
+        return productsSoldList;
+    }
 
 }

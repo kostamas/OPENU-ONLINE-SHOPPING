@@ -10,16 +10,16 @@
     </h:head>
     <h:body>
         <h:outputScript library="js" name="buildStore.js" />
-        
-         <div class="logout-btn">LOGOUT</div>
 
-        <div class="user-histoy-toggle" onclick="historyToggle()">History</div>
+        <div class="logout-btn">LOGOUT</div>
+
+        <div class="user-histoy-toggle" onclick="historyToggle2()">History</div>
 
 
         <!--*********************************profile************************-->
 
         <div class="edit-profile-text" onClick="toggleEditProfileStore()">Edit profile</div>
-        
+
         <div class="profile-container">
             <div class="profile-wrapper">
                 <h:form>
@@ -44,6 +44,44 @@
             </div>
         </div>
         <!--*********************************profile*********************************-->
+
+
+        <!--*******************************  admin history ********************************-->
+
+
+        <div class="history-table-container">
+
+            <div class="history-table-wrapper">
+                <div class="table-header">
+                    <div class="product-name-t">Product name</div>
+                    <div class="product-quantity-t">User Name</div>
+                    <div class="product-quantity-t">Date</div>
+                    <div class="store-name-t">Store name</div>
+                    <div class="product-price-t">Product quantity</div>
+                    <div class="product-quantity-t">Product price</div>
+
+
+                </div>
+                <h:dataTable value="#{buildStoreBean.adminHistoryList}" var="product">
+
+                    <h:column >                     
+                        #{product.productsSoldPK.transactionId}
+                    </h:column>
+                    <h:column>
+                        #{product.adminName}
+                    </h:column>
+                    <h:column>
+                        #{product.quantity}
+                    </h:column>
+                    <h:column>
+                        #{product.price}
+                    </h:column>
+                </h:dataTable>
+            </div>
+        </div>
+
+        <!--*******************************  admin history ********************************-->
+
 
         <!--*********************************build store*********************************-->
         <div class="build-store-wrapper">

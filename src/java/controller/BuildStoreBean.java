@@ -7,6 +7,7 @@ package controller;
 
 import Entities.Products;
 import Entities.ProductsJpaController;
+import Entities.ProductsSold;
 import Entities.Stores;
 import Entities.StoresJpaController;
 import Entities.exceptions.NonexistentEntityException;
@@ -25,6 +26,7 @@ import javax.persistence.Persistence;
 import javax.servlet.http.Part;
 import model.StoreBuilder;
 import model.StoreQueary;
+import model.TransactionQueary;
 
 @ManagedBean
 @RequestScoped
@@ -35,11 +37,19 @@ public class BuildStoreBean {
 
     @ManagedProperty(value = "#{param.selectedStoreName}")
     private String selectedStoreName;
+    private int storeId;
+    private String storeName;
+    private String storePhoto;
+    private String storeAdmin;
+    private String description;
+    private Part file;
 
     public static int currentStoreId;
     public static String currentStoreName;
     StoresJpaController storeCtrl;
     private List<Stores> storesList;
+    private boolean isLoggedIn;
+    private List<ProductsSold> adminHistoryList;
 
     public static int getCurrentStoreId() {
         return currentStoreId;
@@ -53,27 +63,37 @@ public class BuildStoreBean {
         return currentStoreName;
     }
 
+    public List<ProductsSold> getAdminHistoryList() {
+        return adminHistoryList;
+    }
+
+    public void setAdminHistoryList(List<ProductsSold> adminHistoryList) {
+        this.adminHistoryList = adminHistoryList;
+    }
+
     public static void setCurrentStoreName(String currentStoreName) {
         BuildStoreBean.currentStoreName = currentStoreName;
     }
-    private int storeId;
-    private String storeName;
-    private String storePhoto;
-    private String storeAdmin;
-    private String description;
-    private Part file;
 
     public BuildStoreBean() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("online_shoppingPU");
         storeCtrl = new StoresJpaController(emf);            // crud
+        this.isLoggedIn = false;
         if (RegisterBean.adminName != null) {
             this.storeAdmin = RegisterBean.adminName;
+            this.isLoggedIn = true;
         } else {
             this.storeAdmin = LoginBean.adminName;
+            this.isLoggedIn = true;
         }
 
         StoreQueary storeQueary = new StoreQueary();
         storesList = storeQueary.getStoresByAdmin(this.storeAdmin);   // get all admins stores
+
+        if (this.isLoggedIn) {
+            TransactionQueary transactionDB = new TransactionQueary();
+            this.adminHistoryList = transactionDB.getAdminHistory(this.storeAdmin);
+        }
     }
 
     /**

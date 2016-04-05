@@ -60,8 +60,8 @@ public class HomeCtrl {
             TransactionQueary transactionDB = new TransactionQueary();
             this.userHistoryList = transactionDB.getUserHistory(this.userName);
 
-            this.userHistoryList.remove(0);
-            this.userHistoryList.remove(0);
+//            this.userHistoryList.remove(0);    ?????????
+//            this.userHistoryList.remove(0);
         }
 
     }
