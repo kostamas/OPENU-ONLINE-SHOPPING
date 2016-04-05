@@ -7,8 +7,8 @@
         <h:outputStylesheet  name="css/welcome.css"/>
     </h:head>
     <h:body>
-  <h:outputScript library="js" name="form.js" />
-     <!--<h:graphicImage value="image/1/1store.jpg" width="70px;"/>-->
+        <h:outputScript library="js" name="form.js" />
+        <!--<h:graphicImage value="image/1/1store.jpg" width="70px;"/>-->
         <div class="container">
             <div class="top">
                 <h1 id="title" class="hidden"><span id="logo">Online Shopping</span></h1>
@@ -31,12 +31,12 @@
                 </h:form>
 
                 <div class="login-box animated fadeInUp">
-                    <h:form> 
+                    <h:form id="loginForm"> 
                         <div class="box-header">
                             <div class="login-header">
                                 <h2>LOGIN</h2>
                                 <div class="mode-button" 
-                                     onClick="switchMode(['.register-header','.register-wrapper'], ['.login-header','.login-wrapper'])">
+                                     onClick="switchMode(['.register-header', '.register-wrapper'], ['.login-header', '.login-wrapper'])">
                                     register
                                 </div>
                             </div>
@@ -44,10 +44,10 @@
                             <div class="register-header">
                                 <h2>REGISTER</h2>
                                 <div class="mode-button"
-                                     onClick="switchMode(['.login-header','.login-wrapper'], ['.register-header','.register-wrapper'])">
+                                     onClick="switchMode(['.login-header', '.login-wrapper'], ['.register-header', '.register-wrapper'])">
                                     login
                                 </div>
-                                
+
                             </div>
 
                             <div class="register"></div>
@@ -64,8 +64,8 @@
                             <br/>
                             <h:commandButton style="cursor:pointer;" action="#{loginBean.userLogin}" value="Sign In"/>
                         </div>
-                        
-                         <div class="register-wrapper">
+
+                        <div class="register-wrapper">
                             <label for="username">Username</label>
                             <br/>
                             <h:inputText class="inputText" value="#{registerBean.name}"/>

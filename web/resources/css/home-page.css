@@ -401,3 +401,21 @@ table img{
 
 /********************** user history  ************************/
 
+#javax_faces_developmentstage_messages {
+    position: absolute;
+    left: calc(50% - 128px);
+    top: 223px;
+    z-index: 6;
+    opacity:0;
+    list-style-type: none;
+    -webkit-animation: opacity_animation 4s ease-in-out;
+    animation: opacity_animation 4s ease-in-out; 
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+}
+
+@keyframes opacity_animation {
+    0%   { opacity: 1; }
+    95%  {opacity: 1; }
+    100% { opacity: 0; }
+}

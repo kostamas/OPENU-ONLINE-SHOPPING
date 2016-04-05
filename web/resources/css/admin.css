@@ -1,15 +1,4 @@
 
-@import url(http://fonts.googleapis.com/css?family=Bree+Serif);
-
-::selection {
-    color: #fff;
-    background: #f676b2; /* Safari */
-}
-::-moz-selection {
-    color: #fff;
-    background: #f676b2; /* Firefox */
-}
-
 
 * {
     margin: 0;
@@ -20,7 +9,7 @@
 body {
     background: url(../images/b.jpg) repeat;
     background-size: cover;
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-family: Lato regular;
     font-weight:300;
     text-align: left;
     text-decoration: none;
@@ -116,7 +105,7 @@ HEADER
 }
 
 .login-form .header h1 {
-    font-family: 'Bree Serif', serif;
+    font-family: Lato regular;
     font-weight: 300;
     font-size: 28px;
     line-height:34px;
@@ -145,7 +134,7 @@ CONTENT
     width: 188px;
     padding: 15px 25px;
 
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-family: Lato regular;
     font-weight: 400;
     font-size: 14px;
     color: #9d9e9e;
@@ -291,7 +280,7 @@ FOOTER
     float:right;
     padding: 11px 25px;
 
-    font-family: 'Bree Serif', serif;
+    font-family: Lato regular;
     font-weight: 300;
     font-size: 18px;
     color: #fff;
@@ -338,7 +327,7 @@ FOOTER
     border: none;
     cursor: pointer;
 
-    font-family: 'Bree Serif', serif;
+    font-family: Lato regular;
     font-weight: 300;
     font-size: 18px;
     color: #414848;
@@ -387,4 +376,31 @@ FOOTER
     color:black;
     font-family: Lato regular;
     left: 330px;
+}
+
+/*//////////******************* admin login error messages   ******************/
+
+
+#javax_faces_developmentstage_messages li span{
+    color:red;
+}
+
+#javax_faces_developmentstage_messages {
+    position: absolute;
+    left: calc(50% - 128px);
+    top: 223px;
+    z-index: 6;
+    opacity:0;
+    list-style-type: none;
+    -webkit-animation: opacity_animation 4s ease-in-out;
+    animation: opacity_animation 4s ease-in-out; 
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+}
+
+@keyframes opacity_animation {
+    0%   { opacity: 0; }
+    5%   {opacity: 1}
+    95%  {opacity: 1; }
+    100% { opacity: 0; }
 }
