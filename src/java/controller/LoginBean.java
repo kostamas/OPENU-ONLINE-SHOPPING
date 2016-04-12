@@ -51,12 +51,10 @@ public class LoginBean {
         } else {
 
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage("* wrong password or user name"));
+                    new FacesMessage("wrong password or user name"));
             return "";
         }
     }
-
-   
 
     public String userLogin() {                 // can't make generice since this fn used in xhtml and can't take paremters
         FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -71,9 +69,8 @@ public class LoginBean {
         if (auth.loginControl(queryName, firstQueryParameterName, firstParameterValue, secondQueryParameterName, secondParameterValue)) {
             return "home page";
         } else {
-           
-            FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage("* wrong password or user name"));
+            String errorMessage = "wrong password or user name";
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(errorMessage));
             return "";
         }
     }

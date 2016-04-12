@@ -14,9 +14,11 @@ import Entities.exceptions.NonexistentEntityException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import model.ProductQueary;
@@ -39,7 +41,6 @@ public class BuyProductCtrl {
     ProductsJpaController productCtrl;
     UserCartQuary userCartDB;
     List<UsersCart> cartList;
-    
 
     public BuyProductCtrl() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("online_shoppingPU");
@@ -109,44 +110,48 @@ public class BuyProductCtrl {
      * ***************** setters & getters ********************
      */
     public void addToCart() throws NonexistentEntityException, Exception {
-        int _selectedProdId = this.selectedProductId;
-        List<UsersCart> cartList = null;
-        userCartDB = new UserCartQuary();
-        // return product list that must contain exactly one element
-        Products product = new ProductQueary().getProductByProductId(_selectedProdId).get(0);   // get product object
-        if (HomeCtrl.userName != null) {                                        // user logged in...
-            cartList = userCartDB.getUserProduct(HomeCtrl.userName, _selectedProdId);
-        } else {
-            // popup message- user please login in!!!
-            return;
-        }
-
-        if (cartList.size() > 0) {     // the user already buyed this product
-            cartList.get(0).setQuantity(cartList.get(0).getQuantity() + 1);    // quantitiy++
-            try {
-                userCartCtrl.edit(cartList.get(0));
-            } catch (Exception ex) {
-                Logger.getLogger(BuyProductCtrl.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } else {
-            String adminName = userCartDB.getAdminName(product.getStoreId());
-            UsersCartPK userCartPk = new UsersCartPK(HomeCtrl.userName, _selectedProdId);
-            UsersCart userCart = new UsersCart(userCartPk, 1, product.getPrice(), product.getStoreId(), product.getProductName(), this.storeName, adminName);
-            try {
-
-                userCartCtrl.create(userCart);
-            } catch (Exception ex) {
-                Logger.getLogger(BuyProductCtrl.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-
-        this.cost += product.getPrice();
-        int newStock = product.getStock() - 1;
-        if (newStock < 1) {
-            productsList.remove(product);
-        }
-        product.setStock(newStock);
-        productCtrl.edit(product);
+//        int _selectedProdId = this.selectedProductId;
+//        List<UsersCart> cartList = null;
+//        userCartDB = new UserCartQuary();
+//        // return product list that must contain exactly one element
+//        Products product = new ProductQueary().getProductByProductId(_selectedProdId).get(0);   // get product object
+//        if (HomeCtrl.userName != null) {                                        // user logged in...
+//            cartList = userCartDB.getUserProduct(HomeCtrl.userName, _selectedProdId);
+//        } else {
+//            // popup message- user please login in!!!
+//            String errorMessage = "You not logged in";
+//            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(errorMessage));
+////            FacesContext.getCurrentInstance().getExternalContext().redirect("admin.xhtml");
+//
+//            return;
+//        }
+//
+//        if (cartList.size() > 0) {     // the user already buyed this product
+//            cartList.get(0).setQuantity(cartList.get(0).getQuantity() + 1);    // quantitiy++
+//            try {
+//                userCartCtrl.edit(cartList.get(0));
+//            } catch (Exception ex) {
+//                Logger.getLogger(BuyProductCtrl.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        } else {
+//            String adminName = userCartDB.getAdminName(product.getStoreId());
+//            UsersCartPK userCartPk = new UsersCartPK(HomeCtrl.userName, _selectedProdId);
+//            UsersCart userCart = new UsersCart(userCartPk, 1, product.getPrice(), product.getStoreId(), product.getProductName(), this.storeName, adminName);
+//            try {
+//
+//                userCartCtrl.create(userCart);
+//            } catch (Exception ex) {
+//                Logger.getLogger(BuyProductCtrl.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }
+//
+//        this.cost += product.getPrice();
+//        int newStock = product.getStock() - 1;
+//        if (newStock < 1) {
+//            productsList.remove(product);
+//        }
+//        product.setStock(newStock);
+//        productCtrl.edit(product);
     }
 
     public String buyProduct() throws Exception {

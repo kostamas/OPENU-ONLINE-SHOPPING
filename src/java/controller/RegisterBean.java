@@ -2,7 +2,9 @@ package controller;
 
 import Entities.Administrators;
 import Entities.Users;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.*;
+import javax.faces.context.FacesContext;
 import model.Auth;
 
 @ManagedBean
@@ -12,8 +14,8 @@ public class RegisterBean {
     private String name;
     private String password;
 
-    public static String userName ;
-    public static String adminName ;
+    public static String userName;
+    public static String adminName;
 
     public String getName() {
         return name;
@@ -36,14 +38,22 @@ public class RegisterBean {
         String queryName = "Administrators.findByAdminName";
         String queryParameterName = "adminName";
         String parameterValue = this.name;
- 
-         this.adminName = this.name; 
-         
+
+        this.adminName = this.name;
+
+        if (this.name.length() < 4 || this.password.length() < 4) {
+            String errorMessage = "user name and password must contain at least 4 letters!";
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(errorMessage));
+            return "";
+        }
+
         Auth authController = new Auth();
         if (authController.registerControl(admin, queryName, queryParameterName, parameterValue)) {    // return true if registration succeded
 
             return "store builder page";
         } else {
+            String errorMessage = "user name already exists";
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(errorMessage));
             return "";
         }
     }
@@ -54,13 +64,21 @@ public class RegisterBean {
         String queryParameterName = "userName";
         String parameterValue = this.name;
 
-         this.userName = this.name;
-         
+        this.userName = this.name;
+
+        if (this.name.length() < 4 || this.password.length() < 4) {
+            String errorMessage = "user name and password must contain at least 4 letters!";
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(errorMessage));
+            return "";
+        }
+
         Auth authController = new Auth();
         if (authController.registerControl(user, queryName, queryParameterName, parameterValue)) {    // return true if registration succeded
 
             return "home page";
         } else {
+            String errorMessage = "user name already exists";
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(errorMessage));
             return "";
         }
     }

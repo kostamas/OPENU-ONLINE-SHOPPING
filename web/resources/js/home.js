@@ -25,3 +25,15 @@ function historyToggle() {
     }
     toggleUserHistory = !toggleUserHistory;
 }
+
+function ifNotLoggedInSuggestRegister(userName) {
+    if (userName.length === 0) {
+        var element = document.querySelector(".suggest-register");
+        var backgroundElement = document.querySelector(".bg-cover-opacity");
+        backgroundElement.style.transition = '0.6s';
+
+        element.style.top = "180px";
+        backgroundElement.style.opacity = '0.6';
+    }
+
+}
