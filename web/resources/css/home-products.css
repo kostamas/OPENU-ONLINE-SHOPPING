@@ -332,14 +332,14 @@ table img{
     background-color: white;
     padding: 20px;
     z-index: 10;
-    width: 300px;    height: 180px;
+    width: 325px;    height: 180px;
     font-family: Lato regular;
     font-size: 20px;
     color:red;
     top: -240px;
     left: calc(50% - 150px);
-    border: 1px solid gray;
-    transition: top 1s ease-in-out;
+    border: 1px solid black;
+    transition: top 0.7s ease-in-out;
     text-align: center;
     border-radius: 20px;
     box-shadow: 0px 0px 20px black;
@@ -349,38 +349,51 @@ table img{
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 70px;
 }
 
 .suggest-register .suggest-register-btn, .no-tanks-title{
-    width: 90px;   height:80px;
-    background-color:  orange;
+    background-color:  transparent;
     border-radius: 50px;
     font-family: Lato regular;
-    font-size: 20px;
-    color: white;
+    font-size: 23px;
     cursor: pointer;
     margin: 15px;
+    border: none;
 }
 
 .suggest-register-btn:focus, .suggest-register-btn:active {
     outline: none;
 }
 
-.no-thanks-btn{
-    background-color: greenyellow !important;
+.suggest-register-btn:hover {
+    color:#0DB523;
 }
 
+.no-thanks-btn:hover{
+    color:#E80D0D;
+}
+
+.suggest-register-btn {
+    color:#27EC41
+}
+
+.no-thanks-btn{
+    color:#FD574A;
+}
 .you-not-logged-in{
     font-family: Lato regular;
     color: blue;
-    font-size: 27px;
-    margin-bottom: 35px;
-}
+    font-size: 28px;
+    margin-top: 22px;
+    margin-bottom: 10px;}
 
 .sorry-icon{
-    width: 50px; height:auto;
-    background: url(../images/sorry-icon.jpg) repeat;
+    width: 50px; height:50px;
+    background: url(../images/a1.jpg) repeat;
     background-size: cover;
+    position: relative;
+    margin: 0 auto;
 }
 
 .bg-cover-opacity{

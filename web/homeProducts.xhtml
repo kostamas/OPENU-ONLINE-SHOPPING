@@ -19,10 +19,10 @@
 
         <div class="suggest-register">
             <div class="sorry-icon"></div>
-            <div class="you-not-logged-in">You not logged in</div>
+            <div class="you-not-logged-in">You are not logged in</div>
             <div class="suggest-register-btn-wrapper">
                 <h:form>        
-                    <h:commandButton class="suggest-register-btn" value="Register"  action="index?faces-redirect=true"/>
+                    <h:commandButton class="suggest-register-btn" value="Register/Login"  action="index?faces-redirect=true"/>
                     <h:commandButton class="suggest-register-btn no-thanks-btn" value="No tanks" />
                 </h:form> 
             </div>
@@ -65,7 +65,10 @@
             <h:form>        
                 <h:commandButton class="checkout-btn" action="checkout?faces-redirect=true" value="Checkout"/>
             </h:form>
-            <div class="product-count">Cost: #{buyProductCtrl.cost} <span style="font-size: 16px;">NS</span></div>
+            <h:form id="tr">        
+                <div class="product-count">Cost: #{buyProductCtrl.cost} <span style="font-size: 16px;">NS</span></div>
+            </h:form>        
+
         </div>
 
         <div class="store-list-wrapper"> 
@@ -80,11 +83,11 @@
 
                             <h:commandButton onclick="ifNotLoggedInSuggestRegister('#{homeCtrl.userName}')" class="products-page-btn-wrapper cart-action" action="#{buyProductCtrl.addToCart}" >
                                 <f:param name="selectedProductId" value="#{product.productId}"/>
-                                <f:ajax execute="@this"/>
+                                <f:ajax render=":tr" />
                                 <div class="cart-img"></div>
                             </h:commandButton>
 
-                            <h:commandButton class="products-page-btn-wrapper btn" action="#{buyProductCtrl.buyProduct}" value="Buy">
+                            <h:commandButton onclick="ifNotLoggedInSuggestRegister('#{homeCtrl.userName}')" class="products-page-btn-wrapper btn" action="#{buyProductCtrl.buyProduct}" value="Buy">
                                 <f:param name="selectedProductId" value="#{product.productId}"/>
                             </h:commandButton>
 
