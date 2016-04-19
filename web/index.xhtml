@@ -1,14 +1,14 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Online Shopping</title>
         <h:outputStylesheet  name="css/welcome.css"/>
     </h:head>
     <h:body>
         <h:outputScript library="js" name="form.js" />
-        <!--<h:graphicImage value="image/1/1store.jpg" width="70px;"/>-->
         <div class="container">
             <div class="top">
                 <h1 id="title" class="hidden"><span id="logo">Online Shopping</span></h1>
@@ -62,24 +62,51 @@
                             <br/>
                             <h:inputText id="password" value="#{loginBean.password}" />
                             <br/>
-                            <h:commandButton style="cursor:pointer;" action="#{loginBean.userLogin}" value="Sign In"/>
+                            <h:commandButton style="cursor:pointer;" action="#{loginBean.userLogin}" value="Sign In">
+                                <f:param name="name" value="#{loginBean.name}"/>
+                                <f:param name="password" value="#{loginBean.password}"/>
+                                <f:ajax render=":error-message"/>
+                            </h:commandButton>
                         </div>
 
                         <div class="register-wrapper">
                             <label for="username">Username</label>
                             <br/>
-                            <h:inputText class="inputText" value="#{registerBean.name}"/>
+                            <h:inputText id ="user-name-input" class="inputText" value="#{registerBean.name}"/>
                             <br/>
                             <label for="password">Password</label>
                             <br/>
-                            <h:inputText class="password"  value="#{registerBean.password}"/>
+                            <h:inputText id="user-password-input" class="password"  value="#{registerBean.password}"/>
                             <br/>
-                            <h:commandButton style="cursor:pointer;" action="#{registerBean.userRegister}" value="Register"/>
+                            <h:commandButton style="cursor:pointer;" action="#{registerBean.userRegister}" value="Register">
+                                <f:ajax render=":error-message" execute="user-name-input user-password-input"/>
+                            </h:commandButton>
                         </div>
                     </h:form> 
                 </div>
             </div>
         </div>
+        <h:form id="error-message" >
+            <div class="error-message-wrapper"></div>
+            <script>
+                if ('#{registerBean.errorMessage}'.length > 0) {
+                   displayErrorMessage('#{registerBean.errorMessage}');
+                }
+                
+                if ('#{loginBean.errorMessage}'.length > 0) {
+                   displayErrorMessage('#{registerBean.errorMessage}');
+                }
+                
+                function displayErrorMessage(errorMessage){
+                    var divToAdd = document.createElement('div');
+                    divToAdd.className = 'error-message';
+                    divToAdd.innerHTML = errorMessage;
+                    var msgWrapperElement = document.querySelector('.error-message-wrapper');
+                    msgWrapperElement.appendChild(divToAdd)
+                }
+            </script>
+        </h:form>
+        
     </h:body>
 </html>
 

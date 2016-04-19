@@ -2,20 +2,31 @@ package controller;
 
 import Entities.Administrators;
 import Entities.Users;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.*;
 import javax.faces.context.FacesContext;
 import model.Auth;
 
-@ManagedBean
-@ViewScoped
+@ManagedBean(name = "registerBean", eager = true)
+@SessionScoped
 public class RegisterBean {
 
-    private String name;
-    private String password;
-
+    public String name;
+    public String password;
+    public String errorMessage;
     public static String userName;
     public static String adminName;
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
 
     public String getName() {
         return name;
@@ -58,27 +69,24 @@ public class RegisterBean {
         }
     }
 
-    public String userRegister() {                 // can't make generice since this fn used in xhtml and can't take paremters
+    public String userRegister() throws IOException {                 // can't make generice since this fn used in xhtml and can't take paremters
         Users user = new Users(this.name, this.password);
         String queryName = "Users.findByUserName";
         String queryParameterName = "userName";
         String parameterValue = this.name;
 
-        this.userName = this.name;
-
         if (this.name.length() < 4 || this.password.length() < 4) {
-            String errorMessage = "user name and password must contain at least 4 letters!";
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(errorMessage));
+            this.errorMessage = "user name and password must contain at least 4 letters!";
             return "";
         }
 
         Auth authController = new Auth();
-        if (authController.registerControl(user, queryName, queryParameterName, parameterValue)) {    // return true if registration succeded
-
+        if (authController.registerControl(user, queryName, queryParameterName, parameterValue)) {
+            // return true if registration succeded
+            this.userName = this.name; // static variable
             return "home page";
         } else {
-            String errorMessage = "user name already exists";
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(errorMessage));
+            this.errorMessage = "user name already exists";
             return "";
         }
     }

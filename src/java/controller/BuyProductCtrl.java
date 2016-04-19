@@ -119,7 +119,6 @@ public class BuyProductCtrl {
             cartList = userCartDB.getUserProduct(HomeCtrl.userName, _selectedProdId);
         } else {
             return;
-//            FacesContext.getCurrentInstance().getExternalContext().redirect("admin.xhtml");
         }
 
         if (cartList.size() > 0) {     // the user already buyed this product

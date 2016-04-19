@@ -13,6 +13,6 @@ function switchMode(selectorToShow, selectorToHide) {
         var elementToShow = document.getElementById(selectorToShow);
 
         elementToHide.style.display = "none";
-        elementToShow.style.display = "block"
+        elementToShow.style.display = "block";
     }
 }

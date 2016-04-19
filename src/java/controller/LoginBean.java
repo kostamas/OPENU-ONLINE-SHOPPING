@@ -2,6 +2,7 @@ package controller;
 
 import Entities.Administrators;
 import Entities.Users;
+import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.faces.application.FacesMessage;
@@ -11,14 +12,28 @@ import model.Auth;
 
 @ManagedBean
 @ViewScoped
+@RequestScoped
 public class LoginBean {
 
+    @ManagedProperty(value = "#{param.name}")
+    private String name;
+    @ManagedProperty(value = "#{param.password}")
+    private String password;
+    
     public static String userName;
     public static String adminName;
 
-    private String name;
-    private String password;
+    public String errorMessage;
 
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
+
+    
     public String getName() {
         return name;
     }
@@ -35,7 +50,7 @@ public class LoginBean {
         this.password = password;
     }
 
-    public String adminLogin() {                 // can't make generice since this fn used in xhtml and can't take paremters
+    public void adminLogin() throws IOException {                 // can't make generice since this fn used in xhtml and can't take paremters
         FacesContext facesContext = FacesContext.getCurrentInstance();
         String queryName = "Administrators.login";
         String firstQueryParameterName = "adminName";
@@ -47,17 +62,14 @@ public class LoginBean {
 
         Auth auth = new Auth();
         if (auth.loginControl(queryName, firstQueryParameterName, firstParameterValue, secondQueryParameterName, secondParameterValue)) {
-            return "store builder page";
+            FacesContext.getCurrentInstance().getExternalContext().redirect("home.xhtml");
         } else {
-
-            FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage("wrong password or user name"));
-            return "";
+            this.errorMessage = "wrong password or user name";
+            return;
         }
     }
 
-    public String userLogin() {                 // can't make generice since this fn used in xhtml and can't take paremters
-        FacesContext facesContext = FacesContext.getCurrentInstance();
+    public void userLogin() throws IOException {                 // can't make generice since this fn used in xhtml and can't take paremters
         String queryName = "Users.login";
         String firstQueryParameterName = "userName";
         String firstParameterValue = this.name;
@@ -67,11 +79,10 @@ public class LoginBean {
 
         Auth auth = new Auth();
         if (auth.loginControl(queryName, firstQueryParameterName, firstParameterValue, secondQueryParameterName, secondParameterValue)) {
-            return "home page";
+            FacesContext.getCurrentInstance().getExternalContext().redirect("home.xhtml");
         } else {
-            String errorMessage = "wrong password or user name";
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(errorMessage));
-            return "";
+            this.errorMessage = "wrong password or user name";
+            return;
         }
     }
 }
