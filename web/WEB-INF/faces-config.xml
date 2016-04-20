@@ -23,7 +23,7 @@
     <navigation-rule>
         <from-view-id>admin.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>store builder page</from-outcome>
+            <from-outcome>build store page</from-outcome>
             <to-view-id>buildStore.xhtml</to-view-id>
             <redirect/>
         </navigation-case>

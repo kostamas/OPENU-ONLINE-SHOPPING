@@ -10,8 +10,8 @@ import javax.faces.bean.*;
 import javax.faces.context.FacesContext;
 import model.Auth;
 
-@ManagedBean(name = "registerBean", eager = true)
-@SessionScoped
+@ManagedBean
+@ViewScoped
 public class RegisterBean {
 
     public String name;
@@ -50,21 +50,18 @@ public class RegisterBean {
         String queryParameterName = "adminName";
         String parameterValue = this.name;
 
-        this.adminName = this.name;
-
         if (this.name.length() < 4 || this.password.length() < 4) {
-            String errorMessage = "user name and password must contain at least 4 letters!";
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(errorMessage));
+            this.errorMessage = "user name and password must contain at least 4 letters!";
             return "";
         }
 
         Auth authController = new Auth();
-        if (authController.registerControl(admin, queryName, queryParameterName, parameterValue)) {    // return true if registration succeded
-
-            return "store builder page";
+        if (authController.registerControl(admin, queryName, queryParameterName, parameterValue)) { 
+            // return true if registration succeded
+            this.adminName = this.name;
+            return "build store page";
         } else {
-            String errorMessage = "user name already exists";
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(errorMessage));
+            this.errorMessage = "user name already exists";
             return "";
         }
     }

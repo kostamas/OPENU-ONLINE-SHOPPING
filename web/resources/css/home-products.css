@@ -114,6 +114,15 @@ body {
     font-size: 30px;
     font-weight: bold;
     color: #001BA7;
+
+}
+
+.your-stores-title .store-name{
+    margin: 0 auto;
+    width: 350px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .new-store-btn-wrapper{
@@ -266,6 +275,17 @@ table img{
 .cart-action{
     width:40px;   height:40px;
     cursor: pointer;
+}
+
+.product-data-wrapper{
+    position: relative;
+}
+
+.product-data-wrapper .product-price-title{
+    position: absolute;    bottom: 159px;   left:0px;
+    font-family: lato regular;
+    color: black;
+    font-size: 18px;
 }
 /************************* stores list  *************************/
 

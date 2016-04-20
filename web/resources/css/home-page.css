@@ -200,6 +200,10 @@ table .store-name-title{
     text-align: center;
     font-size: 23px;   font-family: lato regular;      color:black;
     margin-bottom: 10px;
+    width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 table .store-description-title{

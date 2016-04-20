@@ -16,7 +16,6 @@ body {
 }
 
 #login-wrapper {
-    /* Center wrapper perfectly */
     width: 300px;
     height: 400px;
     position: absolute;
@@ -37,45 +36,6 @@ body {
 
 }
 
-/*
-.gradient {
-        width: 600px;
-        height: 600px;
-        position: fixed;
-        left: 50%;
-        top: 50%;
-        margin-left: -300px;
-        margin-top: -300px;
-        
-        background: url(../images/gradient.png) no-repeat;
-}
-*/
-
-/*.gradient {
-     Center Positioning 
-    width: 600px;
-    height: 600px;
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    margin-left: -300px;
-    margin-top: -300px;
-
-     Fallback  
-    background-image: url(../images/gradient.png); 
-    background-repeat: no-repeat; 
-
-     CSS3 Gradient 
-    background-image: -webkit-gradient(radial, 0% 0%, 0% 100%, from(rgba(213,246,255,1)), to(rgba(213,246,255,0)));
-    background-image: -webkit-radial-gradient(50% 50%, 40% 40%, rgba(213,246,255,1), rgba(213,246,255,0));
-    background-image: -moz-radial-gradient(50% 50%, 50% 50%, rgba(213,246,255,1), rgba(213,246,255,0));
-    background-image: -ms-radial-gradient(50% 50%, 50% 50%, rgba(213,246,255,1), rgba(213,246,255,0));
-    background-image: -o-radial-gradient(50% 50%, 50% 50%, rgba(213,246,255,1), rgba(213,246,255,0));
-}*/
-
-/*******************
-LOGIN FORM
-*******************/
 
 .login-form, register-form {
     width: 300px;
@@ -92,16 +52,13 @@ LOGIN FORM
     -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
 }
 
-/*******************
-HEADER
-*******************/
 
 .login-form .header {
     padding: 40px 30px 30px 30px;
 }
 
 .register-form.login-form .header {
-    padding: 15px 30px 15px 30px;
+    padding: 40px 30px 30px 30px;
 }
 
 .login-form .header h1 {
@@ -121,9 +78,6 @@ HEADER
     text-shadow: 1px 1px 0 rgba(256,256,256,1.0);
 }
 
-/*******************
-CONTENT
-*******************/
 
 .login-form .content {
     padding: 0 30px 25px 30px;
@@ -149,12 +103,11 @@ CONTENT
     -webkit-box-shadow: inset 0 1px 3px rgba(0,0,0,0.50);
 }
 
-.login-form.register-form .content .input {
-    margin-top: 5px;
+.login-form.register-form .content .input:last-child {
+    margin-top: 25px;
 }
 
-/* Second input field */
-.login-form .content .login-password, .login-form .content .login-pass-icon {
+.login-form .content .login-password, .login-form .content {
     margin-top: 25px;
 }
 
@@ -170,26 +123,6 @@ CONTENT
     box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
     -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
     -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
-}
-
-#login-wrapper .login-user-icon{
-    top:132px; /* Positioning fix for slide-in, got lazy to think up of simpler method. */
-    background: rgba(65,72,72,0.75) url(../images/user-icon.png) no-repeat center;	
-}
-
-#login-wrapper .login-pass-icon {
-    top:209px;
-    background: rgba(65,72,72,0.75) url(../images/pass-icon.png) no-repeat center;
-}
-
-#register-wrapper .register-user-icon {
-    top:100px; /* Positioning fix for slide-in, got lazy to think up of simpler method. */
-    background: rgba(65,72,72,0.75) url(../images/user-icon.png) no-repeat center;	
-}
-
-#register-wrapper .register-pass-icon {
-    top:150px; /* Positioning fix for slide-in, got lazy to think up of simpler method. */
-    background: rgba(65,72,72,0.75) url(../images/pass-icon.png) no-repeat center;	
 }
 
 #register-wrapper{
@@ -215,33 +148,6 @@ CONTENT
 .last-name{
     top:263px;
 }
-
-
-.login-user-icon, .login-pass-icon, .register-user-icon, .register-pass-icon {
-    width: 46px;
-    height: 47px;
-    display: block;
-    position: absolute;
-    left: 0px;
-    padding-right: 2px;
-    z-index: 3;
-
-    -moz-border-radius-topleft: 5px;
-    -moz-border-radius-bottomleft: 5px;
-    -webkit-border-top-left-radius: 5px;
-    -webkit-border-bottom-left-radius: 5px;
-}
-
-/* Animation */
-.input, .login-user-icon, .login-pass-icon, .register-user-icon, .register-pass-icon, .button, .register, .first-name, .last-name {
-    transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    -webkit-transition: all 0.5s;
-    -o-transition: all 0.5s;
-    -ms-transition: all 0.5s;
-}
-
-
 
 /*******************
 FOOTER
@@ -271,9 +177,6 @@ FOOTER
     -webkit-box-shadow: inset 0 1px 0 rgba(0,0,0,0.15);
 }
 
-.login-form.register-form .footer {
-    padding: 20px 30px 20px 30px;
-}
 
 /* Login button */
 .login-form .footer .button {
@@ -381,12 +284,7 @@ FOOTER
 /*//////////******************* admin login error messages   ******************/
 
 
-#javax_faces_developmentstage_messages li span{
-    color:red;
-}
-
-
-#javax_faces_developmentstage_messages {
+.error-message {
     padding: 10px;
     padding-left: 22px;
     border-radius: 30px;
@@ -396,6 +294,7 @@ FOOTER
     left: calc(50% + 165px);
     top: 265px;
     z-index: 6;
+    color:red;
     opacity:0;
     list-style-type: none;
     -webkit-animation: opacity_animation 4s ease-in-out;
@@ -405,7 +304,7 @@ FOOTER
     font-family: Lato regular;
 }
 
-#javax_faces_developmentstage_messages:before{
+.error-message:before{
     content: "*";
     position: absolute;
     left: 12px;

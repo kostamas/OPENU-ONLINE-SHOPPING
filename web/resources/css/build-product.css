@@ -249,6 +249,14 @@ input[type="file"]{
     border-right: 1px solid black;
 }
 
+.store-name .name{
+    margin-left:165px;
+    width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .table-wrapper{
     margin: 0 auto;
     width: 550px;
@@ -353,6 +361,24 @@ table img{
 
 .edit-btn-wrapper:hover, .delete-product-btn-wrapper:hover{
     opacity: 0.9;
+}
+
+.product-data-wrapper{
+    position: relative;
+}
+
+.product-data-wrapper .product-quantity-title{
+    position: absolute;    bottom: 159px;   left: 0;
+    font-family: lato regular;
+    color: black;
+    font-size: 18px;
+}
+
+.product-data-wrapper .product-price-title{
+    position: absolute;    bottom: 159px;   left: 120px;
+    font-family: lato regular;
+    color: black;
+    font-size: 18px;
 }
 
 

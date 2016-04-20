@@ -92,7 +92,9 @@
 
 
         <div class="product-list-wrapper"> 
-            <div class="store-name">Store: <span style="color:#2E0080;">#{buildProductBean.storeName}</span> </div>
+            <div class="store-name">
+                <div class="name">Store: <span style="color:#2E0080;">#{buildProductBean.storeName}</span></div>
+            </div>
             <div class="new-product-btn-wrapper" onClick="updateProduct('.build-product-wrapper', '.update-btn', '45px', '529px')">New Product</div>
             <div class="product-list-mask" onClick="returnProductsView('.build-product-wrapper')"> </div>
 
@@ -115,9 +117,18 @@
                         </h:form> 
                     </h:column>
                     <h:column>
-                        <div class="product-description-title">
-                            <div style="text-align: center; font-size: 21px; text-decoration: underline;">description</div>
-                            #{product.description}
+                        <div class="product-data-wrapper">
+                            <div class="product-quantity-title">
+                                quantity: <span style="color:#071B9A">#{product.stock}</span>
+                            </div>
+                            <div class="product-price-title">
+                                price: <span style="color:#071B9A">#{product.price}</span>
+                            </div>
+
+                            <div class="product-description-title">
+                                <div style="text-align: center; font-size: 21px; text-decoration: underline;">description</div>
+                                #{product.description}
+                            </div>
                         </div>
                     </h:column>
 

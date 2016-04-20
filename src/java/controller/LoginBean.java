@@ -12,17 +12,13 @@ import model.Auth;
 
 @ManagedBean
 @ViewScoped
-@RequestScoped
 public class LoginBean {
 
-    @ManagedProperty(value = "#{param.name}")
-    private String name;
-    @ManagedProperty(value = "#{param.password}")
-    private String password;
-    
+    public String name;
+    public String password;
+
     public static String userName;
     public static String adminName;
-
     public String errorMessage;
 
     public String getErrorMessage() {
@@ -33,7 +29,6 @@ public class LoginBean {
         this.errorMessage = errorMessage;
     }
 
-    
     public String getName() {
         return name;
     }
@@ -50,39 +45,48 @@ public class LoginBean {
         this.password = password;
     }
 
-    public void adminLogin() throws IOException {                 // can't make generice since this fn used in xhtml and can't take paremters
-        FacesContext facesContext = FacesContext.getCurrentInstance();
+    public String adminLogin() throws IOException {                 // can't make generice since this fn used in xhtml and can't take paremters
         String queryName = "Administrators.login";
         String firstQueryParameterName = "adminName";
         String firstParameterValue = this.name;
         String secondQueryParameterName = "password";
         String secondParameterValue = this.password;
 
-        this.adminName = this.name;
-
+         if (this.name.length() < 4 || this.password.length() < 4) {
+            this.errorMessage = "user name and password must contain at least 4 letters!";
+            return "";
+        }
+         
         Auth auth = new Auth();
         if (auth.loginControl(queryName, firstQueryParameterName, firstParameterValue, secondQueryParameterName, secondParameterValue)) {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("home.xhtml");
+            this.adminName = this.name;
+            return "build store page";
         } else {
             this.errorMessage = "wrong password or user name";
-            return;
+            return "";
         }
     }
 
-    public void userLogin() throws IOException {                 // can't make generice since this fn used in xhtml and can't take paremters
+    public String userLogin() {                 // can't make generice since this fn used in xhtml and can't take paremters
         String queryName = "Users.login";
         String firstQueryParameterName = "userName";
         String firstParameterValue = this.name;
         String secondQueryParameterName = "password";
         String secondParameterValue = this.password;
-        this.userName = this.name;
+
+        if (this.name.length() < 4 || this.password.length() < 4) {
+            this.errorMessage = "user name and password must contain at least 4 letters!";
+            return "";
+        }
 
         Auth auth = new Auth();
         if (auth.loginControl(queryName, firstQueryParameterName, firstParameterValue, secondQueryParameterName, secondParameterValue)) {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("home.xhtml");
+            // login seccuedde
+            this.userName = this.name;  // static variable
+            return "home page";
         } else {
             this.errorMessage = "wrong password or user name";
-            return;
+            return "";
         }
     }
 }

@@ -72,7 +72,10 @@
         </div>
 
         <div class="store-list-wrapper"> 
-            <div class="your-stores-title">Store Name: #{buyProductCtrl.storeName}</div>
+            <div class="your-stores-title">
+                <div class="store-name">Store Name: #{buyProductCtrl.storeName}</div>
+            </div>
+
             <div class="product-list-mask" onClick="returnProductsView('.build-store-wrapper')"> </div>
 
             <div class="table-wrapper">
@@ -94,12 +97,17 @@
                         </h:form> 
                     </h:column>
                     <h:column>
-                        <div class="store-description-title">
-                            <div style="text-align: center; font-size: 21px; text-decoration: underline;">description</div>
-                            #{product.description}
+                        <div class="product-data-wrapper">
+                            <div class="product-price-title">
+                                price: <span style="color:#071B9A">#{product.price}</span>
+                            </div>
+                            
+                            <div class="store-description-title">
+                                <div style="text-align: center; font-size: 21px; text-decoration: underline;">description</div>
+                                #{product.description}
+                            </div>
                         </div>
                     </h:column>
-
 
                     <h:column>
                         <div class="store-name-title">#{product.productName}</div>

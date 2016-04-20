@@ -16,7 +16,7 @@
 
             <div class="admin-enter">
                 <h:form>        
-                    <h:commandButton class="admin-area-wrapper"  action="admin area page"/>
+                    <h:commandButton class="admin-area-wrapper"  action="admin?faces-redirect=true"/>
                 </h:form> 
                 <div class="admin-text">
                     Admin Area
@@ -63,23 +63,21 @@
                             <h:inputText id="password" value="#{loginBean.password}" />
                             <br/>
                             <h:commandButton style="cursor:pointer;" action="#{loginBean.userLogin}" value="Sign In">
-                                <f:param name="name" value="#{loginBean.name}"/>
-                                <f:param name="password" value="#{loginBean.password}"/>
-                                <f:ajax render=":error-message"/>
+                                <f:ajax render=":error-message" execute="@form"/>
                             </h:commandButton>
                         </div>
 
                         <div class="register-wrapper">
                             <label for="username">Username</label>
                             <br/>
-                            <h:inputText id ="user-name-input" class="inputText" value="#{registerBean.name}"/>
+                            <h:inputText id="user-name-input" class="inputText" value="#{registerBean.name}"/>
                             <br/>
                             <label for="password">Password</label>
                             <br/>
                             <h:inputText id="user-password-input" class="password"  value="#{registerBean.password}"/>
                             <br/>
                             <h:commandButton style="cursor:pointer;" action="#{registerBean.userRegister}" value="Register">
-                                <f:ajax render=":error-message" execute="user-name-input user-password-input"/>
+                                <f:ajax render=":error-message" execute="@form"/>
                             </h:commandButton>
                         </div>
                     </h:form> 
@@ -94,7 +92,7 @@
                 }
                 
                 if ('#{loginBean.errorMessage}'.length > 0) {
-                   displayErrorMessage('#{registerBean.errorMessage}');
+                   displayErrorMessage('#{loginBean.errorMessage}');
                 }
                 
                 function displayErrorMessage(errorMessage){
