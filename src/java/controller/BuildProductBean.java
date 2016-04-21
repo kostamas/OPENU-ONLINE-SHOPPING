@@ -239,5 +239,4 @@ public class BuildProductBean {
     public void saveProductId() {
         this.currentProductId = this.selectedProductId;
     }
-
 }
