@@ -5,6 +5,8 @@
  */
 package controller;
 
+import Entities.Administrators;
+import Entities.AdministratorsJpaController;
 import Entities.Products;
 import Entities.ProductsJpaController;
 import Entities.ProductsSold;
@@ -42,6 +44,8 @@ public class BuildStoreBean {
     private String storePhoto;
     private String storeAdmin;
     private String description;
+    private AdministratorsJpaController adminJpaCtrl;
+    public int adminCreditCard;
     private Part file;
 
     public static int currentStoreId;
@@ -51,6 +55,7 @@ public class BuildStoreBean {
     private boolean isLoggedIn;
     private List<ProductsSold> adminHistoryList;
 
+    
     public static int getCurrentStoreId() {
         return currentStoreId;
     }
@@ -62,9 +67,17 @@ public class BuildStoreBean {
     public static String getCurrentStoreName() {
         return currentStoreName;
     }
-
+ 
     public List<ProductsSold> getAdminHistoryList() {
         return adminHistoryList;
+    }
+
+    public int getAdminCreditCard() {
+        return adminCreditCard;
+    }
+
+    public void setAdminCreditCard(int adminCreditCard) {
+        this.adminCreditCard = adminCreditCard;
     }
 
     public void setAdminHistoryList(List<ProductsSold> adminHistoryList) {
@@ -280,7 +293,11 @@ public class BuildStoreBean {
                 Logger.getLogger(BuildStoreBean.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
     }
-
+    
+    public boolean isAdminHaveCredit(){
+        StoreQueary storQueary = new StoreQueary();
+        int credit = storQueary.getAdminCreditCard(this.storeAdmin);
+        return credit > 0;
+    }
 }

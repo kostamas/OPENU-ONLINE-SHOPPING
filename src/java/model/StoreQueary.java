@@ -5,6 +5,7 @@
  */
 package model;
 
+import Entities.Administrators;
 import Entities.Stores;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -34,5 +35,16 @@ public class StoreQueary {
     public List<Stores> getAllStores() {
         return em.createNamedQuery("Stores.findAll")
                 .getResultList();
+    }
+    
+    public List<Administrators> getAdmin(String adminName){
+        return em.createNamedQuery("Administrators.findByAdminName")
+                .setParameter("adminName", adminName)
+                .getResultList();
+    }
+    
+    public int getAdminCreditCard(String AdminName){
+        List<Administrators> admin = getAdmin(AdminName);
+        return admin.get(0).getCredit();
     }
 }

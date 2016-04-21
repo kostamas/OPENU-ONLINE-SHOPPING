@@ -41,11 +41,20 @@ function switchMode(selectorToShow, selectorToHide) {
 
 
 
-function updateProduct(gridClassName, hideBtnClass, left, height) {
-    document.querySelector(gridClassName).style.left = left;
-    document.querySelector(hideBtnClass).style.display = 'none';
-    document.querySelector(".product-list-mask").style.height = height;
-    document.querySelector(".product-list-mask").style.opacity = '0.5';
+function editNewStoreIfCreditCardOk(gridClassName, hideBtnClass, left, height, isAdminHaveCredit) {
+    if (eval(isAdminHaveCredit)) {  // show store settings
+        document.querySelector(gridClassName).style.left = left;
+        document.querySelector(hideBtnClass).style.display = 'none';
+        document.querySelector(".product-list-mask").style.height = height;
+        document.querySelector(".product-list-mask").style.opacity = '0.5';
+    } else {  // admin have no credit card...
+        var element = document.querySelector(".suggest-get-subscription");
+        var backgroundElement = document.querySelector(".bg-cover-opacity");
+        backgroundElement.style.transition = '0.6s';
+
+        element.style.top = "180px";
+        backgroundElement.style.opacity = '0.6';
+    }
 }
 
 function returnProductsView(className) {

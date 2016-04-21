@@ -15,6 +15,23 @@
 
         <div class="user-histoy-toggle" onclick="historyToggle2()">History</div>
 
+        <div class="suggest-get-subscription">
+            <div class="you-not-logged-in">You have no subscription</div>
+            <div class="sorry-icon"></div>
+            <div class="buy-subscription-title">Buy Subscription</div>
+            <div class="buy-subscription-btn-wrapper">
+                <h:form>    
+                    <span>Credit Card </span>
+                    <h:inputText id="credit" class="subscription-input" value="#{buildStoreBean.adminCreditCard}"/>
+                    <br/>
+                    <h:commandButton class="suggest-subscription-btn" value="Buy" />
+                    <h:commandButton class="suggest-subscription-btn no-thanks-btn" value="No tanks" />
+                </h:form> 
+            </div>
+        </div>
+        <div class="bg-cover-opacity"></div>
+
+
 
         <!--*********************************profile************************-->
 
@@ -119,7 +136,10 @@
         <!--*******************************  store list ********************************-->
 
         <div class="store-list-wrapper"> 
-            <div class="new-store-btn-wrapper" onClick="updateProduct('.build-store-wrapper', '.update-btn', '45px', '529px')">New Store</div>
+            <div class="new-store-btn-wrapper"
+                 onClick="editNewStoreIfCreditCardOk('.build-store-wrapper', '.update-btn', '45px', '529px', '#{buildStoreBean.isAdminHaveCredit()}')">
+                <span>New Store</span>
+            </div>
             <div class="your-stores-title">Your Stores</div>
             <div class="product-list-mask" onClick="returnProductsView('.build-store-wrapper')"> </div>
 

@@ -45,7 +45,7 @@ public class Administrators implements Serializable {
     @Column(name = "LAST_NAME")
     private String lastName;
     @Column(name = "CREDIT")
-    private Boolean credit;
+    private int credit;
 
     public Administrators() {
     }
@@ -91,11 +91,11 @@ public class Administrators implements Serializable {
         this.lastName = lastName;
     }
 
-    public Boolean getCredit() {
+    public int getCredit() {
         return credit;
     }
 
-    public void setCredit(Boolean credit) {
+    public void setCredit(int credit) {
         this.credit = credit;
     }
 

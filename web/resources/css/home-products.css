@@ -345,7 +345,7 @@ table img{
 }
 /********************** products checkout  ************************/
 
-
+/*********************** suggest register ************************/
 
 .suggest-register{
     position: absolute;
@@ -428,3 +428,5 @@ table img{
     transition:none;
     z-index: 10;
 }
+
+/****************** suggest register ***********/
