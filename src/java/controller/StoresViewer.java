@@ -7,7 +7,6 @@ package controller;
 
 import Entities.Stores;
 import Entities.StoresJpaController;
-import static controller.LoginBean.adminName;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -77,10 +76,8 @@ public class StoresViewer {
     public StoresViewer() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("online_shoppingPU");
         storeCtrl = new StoresJpaController(emf);            // crud
-        if (RegisterBean.adminName != null) {
-            this.adminName = RegisterBean.adminName;
-        } else {
-            this.adminName = LoginBean.adminName;
+        if (UserBean.adminName != null) {
+            this.adminName = UserBean.adminName;
         }
         StoreQueary storeQueary = new StoreQueary();
         storesList = storeQueary.getStoresByAdmin(this.adminName);   // get all admins stores

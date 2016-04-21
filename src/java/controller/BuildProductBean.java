@@ -10,7 +10,6 @@ import Entities.ProductsJpaController;
 import Entities.Stores;
 import Entities.StoresJpaController;
 import Entities.exceptions.NonexistentEntityException;
-import static controller.LoginBean.adminName;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -212,9 +211,20 @@ public class BuildProductBean {
 
     public void deleteProduct() throws NonexistentEntityException {
         int _selectedProductId = this.selectedProductId;
+        Products productToRemove = getProducteById(_selectedProductId);
+        
+        String dirPath = "C:\\onlineShopping\\" + this.storeId;
+        String fullImgPath = dirPath + "\\" + productToRemove.getPhoto();
+        deleteImgFromDir(fullImgPath);
+        
         productsJpaCtrl.destroy(_selectedProductId);
         Products product = getProducteById(_selectedProductId);
         productsList.remove(product);
+    }
+
+    private void deleteImgFromDir(String fullPath) {
+        File oldImage = new File(fullPath);
+        oldImage.delete();
     }
 
     private Products getProducteById(int id) {

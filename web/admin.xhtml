@@ -24,12 +24,12 @@
                 </div>
 
                 <div class="content">
-                    <h:inputText p:placeholder="Admin Name" class="input login-username" id="inputText" value="#{loginBean.name}" onfocus="this.value = ''"/>
-                    <h:inputSecret p:placeholder="Password" redisplay="true" class="input login-password" value="#{loginBean.password}" onfocus="this.value = ''" />
+                    <h:inputText p:placeholder="Admin Name" class="input login-username" id="inputText" value="#{adminBean.name}" onfocus="this.value = ''"/>
+                    <h:inputSecret p:placeholder="Password" redisplay="true" class="input login-password" value="#{adminBean.password}" onfocus="this.value = ''" />
                 </div>
 
                 <div class="footer">
-                    <h:commandButton class="button" style="cursor:pointer;" action="#{loginBean.adminLogin}" value="Login">
+                    <h:commandButton class="button" style="cursor:pointer;" action="#{adminBean.adminLogin}" value="Login">
                         <f:ajax render=":error-message" execute="@form"/>
                     </h:commandButton>
                     <div  onClick="switchMode('register-wrapper', 'login-wrapper')" class="register">Register</div>
@@ -50,12 +50,12 @@
                 </div>
 
                 <div class="content">
-                    <h:inputText p:placeholder="Admin Name"  class="input register-username" value="#{registerBean.name}"  onfocus="this.value = ''" />
-                    <h:inputSecret p:placeholder="Password" redisplay="true" value="#{registerBean.password}" class="input register-password"  onfocus="this.value = ''" />
+                    <h:inputText p:placeholder="Admin Name"  class="input register-username" value="#{adminBean.name}"  onfocus="this.value = ''" />
+                    <h:inputSecret p:placeholder="Password" redisplay="true" value="#{adminBean.password}" class="input register-password"  onfocus="this.value = ''" />
                 </div>
 
                 <div class="footer">
-                    <h:commandButton class="button" style="cursor:pointer;" action="#{registerBean.adminRegister}" value="Register">
+                    <h:commandButton class="button" style="cursor:pointer;" action="#{adminBean.adminRegister}" value="Register">
                         <f:ajax render=":error-message" execute="@form"/>
                     </h:commandButton>
                     <div onClick="switchMode('login-wrapper', 'register-wrapper')" class="switch-to-login register"> Login</div>
@@ -68,12 +68,8 @@
         <h:form id="error-message" >
             <div class="error-message-wrapper"></div>
             <script>
-                if ('#{registerBean.errorMessage}'.length > 0) {
-                    displayErrorMessage('#{registerBean.errorMessage}');
-                }
-
-                if ('#{loginBean.errorMessage}'.length > 0) {
-                    displayErrorMessage('#{loginBean.errorMessage}');
+                if ('#{adminBean.errorMessage}'.length > 0) {
+                    displayErrorMessage('#{adminBean.errorMessage}');
                 }
 
                 function displayErrorMessage(errorMessage) {

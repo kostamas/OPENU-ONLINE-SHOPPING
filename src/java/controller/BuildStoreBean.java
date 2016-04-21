@@ -79,12 +79,11 @@ public class BuildStoreBean {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("online_shoppingPU");
         storeCtrl = new StoresJpaController(emf);            // crud
         this.isLoggedIn = false;
-        if (RegisterBean.adminName != null) {
-            this.storeAdmin = RegisterBean.adminName;
+        if (AdminBean.adminName != null) {
+            this.storeAdmin = AdminBean.adminName;
             this.isLoggedIn = true;
         } else {
-            this.storeAdmin = LoginBean.adminName;
-            this.isLoggedIn = true;
+            this.isLoggedIn = false;  // can happen ??
         }
 
         StoreQueary storeQueary = new StoreQueary();
@@ -184,20 +183,13 @@ public class BuildStoreBean {
 
         StoreBuilder storeDB = new StoreBuilder();
 
-        this.storeId = storeDB.createStoreId();
-
-        String adminName;
-        if (RegisterBean.adminName != null) {
-            adminName = RegisterBean.adminName;
-        } else {
-            adminName = LoginBean.adminName;
-        }
+        this.storeId = storeDB.createStoreId();      
 
         String dirPath = "C:\\onlineShopping\\" + this.storeId;
         new File(dirPath).mkdir();
         this.storePhoto = this.storeId + "store.jpg";
 
-        Stores newStore = new Stores(this.storeId, this.storeName, adminName, this.description, this.storePhoto);
+        Stores newStore = new Stores(this.storeId, this.storeName, this.storeAdmin, this.description, this.storePhoto);
         storeDB.save(newStore);
         storesList.add(newStore);
         try (InputStream input = file.getInputStream()) {

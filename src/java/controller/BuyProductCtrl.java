@@ -54,8 +54,8 @@ public class BuyProductCtrl {
 
         this.cost = 0;
 
-        if (RegisterBean.userName != null || LoginBean.userName != null) {
-            this.userName = RegisterBean.userName != null ? RegisterBean.userName : LoginBean.userName;
+        if (UserBean.userName != null) {
+            this.userName = UserBean.userName; 
             cartList = userCartDB.getUserCart(this.userName);
             for (UsersCart product : cartList) {
                 this.cost += product.getQuantity() * product.getProductPrice();

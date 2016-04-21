@@ -31,7 +31,7 @@
                 </h:form>
 
                 <div class="login-box animated fadeInUp">
-                    <h:form id="loginForm"> 
+                    <h:form> 
                         <div class="box-header">
                             <div class="login-header">
                                 <h2>LOGIN</h2>
@@ -56,27 +56,29 @@
                         <div class="login-wrapper">
                             <label for="username">Username</label>
                             <br/>
-                            <h:inputText id="inputText" value="#{loginBean.name}"/>
+                            <h:inputText id="inputText" value="#{userBean.name}"/>
                             <br/>
                             <label for="password">Password</label>
                             <br/>
-                            <h:inputText id="password" value="#{loginBean.password}" />
+                            <h:inputText id="password" value="#{userBean.password}" />
                             <br/>
-                            <h:commandButton style="cursor:pointer;" action="#{loginBean.userLogin}" value="Sign In">
+                            <h:commandButton style="cursor:pointer;" action="#{userBean.userLogin}" value="Sign In">
                                 <f:ajax render=":error-message" execute="@form"/>
                             </h:commandButton>
                         </div>
+                    </h:form> 
 
+                    <h:form> 
                         <div class="register-wrapper">
                             <label for="username">Username</label>
                             <br/>
-                            <h:inputText id="user-name-input" class="inputText" value="#{registerBean.name}"/>
+                            <h:inputText id="user-name-input" class="inputText" value="#{userBean.name}"/>
                             <br/>
                             <label for="password">Password</label>
                             <br/>
-                            <h:inputText id="user-password-input" class="password"  value="#{registerBean.password}"/>
+                            <h:inputText id="user-password-input" class="password"  value="#{userBean.password}"/>
                             <br/>
-                            <h:commandButton style="cursor:pointer;" action="#{registerBean.userRegister}" value="Register">
+                            <h:commandButton style="cursor:pointer;" action="#{userBean.userRegister}" value="Register">
                                 <f:ajax render=":error-message" execute="@form"/>
                             </h:commandButton>
                         </div>
@@ -87,15 +89,11 @@
         <h:form id="error-message" >
             <div class="error-message-wrapper"></div>
             <script>
-                if ('#{registerBean.errorMessage}'.length > 0) {
-                   displayErrorMessage('#{registerBean.errorMessage}');
+                if ('#{userBean.errorMessage}'.length > 0) {
+                    displayErrorMessage('#{userBean.errorMessage}');
                 }
-                
-                if ('#{loginBean.errorMessage}'.length > 0) {
-                   displayErrorMessage('#{loginBean.errorMessage}');
-                }
-                
-                function displayErrorMessage(errorMessage){
+
+                function displayErrorMessage(errorMessage) {
                     var divToAdd = document.createElement('div');
                     divToAdd.className = 'error-message';
                     divToAdd.innerHTML = errorMessage;
@@ -104,7 +102,7 @@
                 }
             </script>
         </h:form>
-        
+
     </h:body>
 </html>
 
