@@ -41,6 +41,7 @@ public class HomeCtrl {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("online_shoppingPU");
         if (UserBean.userName != null) {
             isLoggedIn = true;
+            this.userName = UserBean.userName;
         } else {
             isLoggedIn = false;
         }

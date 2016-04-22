@@ -20,12 +20,14 @@
             <div class="sorry-icon"></div>
             <div class="buy-subscription-title">Buy Subscription</div>
             <div class="buy-subscription-btn-wrapper">
-                <h:form>    
-                    <span>Credit Card </span>
-                    <h:inputText id="credit" class="subscription-input" value="#{buildStoreBean.adminCreditCard}"/>
-                    <br/>
-                    <h:commandButton class="suggest-subscription-btn" value="Buy" />
-                    <h:commandButton class="suggest-subscription-btn no-thanks-btn" value="No tanks" />
+                <h:form>   
+                    <div class="buy-manage-wrapper">
+                        <span class="credit-card-lable">Credit Card </span>
+                        <h:inputText onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;" id="credit" class="subscription-input" value="#{buildStoreBean.adminCreditCard}"/>
+                        <br/>
+                        <h:commandButton class="suggest-subscription-btn" value="Buy" />
+                    </div>
+                    <h:commandButton class="no-thanks-btn" value="No tanks" />
                 </h:form> 
             </div>
         </div>
@@ -183,6 +185,12 @@
 
         <!--*******************************  store list ********************************-->
 
+        <script>   <!--init input to empty string-->
+            var creditInputElement = document.querySelector('.subscription-input');
+            creditInputElement.placeholder = '';
+            creditInputElement.value = '';
+
+        </script>
     </h:body>
 </html>
 

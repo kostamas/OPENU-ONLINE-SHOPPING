@@ -82,3 +82,10 @@ function historyToggle2() {
     }
     toggleUserHistory2 = !toggleUserHistory2;
 }
+
+function updateProduct(gridClassName, hideBtnClass, left, height) {
+    document.querySelector(gridClassName).style.left = left;
+    document.querySelector(hideBtnClass).style.display = 'none';
+    document.querySelector(".product-list-mask").style.height = height;
+    document.querySelector(".product-list-mask").style.opacity = '0.5';
+}

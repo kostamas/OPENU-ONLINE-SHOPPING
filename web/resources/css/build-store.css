@@ -407,11 +407,11 @@ table img{
     background-color: white;
     padding: 20px;
     z-index: 11;
-    width: 360px;    height: 210px;
+    width: 360px;    height: 230px;
     font-family: Lato regular;
     font-size: 20px;
     color:red;
-    top: -260px;
+    top: -280px;
     left: calc(50% - 150px);
     border: 1px solid black;
     transition: top 0.7s ease-in-out;
@@ -432,35 +432,70 @@ table img{
     border-radius: 50px;
     font-family: Lato regular;
     font-size: 23px;
-    cursor: pointer;
     margin: 15px;
     border: none;
+    color: #0005C5;
 }
 
-.suggest-subscription-btn:focus, .suggest-subscription-btn-btn:active {
+.subscription-input{
+    width: 100px;
+}
+
+.credit-card-lable{
+    font-family: Lato regular;
+    font-size: 16px;
+    color: #A0A0A0;
+    margin-right: 10px;
+    position: relative;
+    top: 3px;
+}
+
+.buy-manage-wrapper{
+    display: flex;
+}
+
+.suggest-subscription-btn:focus, .suggest-subscription-btn-btn:active, .no-thanks-btn:focus, no-thanks-btn:active{
     outline: none;
 }
 
 .suggest-subscription-btn:hover {
-    color:#0DB523;
+    color:#2F00FB;
+    background-color: #36BF52;
 }
 
 .no-thanks-btn:hover{
-    color:#E80D0D;
+    color: #D60808;
 }
 
 .suggest-subscription-btn {
-    color:#27EC41
+    color:#27EC41;
+    border: 10px;
+    margin-left: 15px;
+    width: 60px;
+    border: 1px solid #807777;
+    border-radius: 10px;
+    background-color: #3DE25F;
+    color:#1200FF;
+    cursor: pointer;
+
 }
 
 .no-thanks-btn{
-    color:#FD574A;
+    margin-top: 25px;
+    color: #27EC41;
+    margin-left: 15px;
+    width: 85px;
+    background-color: #FFFFFF;
+    color: #FF0000;
+    font-size: 16px;
+    cursor: pointer;
+    border:none;
 }
 .you-not-logged-in{
     font-family: Lato regular;
     color: blue;
     font-size: 28px;
-    margin-top: 22px;
+    margin-top: 0;
     margin-bottom: 10px;
 }
 

@@ -55,7 +55,6 @@ public class BuildStoreBean {
     private boolean isLoggedIn;
     private List<ProductsSold> adminHistoryList;
 
-    
     public static int getCurrentStoreId() {
         return currentStoreId;
     }
@@ -67,7 +66,7 @@ public class BuildStoreBean {
     public static String getCurrentStoreName() {
         return currentStoreName;
     }
- 
+
     public List<ProductsSold> getAdminHistoryList() {
         return adminHistoryList;
     }
@@ -196,7 +195,7 @@ public class BuildStoreBean {
 
         StoreBuilder storeDB = new StoreBuilder();
 
-        this.storeId = storeDB.createStoreId();      
+        this.storeId = storeDB.createStoreId();
 
         String dirPath = "C:\\onlineShopping\\" + this.storeId;
         new File(dirPath).mkdir();
@@ -294,8 +293,8 @@ public class BuildStoreBean {
             }
         }
     }
-    
-    public boolean isAdminHaveCredit(){
+
+    public boolean isAdminHaveCredit() {
         StoreQueary storQueary = new StoreQueary();
         int credit = storQueary.getAdminCreditCard(this.storeAdmin);
         return credit > 0;
