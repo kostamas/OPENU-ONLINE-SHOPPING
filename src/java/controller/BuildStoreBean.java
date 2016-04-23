@@ -48,12 +48,21 @@ public class BuildStoreBean {
     public int adminCreditCard;
     private Part file;
 
+    public String errorMessage;
     public static int currentStoreId;
     public static String currentStoreName;
     StoresJpaController storeCtrl;
     private List<Stores> storesList;
     private boolean isLoggedIn;
     private List<ProductsSold> adminHistoryList;
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
 
     public static int getCurrentStoreId() {
         return currentStoreId;
@@ -297,6 +306,26 @@ public class BuildStoreBean {
     public boolean isAdminHaveCredit() {
         StoreQueary storQueary = new StoreQueary();
         int credit = storQueary.getAdminCreditCard(this.storeAdmin);
-        return credit > 0;
+//        return credit > 0;
+    return false;
+    }
+    
+    public void updateCreditCard() throws Exception {
+        StoreQueary storQueary = new StoreQueary();
+        Administrators adminObj = storQueary.getAdmin(this.storeAdmin).get(0);
+        if(adminObj == null ){
+            this.errorMessage = "unknown error accur";
+            return;
+        }
+        if(this.adminCreditCard < 999999 || this.adminCreditCard > 99999999){
+            this.errorMessage = "credit card must be 8 digits.";
+            return;
+        }
+        adminObj.setCredit(this.adminCreditCard);
+        
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("online_shoppingPU");
+        EntityManager em;
+        adminJpaCtrl = new AdministratorsJpaController(emf);  
+        adminJpaCtrl.edit(adminObj);
     }
 }

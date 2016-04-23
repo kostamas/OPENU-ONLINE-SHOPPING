@@ -520,4 +520,11 @@ table img{
     margin: 0 auto;
 }
 
+.credit-error-message-wrapper{
+    position: absolute;
+    left: 107px;
+    top: 156px;
+    color:red; 
+    opacity: 1;
+}
 /**************************** admin subscription ************************/

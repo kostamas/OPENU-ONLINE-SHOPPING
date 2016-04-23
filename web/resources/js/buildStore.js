@@ -89,3 +89,10 @@ function updateProduct(gridClassName, hideBtnClass, left, height) {
     document.querySelector(".product-list-mask").style.height = height;
     document.querySelector(".product-list-mask").style.opacity = '0.5';
 }
+
+function updateUIByadminCredit(errorMassage){
+//    if(!errorMessage || updateUIByadminCredit.length < 1){
+//            document.querySelector('');
+//    }
+    
+}
