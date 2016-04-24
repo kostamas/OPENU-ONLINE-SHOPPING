@@ -22,7 +22,10 @@
             <div class="buy-subscription-btn-wrapper">
             <div class="credit-error-message-wrapper">
                 <h:form id="credit-error-message">
-                    <div class="credit-error-message">#{buildStoreBean.errorMessage}</div>
+                    <script> 
+                        updateUIByadminCredit('#{buildStoreBean.errorMessage}')
+                    </script>
+                    <div class="credit-error-message"></div>
                 </h:form>
             </div>
                 <h:form>   
@@ -32,7 +35,6 @@
                         <h:inputText onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;" id="credit" class="subscription-input" value="#{buildStoreBean.adminCreditCard}"/>
                         <br/>
                         <h:commandButton class="suggest-subscription-btn" value="Buy" 
-                                         onclick="updateUIByadminCredit('#{buildStoreBean.errorMessage}')"
                                          action="#{buildStoreBean.updateCreditCard}">
                             <f:ajax render=":credit-error-message" execute="@form"/>
                         </h:commandButton>

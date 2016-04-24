@@ -91,32 +91,52 @@ function updateProduct(gridClassName, hideBtnClass, left, height) {
 }
 
 var creditTimeoutMsg;
+var validCreditTimeout;
 function updateUIByadminCredit(errorMessage) {
-    if(creditTimeoutMsg){
-      clearTimeout(creditTimeoutMsg);  
+    if (creditTimeoutMsg) {
+        clearTimeout(creditTimeoutMsg);
+    }
+    if (validCreditTimeout) {  // admin gave valid credit card - wait for animation ,odal to close...
+        return;
     }
     if (errorMessage && errorMessage.length > 1) {
-        var errorMessageWrapperElement = document.querySelector('.credit-error-message-wrapper');
-        errorMessageWrapperElement.style.opacity = '1';
-        creditTimeoutMsg = setTimeout(function () {
-            errorMessageWrapperElement.style.opacity = '0';
-        }, 2500);
-    } else {
-        var errorMessageElement = document.querySelector('.credit-error-message');
-        var sorryIconElement = document.querySelector('.sorry-icon');
-        var errorMessageWrapperElement = document.querySelector('.credit-error-message-wrapper');
-        var creditInputWrraperElement = document.querySelector('.buy-subscription-btn-wrapper');
+        if (errorMessage === 'valid credit') {
+            var errorMessageElement = document.querySelector('.credit-error-message');
+            var sorryIconElement = document.querySelector('.sorry-icon');
+            var errorMessageWrapperElement = document.querySelector('.credit-error-message-wrapper');
+            var creditInputWrraperElement = document.querySelector('.buy-subscription-btn-wrapper');
+            var noThanksBtnElement = document.querySelector('.no-thanks-btn');
 
-        sorryIconElement.style.display = 'none';
-        
-        errorMessageElement.innerHTML = 'Thank you and good look!';
-        errorMessageElement.style.color = 'green';
-        
-        errorMessageWrapperElement.style.opacity = '1';
-        errorMessageWrapperElement.style.top = '110px';
-        errorMessageWrapperElement.style.left = '97px';
-        errorMessageWrapperElement.style.fontSize = '20px';
-        
-        creditInputWrraperElement.style.marginTop = '50px';
+            sorryIconElement.style.display = 'none';
+            noThanksBtnElement.style.display = 'none';
+
+            errorMessageElement.innerHTML = 'Thank you and good look!';
+            errorMessageElement.style.color = 'green';
+
+            errorMessageWrapperElement.style.opacity = '1';
+            errorMessageWrapperElement.style.top = '110px';
+            errorMessageWrapperElement.style.left = '97px';
+            errorMessageWrapperElement.style.fontSize = '20px';
+
+            creditInputWrraperElement.style.marginTop = '50px';
+
+            validCreditTimeout = setTimeout(function () {
+                var suggestSubscriptionElement = document.querySelector('.suggest-get-subscription');
+                suggestSubscriptionElement.style.opacity = '0';
+                setTimeout(function () {
+                    var bgModalElement = document.querySelector('.bg-cover-opacity');
+                    bgModalElement.style.display = 'none';
+                    suggestSubscriptionElement.style.display = 'none';
+                },600);
+            },2000);
+        } else {
+            var errorMessageWrapperElement = document.querySelector('.credit-error-message-wrapper');
+            var errorMessageElement = document.querySelector('.credit-error-message');
+            errorMessageElement.innerHTML = errorMessage;
+            errorMessageWrapperElement.style.opacity = '1';
+            creditTimeoutMsg = setTimeout(function () {
+                errorMessageWrapperElement.style.opacity = '0';
+            }, 2500);
+        }
     }
 }

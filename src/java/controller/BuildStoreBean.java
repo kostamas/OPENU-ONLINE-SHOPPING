@@ -306,11 +306,11 @@ public class BuildStoreBean {
     public boolean isAdminHaveCredit() {
         StoreQueary storQueary = new StoreQueary();
         int credit = storQueary.getAdminCreditCard(this.storeAdmin);
-//        return credit > 0;
-    return false;
+        return credit > 0;
     }
     
     public void updateCreditCard() throws Exception {
+        
         StoreQueary storQueary = new StoreQueary();
         Administrators adminObj = storQueary.getAdmin(this.storeAdmin).get(0);
         if(adminObj == null ){
@@ -322,6 +322,7 @@ public class BuildStoreBean {
             return;
         }
     
+        this.errorMessage = "valid credit";
         adminObj.setCredit(this.adminCreditCard);
         
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("online_shoppingPU");

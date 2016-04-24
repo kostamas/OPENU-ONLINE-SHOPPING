@@ -414,7 +414,7 @@ table img{
     top: -280px;
     left: calc(50% - 150px);
     border: 1px solid black;
-    transition: top 0.7s ease-in-out;
+    transition: 0.7s ease-in-out;
     text-align: center;
     border-radius: 20px;
     box-shadow: 0px 0px 20px black;
