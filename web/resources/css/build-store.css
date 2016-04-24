@@ -452,6 +452,7 @@ table img{
 
 .buy-manage-wrapper{
     display: flex;
+    margin-top: 30px;
 }
 
 .suggest-subscription-btn:focus, .suggest-subscription-btn-btn:active, .no-thanks-btn:focus, no-thanks-btn:active{
@@ -522,9 +523,11 @@ table img{
 
 .credit-error-message-wrapper{
     position: absolute;
-    left: 107px;
-    top: 156px;
-    color:red; 
-    opacity: 1;
+    font-size: 14px;
+    left: 126px;
+    top: 162px;
+    color: red;
+    opacity: 0;
+    transition: 0.4s ease-out;
 }
 /**************************** admin subscription ************************/

@@ -321,6 +321,7 @@ public class BuildStoreBean {
             this.errorMessage = "credit card must be 8 digits.";
             return;
         }
+    
         adminObj.setCredit(this.adminCreditCard);
         
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("online_shoppingPU");

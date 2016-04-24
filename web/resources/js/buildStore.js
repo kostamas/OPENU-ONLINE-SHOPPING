@@ -90,9 +90,33 @@ function updateProduct(gridClassName, hideBtnClass, left, height) {
     document.querySelector(".product-list-mask").style.opacity = '0.5';
 }
 
-function updateUIByadminCredit(errorMassage){
-//    if(!errorMessage || updateUIByadminCredit.length < 1){
-//            document.querySelector('');
-//    }
-    
+var creditTimeoutMsg;
+function updateUIByadminCredit(errorMessage) {
+    if(creditTimeoutMsg){
+      clearTimeout(creditTimeoutMsg);  
+    }
+    if (errorMessage && errorMessage.length > 1) {
+        var errorMessageWrapperElement = document.querySelector('.credit-error-message-wrapper');
+        errorMessageWrapperElement.style.opacity = '1';
+        creditTimeoutMsg = setTimeout(function () {
+            errorMessageWrapperElement.style.opacity = '0';
+        }, 2500);
+    } else {
+        var errorMessageElement = document.querySelector('.credit-error-message');
+        var sorryIconElement = document.querySelector('.sorry-icon');
+        var errorMessageWrapperElement = document.querySelector('.credit-error-message-wrapper');
+        var creditInputWrraperElement = document.querySelector('.buy-subscription-btn-wrapper');
+
+        sorryIconElement.style.display = 'none';
+        
+        errorMessageElement.innerHTML = 'Thank you and good look!';
+        errorMessageElement.style.color = 'green';
+        
+        errorMessageWrapperElement.style.opacity = '1';
+        errorMessageWrapperElement.style.top = '110px';
+        errorMessageWrapperElement.style.left = '97px';
+        errorMessageWrapperElement.style.fontSize = '20px';
+        
+        creditInputWrraperElement.style.marginTop = '50px';
+    }
 }
