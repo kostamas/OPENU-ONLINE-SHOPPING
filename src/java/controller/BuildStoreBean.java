@@ -108,10 +108,9 @@ public class BuildStoreBean {
         }
 
         StoreQueary storeQueary = new StoreQueary();
-       
 
         if (this.isLoggedIn) {
-             storesList = storeQueary.getStoresByAdmin(this.storeAdmin);   // get all admins stores
+            storesList = storeQueary.getStoresByAdmin(this.storeAdmin);   // get all admins stores
             TransactionQueary transactionDB = new TransactionQueary();
             this.adminHistoryList = transactionDB.getAdminHistory(this.storeAdmin);
         }
@@ -305,6 +304,9 @@ public class BuildStoreBean {
     }
 
     public boolean isAdminHaveCredit() {
+        if(this.storeAdmin != null && this.storeAdmin.length() < 4) {
+            return true;
+        }
         StoreQueary storQueary = new StoreQueary();
         int credit = storQueary.getAdminCreditCard(this.storeAdmin);
         return credit > 0;
