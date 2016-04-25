@@ -6,12 +6,20 @@
     <h:head>
         <title>Facelet Title</title>
         <h:outputStylesheet  name="css/build-store.css"/>
-
+        <script>
+            debugger
+          if('#{buildStoreBean.storeAdmin}'.length &lt;  4 ){
+              alert();
+               window.location.replace('http://localhost:8080/online_shopping/');   
+          }
+        </script>
     </h:head>
     <h:body>
         <h:outputScript library="js" name="buildStore.js" />
 
-        <div class="logout-btn">LOGOUT</div>
+        <h:form> 
+            <h:commandButton class="logout-btn" value="LOGOUT" action="#{buildStoreBean.logout}"/>
+        </h:form>
 
         <div class="user-histoy-toggle" onclick="historyToggle2()">History</div>
 

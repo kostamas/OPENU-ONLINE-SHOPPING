@@ -50,6 +50,12 @@
             <redirect/>
         </navigation-case>
         
+        <navigation-case>
+            <from-outcome>welcome page</from-outcome>
+            <to-view-id>index.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        
     </navigation-rule>
 
 
@@ -83,6 +89,13 @@
         <navigation-case>
             <from-outcome>home products page</from-outcome>
             <to-view-id>homeProducts.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        
+        <from-view-id>home.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>welcome page</from-outcome>
+            <to-view-id>index.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>

@@ -125,8 +125,9 @@ public class HomeCtrl {
         return "home products page";
     }
 
-    public void userHistory() {
-
+    public String logout(){
+        UserBean.userName = this.userName = "";
+        userHistoryList = null;
+        return "welcome page";
     }
-
 }

@@ -108,9 +108,10 @@ public class BuildStoreBean {
         }
 
         StoreQueary storeQueary = new StoreQueary();
-        storesList = storeQueary.getStoresByAdmin(this.storeAdmin);   // get all admins stores
+       
 
         if (this.isLoggedIn) {
+             storesList = storeQueary.getStoresByAdmin(this.storeAdmin);   // get all admins stores
             TransactionQueary transactionDB = new TransactionQueary();
             this.adminHistoryList = transactionDB.getAdminHistory(this.storeAdmin);
         }
@@ -308,26 +309,32 @@ public class BuildStoreBean {
         int credit = storQueary.getAdminCreditCard(this.storeAdmin);
         return credit > 0;
     }
-    
+
     public void updateCreditCard() throws Exception {
-        
+
         StoreQueary storQueary = new StoreQueary();
         Administrators adminObj = storQueary.getAdmin(this.storeAdmin).get(0);
-        if(adminObj == null ){
+        if (adminObj == null) {
             this.errorMessage = "unknown error accur";
             return;
         }
-        if(this.adminCreditCard < 999999 || this.adminCreditCard > 99999999){
+        if (this.adminCreditCard < 999999 || this.adminCreditCard > 99999999) {
             this.errorMessage = "credit card must be 8 digits.";
             return;
         }
-    
+
         this.errorMessage = "valid credit";
         adminObj.setCredit(this.adminCreditCard);
-        
+
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("online_shoppingPU");
         EntityManager em;
-        adminJpaCtrl = new AdministratorsJpaController(emf);  
+        adminJpaCtrl = new AdministratorsJpaController(emf);
         adminJpaCtrl.edit(adminObj);
+    }
+
+    public String logout() {
+        adminHistoryList = null;
+        this.storeAdmin = AdminBean.adminName = "";
+        return "welcome page";
     }
 }

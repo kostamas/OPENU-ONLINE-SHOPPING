@@ -127,6 +127,7 @@ function updateUIByadminCredit(errorMessage) {
                     var bgModalElement = document.querySelector('.bg-cover-opacity');
                     bgModalElement.style.display = 'none';
                     suggestSubscriptionElement.style.display = 'none';
+                    location.reload();
                 },600);
             },2000);
         } else {

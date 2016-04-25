@@ -12,7 +12,9 @@
     <body>
         <div class="bg-cover"></div>
 
-        <div class="logout-btn">LOGOUT</div>
+        <h:form> 
+            <h:commandButton class="logout-btn" value="LOGOUT" action="#{homeCtrl.logout}"/>
+        </h:form>
 
         <div class="user-histoy-toggle" onclick="historyToggle()">History</div>
 

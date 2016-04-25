@@ -33,13 +33,14 @@ public class Checkout {
     private int cost;
 
     public Checkout() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("online_shoppingPU");
-        cartList = UserCartQuary.getUserCart(HomeCtrl.userName);
-        userCartrl = new UsersCartJpaController(emf);
-        productsCtrl = new ProductsJpaController(emf);
+        if (UserBean.userName != null && UserBean.userName.length() > 3 ) {
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("online_shoppingPU");
+            cartList = UserCartQuary.getUserCart(UserBean.userName);
+            userCartrl = new UsersCartJpaController(emf);
+            productsCtrl = new ProductsJpaController(emf);
 
-        calcTotalCost();
-
+            calcTotalCost();
+        }
     }
 
     // ****************** setters & getters   ********************//

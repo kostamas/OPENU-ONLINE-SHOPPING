@@ -35,7 +35,7 @@ public class BuyProductCtrl {
     private int storeId;
     private String storeName;
     private UsersCart userCart;
-    public int cost;
+    public static int cost;
     private String userName;
     UsersCartJpaController userCartCtrl;
     ProductsJpaController productCtrl;
@@ -54,7 +54,7 @@ public class BuyProductCtrl {
 
         this.cost = 0;
 
-        if (UserBean.userName != null) {
+        if (UserBean.userName != null && UserBean.userName.length() > 3) {
             this.userName = UserBean.userName; 
             cartList = userCartDB.getUserCart(this.userName);
             for (UsersCart product : cartList) {
