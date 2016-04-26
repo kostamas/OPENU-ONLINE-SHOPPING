@@ -10,6 +10,7 @@ import Entities.AdministratorsJpaController;
 import Entities.Stores;
 import Entities.Users;
 import Entities.UsersCartJpaController;
+import Entities.UsersJpaController;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,11 +34,11 @@ public class EditProfilUserBean {
     public String address;
     public String password;
     public int credit;
-    UsersCartJpaController userJpaCtrl;
+    UsersJpaController userJpaCtrl;
 
     public EditProfilUserBean() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("online_shoppingPU");
-        userJpaCtrl = new UsersCartJpaController(emf);
+        userJpaCtrl = new UsersJpaController(emf);
         this.userName = AdminBean.adminName;
     }
 
@@ -122,7 +123,7 @@ public class EditProfilUserBean {
         }
 
         try {
-            adminJpaCtrl.edit(adminToUpdate);
+            userJpaCtrl.edit(userToUpdate);
         } catch (Exception ex) {
             Logger.getLogger(EditProfilAdminBean.class.getName()).log(Level.SEVERE, null, ex);
         }
