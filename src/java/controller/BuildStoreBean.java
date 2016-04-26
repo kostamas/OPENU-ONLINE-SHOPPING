@@ -26,6 +26,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.servlet.http.Part;
+import model.Auth;
 import model.StoreBuilder;
 import model.StoreQueary;
 import model.TransactionQueary;
@@ -304,7 +305,7 @@ public class BuildStoreBean {
     }
 
     public boolean isAdminHaveCredit() {
-        if(this.storeAdmin != null && this.storeAdmin.length() < 4) {
+        if (this.storeAdmin != null && this.storeAdmin.length() < 4) {
             return true;
         }
         StoreQueary storQueary = new StoreQueary();
@@ -314,8 +315,8 @@ public class BuildStoreBean {
 
     public void updateCreditCard() throws Exception {
 
-        StoreQueary storQueary = new StoreQueary();
-        Administrators adminObj = storQueary.getAdmin(this.storeAdmin).get(0);
+        Auth authDB = new Auth();
+        Administrators adminObj = authDB.getAdminByAdminName(this.storeAdmin).get(0);
         if (adminObj == null) {
             this.errorMessage = "unknown error accur";
             return;

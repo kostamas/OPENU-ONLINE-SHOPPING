@@ -5,7 +5,9 @@
  */
 package model;
 
+import Entities.Administrators;
 import Entities.Users;
+import java.util.List;
 import javax.persistence.*;
 
 public class Auth {
@@ -60,5 +62,17 @@ public class Auth {
             return true;
         }
         return false;
+    }
+    
+    public List<Administrators> getAdminByAdminName(String adminName){
+        return em.createNamedQuery("Administrators.findByAdminName")
+                .setParameter("adminName", adminName)
+                .getResultList();
+    }
+    
+    public List<Users> getUserByUserName(String userName){
+        return em.createNamedQuery("Users.findByUserName")
+                .setParameter("userName", userName)
+                .getResultList();
     }
 }

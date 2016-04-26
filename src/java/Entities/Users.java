@@ -30,6 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Users.findByFirstName", query = "SELECT u FROM Users u WHERE u.firstName = :firstName"),
     @NamedQuery(name = "Users.findByLastName", query = "SELECT u FROM Users u WHERE u.lastName = :lastName"),
     @NamedQuery(name = "Users.findByMail", query = "SELECT u FROM Users u WHERE u.mail = :mail"),
+    @NamedQuery(name = "Users.findByCredit", query = "SELECT u FROM Users u WHERE u.credit = :credit"),
     @NamedQuery(name = "Users.findByAddress", query = "SELECT u FROM Users u WHERE u.address = :address")})
 public class Users implements Serializable {
 
@@ -50,6 +51,8 @@ public class Users implements Serializable {
     private String mail;
     @Column(name = "ADDRESS")
     private String address;
+    @Column(name = "CREDIT")
+    private int credit;
 
     public Users() {
     }
@@ -57,7 +60,7 @@ public class Users implements Serializable {
     public Users(String userName) {
         this.userName = userName;
     }
-    
+
     public Users(String userName, String password) {
         this.userName = userName;
         this.password = password;
@@ -67,6 +70,14 @@ public class Users implements Serializable {
         this.userName = userName;
         this.password = password;
         this.lastName = lastName;
+    }
+
+    public int getCredit() {
+        return credit;
+    }
+
+    public void setCredit(int credit) {
+        this.credit = credit;
     }
 
     public String getUserName() {
@@ -141,5 +152,5 @@ public class Users implements Serializable {
     public String toString() {
         return "Entities.Users[ userName=" + userName + " ]";
     }
-    
+
 }

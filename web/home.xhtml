@@ -24,23 +24,23 @@
         <div class="profile-container">
             <div class="profile-wrapper">
                 <h:form>
-                    <label for="username">First Name</label>
+                    <label for="first name">First Name</label>
                     <br/>
-                    <h:inputText class="" value=""/>
+                    <h:inputText  value="#{editProfilAdminBean.firstName}"/>
                     <br/>
-                    <label for="password">Last Name</label>
+                    <label for="last name">Last Name</label>
                     <br/>
-                    <h:inputText class="" />
+                    <h:inputText value="#{editProfilAdminBean.lastName}" />
                     <br/>
-                    <label for="username">Email</label>
+                    <label for="email">Email</label>
                     <br/>
-                    <h:inputText class="" value=""/>
+                    <h:inputText class="" value="#{editProfilAdminBean.firstName}"/>
                     <br/>
                     <label for="password">Password</label>
                     <br/>
-                    <h:inputText class=""  />
+                    <h:inputText class=""  value="#{editProfilAdminBean.firstName}"/>
                     <br/>
-                    <h:commandButton class="save-profile" style="cursor:pointer;" action="#{userBean.userLogin}" value="done"/>
+                    <h:commandButton class="save-profile" style="cursor:pointer;" action="#{editProfilAdminBean.update}" value="done"/>
                 </h:form>
             </div>
         </div>

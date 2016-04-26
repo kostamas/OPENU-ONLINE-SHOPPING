@@ -36,15 +36,10 @@ public class StoreQueary {
         return em.createNamedQuery("Stores.findAll")
                 .getResultList();
     }
-    
-    public List<Administrators> getAdmin(String adminName){
-        return em.createNamedQuery("Administrators.findByAdminName")
-                .setParameter("adminName", adminName)
-                .getResultList();
-    }
-    
-    public int getAdminCreditCard(String AdminName){
-        List<Administrators> admin = getAdmin(AdminName);
+
+    public int getAdminCreditCard(String AdminName) {
+        Auth authDB = new Auth();
+        List<Administrators> admin = authDB.getAdminByAdminName(AdminName);
         return admin.get(0).getCredit();
     }
 }
