@@ -37,9 +37,25 @@ public class EditProfilUserBean {
     UsersJpaController userJpaCtrl;
 
     public EditProfilUserBean() {
+
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("online_shoppingPU");
         userJpaCtrl = new UsersJpaController(emf);
-        this.userName = AdminBean.adminName;
+        this.userName = UserBean.userName;
+        if (this.userName != null && this.userName.length() > 3) {
+            init();
+        }
+
+    }
+
+    public void init() {
+        Auth auth = new Auth();
+        Users userProfile = auth.getUserByUserName(this.userName).get(0);
+        this.password = userProfile.getPassword();
+        this.firstName = userProfile.getFirstName();
+        this.lastName = userProfile.getLastName();
+        this.mail = userProfile.getMail();
+        this.credit = userProfile.getCredit();
+        this.address = userProfile.getAddress();
     }
 
     public String getUserName() {
@@ -114,16 +130,25 @@ public class EditProfilUserBean {
             userToUpdate.setLastName(this.lastName);
         }
 
-        if (this.password.length() > 4) {
+        if (this.mail.length() > 0) {
+            userToUpdate.setMail(this.mail);
+        }
+
+        if (this.password.length() > 3) {
             userToUpdate.setPassword(this.password);
         }
 
-        if (this.credit > 99999999 && this.credit < 100000000) {
+        if (this.address.length() > 4) {
+            userToUpdate.setAddress(this.address);
+        }
+
+        if (this.credit > 99999999 && this.credit < 100000000) {  // bug - convert to integer
             userToUpdate.setCredit(this.credit);
         }
 
         try {
             userJpaCtrl.edit(userToUpdate);
+            init();
         } catch (Exception ex) {
             Logger.getLogger(EditProfilAdminBean.class.getName()).log(Level.SEVERE, null, ex);
         }

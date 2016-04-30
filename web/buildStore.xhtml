@@ -68,14 +68,17 @@
                     <br/>
                     <h:inputText value="#{editProfilAdminBean.lastName}" />
                     <br/>
-                    <label for="email">Email</label>
-                    <br/>
-                    <h:inputText class="" value="#{editProfilAdminBean.firstName}"/>
-                    <br/>
                     <label for="password">Password</label>
                     <br/>
-                    <h:inputText class=""  value="#{editProfilAdminBean.firstName}"/>
+                    <h:inputText class=""  value="#{editProfilAdminBean.password}"/>
                     <br/>
+                    <label for="email">Email</label>
+                    <br/>
+                    <h:inputText class=""  value="#{editProfilAdminBean.email}"/>
+                    <br/>
+                    <label for="credit">Credit</label>
+                    <br/>
+                    <h:inputText class=""  value="#{editProfilAdminBean.credit}"/>
                     <h:commandButton class="save-profile" style="cursor:pointer;" action="#{editProfilAdminBean.update}" value="done"/>
                 </h:form>
             </div>

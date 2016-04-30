@@ -62,14 +62,13 @@ body {
     overflow: hidden;
     width:245px;
 }
-
 .profile-wrapper{
     background: url(../images/z.jpg) repeat;
     z-index: 1;
     padding-left: 18px;
     border-radius: 10px;
     background-size: cover;
-    width: 200px;  height:380px;
+    width: 200px;  height:444px;
     position: relative; right:-270px; top: 0px;
     display: flex;     justify-content: center;  align-items: center;
     background-color: white;
@@ -83,6 +82,7 @@ body {
     margin-bottom: 10px;
     background-color: rgba(106, 71, 138, 0.69);
     height: 20px;
+    color: white;
 }
 
 .profile-wrapper input[type="submit"]{

@@ -8,6 +8,7 @@
     <class>Entities.StoresJoinProducts</class>
     <class>Entities.ProductsSold</class>
     <class>Entities.Transactions</class>
+    <class>Entities.Test</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/OPENU"/>

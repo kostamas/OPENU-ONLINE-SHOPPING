@@ -46,6 +46,8 @@ public class Administrators implements Serializable {
     private String lastName;
     @Column(name = "CREDIT")
     private int credit;
+    @Column(name = "EMAIL")
+    private String email;
 
     public Administrators() {
     }
@@ -66,6 +68,15 @@ public class Administrators implements Serializable {
     public void setAdminName(String adminName) {
         this.adminName = adminName;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
 
     public String getPassword() {
         return password;
@@ -123,5 +134,5 @@ public class Administrators implements Serializable {
     public String toString() {
         return "Entities.Administrators[ adminName=" + adminName + " ]";
     }
-    
+
 }

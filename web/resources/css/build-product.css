@@ -59,9 +59,10 @@ body {
 .profile-wrapper{
     background: url(../images/z.jpg) repeat;
     z-index: 1;
+    padding-left:15px;
     border-radius: 10px;
     background-size: cover;
-    width: 200px;  height:300px;
+    width: 200px;  height:380px;
     position: relative; right:-270px; top: 0px;
     display: flex;     justify-content: center;  align-items: center;
     background-color: white;
@@ -70,7 +71,6 @@ body {
     color: #0B50D0;    font-family: Lato regular; font-size: 21px;  
     transition: right 0.6s;
 }
-
 .profile-wrapper input{
     margin-bottom: 10px;
     background-color: rgba(106, 71, 138, 0.69);
