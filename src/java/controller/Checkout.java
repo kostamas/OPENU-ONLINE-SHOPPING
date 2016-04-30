@@ -10,6 +10,7 @@ import Entities.ProductsJpaController;
 import Entities.UsersCart;
 import Entities.UsersCartJpaController;
 import Entities.exceptions.NonexistentEntityException;
+import java.util.Date;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -102,7 +103,9 @@ public class Checkout {
 
     public void userPay() throws NonexistentEntityException {
         TransactionCtrl transactionCtrl = new TransactionCtrl();
-        transactionCtrl.transactionHandler(this.cartList, this.cost, HomeCtrl.userName);
+         Date date = new Date();
+         
+        transactionCtrl.transactionHandler(this.cartList, this.cost, HomeCtrl.userName, date.toString());
         transactionCtrl.emptyUserCart(this.cartList, userCartrl);
         this.cartList.clear();
         this.cost = 0;

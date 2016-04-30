@@ -315,6 +315,7 @@ table img{
 /************************************** store list ****************************************/
 
 
+
 /********************** user history  ************************/
 
 .user-histoy-toggle{
@@ -340,11 +341,11 @@ table img{
 }
 
 .history-table-container .table-header{
-    display: flex;   align-content: center;
+    display: flex;
     margin-bottom: 20px;
     margin-top: 14px;
     background-color: rgba(0, 128, 0, 0.1);
-    width: 750px;
+    width: 600px;
 }
 
 .product-name-t, .store-name-t, .product-price-t, .product-quantity-t{
@@ -357,19 +358,19 @@ table img{
     margin-left: 27px;
 }
 
+
 .history-table-wrapper{
-    width: 800px;
+    width: 673px;
     background-color: aliceblue;
     height: 400px;
     overflow-y: scroll;
-    padding-left: 20px;
     padding-top: 10px;
     margin: 0 auto;
     border-bottom: 1px solid black;
     border-left: 1px solid black;
     border-right: 1px solid black;
     position: absolute;
-    left: calc(50% - 35px);
+    left: calc(50% + 35px);
     transform: translateX(-50%);
     z-index: 1;
     top: -425px;
@@ -377,8 +378,8 @@ table img{
 }
 
 
-.history-table-container tr{
-    width: 750px;
+.history-table-container .inner-table-history tr{
+    width: 597px;
     display:flex;
     border-bottom: 1px solid black;
     margin: 0;
@@ -388,21 +389,46 @@ table img{
     position: relative;
 }
 
-.history-table-container tr:first-child{
+.user-histoy-table  tr{
+    margin: 0 30px 60px 30px;
+    display: block;
+}
+
+.client-name{
+    color:#C73231;
+    margin-left: 30px;
+    font-size: 24spx;
+}
+.inner-table-history tr:first-child{
     border-top:1px solid black;
 }
 
 .history-table-container td{
-    width: 120px;
+    width: 135px;
     display: inline-block;
     text-align: center;
     margin: 0;
 }
 
+.transaction-date{
+    position: relative;
+    left: 25px;
+    color: #23209E;
+    font-family: Lato regular;
+    font-size: 22px;
+    width: 510px;
+    background-color: #EAEAEA;
+    text-align: center;
+}
 
+.no-data{
+    text-align: center;
+    font-family: Lato Regular;
+    font-size: 25px;
+    color: rebeccapurple;
+}
 
 /********************** user history  ************************/
-
 /**************************** admin subscription ************************/
 .suggest-get-subscription{
     position: absolute;

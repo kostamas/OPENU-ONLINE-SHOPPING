@@ -10,10 +10,6 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
-/**
- *
- * @author dell
- */
 @Embeddable
 public class ProductsSoldPK implements Serializable {
 

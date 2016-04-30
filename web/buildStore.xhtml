@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Facelet Title</title>
         <h:outputStylesheet  name="css/build-store.css"/>
@@ -88,37 +89,58 @@
 
         <!--*******************************  admin history ********************************-->
 
+ <div class="history-table-container">
 
-        <div class="history-table-container">
+            <c:if test="#{empty buildStoreBean.adminHistoryList}">
+                <div class="history-table-wrapper">
+                    <div class="table-header">
+                        <div class="product-name-t">Product name</div>
+                        <div class="store-name-t">Store name</div>
+                        <div class="product-price-t">Product quantity</div>
+                        <div class="product-quantity-t">Product price</div>
 
-            <div class="history-table-wrapper">
-                <div class="table-header">
-                    <div class="product-name-t">Product name</div>
-                    <div class="product-quantity-t">User Name</div>
-                    <div class="product-quantity-t">Date</div>
-                    <div class="store-name-t">Store name</div>
-                    <div class="product-price-t">Product quantity</div>
-                    <div class="product-quantity-t">Product price</div>
-
-
+                    </div>
+                    <div class="no-data">No Data</div>
                 </div>
-                <h:dataTable value="#{buildStoreBean.adminHistoryList}" var="product">
+            </c:if>
+            <div class="history-table-wrapper">
 
-                    <h:column >                     
-                        #{product.productsSoldPK.transactionId}
-                    </h:column>
-                    <h:column>
-                        #{product.adminName}
-                    </h:column>
-                    <h:column>
-                        #{product.quantity}
-                    </h:column>
-                    <h:column>
-                        #{product.price}
+                <h:dataTable class="user-histoy-table" value="#{buildStoreBean.adminHistoryList}"  var="productList">
+
+                    <h:column class="inner-user-history-table">                     
+                        <div class="transaction-date">
+                            #{productList.transactionDate}  <span class="client-name">client: #{productList.userName}</span>
+                        </div>
+                        
+                        
+                        <div class="table-header">
+                            <div class="product-name-t">Product name</div>
+                            <div class="store-name-t">Store name</div>
+                            <div class="product-price-t">Product quantity</div>
+                            <div class="product-quantity-t">Product price</div>
+
+                        </div>
+                        <h:dataTable class="inner-table-history" value="#{productList.productSoldList}"  var="product">
+
+                            <h:column >                     
+                                #{product.productName}
+                            </h:column>
+                            <h:column>
+                                #{product.storeName}
+                            </h:column>
+                            <h:column>
+                                #{product.quantity}
+                            </h:column>
+                            <h:column>
+                                #{product.price}
+                            </h:column>
+                        </h:dataTable>
+
                     </h:column>
                 </h:dataTable>
             </div>
         </div>
+
 
         <!--*******************************  admin history ********************************-->
 

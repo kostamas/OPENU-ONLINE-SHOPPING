@@ -55,7 +55,7 @@ public class BuildStoreBean {
     StoresJpaController storeCtrl;
     private List<Stores> storesList;
     private boolean isLoggedIn;
-    private List<ProductsSold> adminHistoryList;
+    private List<TransactionsHistory> adminHistoryList;
 
     public String getErrorMessage() {
         return errorMessage;
@@ -77,8 +77,12 @@ public class BuildStoreBean {
         return currentStoreName;
     }
 
-    public List<ProductsSold> getAdminHistoryList() {
+    public List<TransactionsHistory> getAdminHistoryList() {
         return adminHistoryList;
+    }
+
+    public void setAdminHistoryList(List<TransactionsHistory> adminHistoryList) {
+        this.adminHistoryList = adminHistoryList;
     }
 
     public int getAdminCreditCard() {
@@ -87,10 +91,6 @@ public class BuildStoreBean {
 
     public void setAdminCreditCard(int adminCreditCard) {
         this.adminCreditCard = adminCreditCard;
-    }
-
-    public void setAdminHistoryList(List<ProductsSold> adminHistoryList) {
-        this.adminHistoryList = adminHistoryList;
     }
 
     public static void setCurrentStoreName(String currentStoreName) {
@@ -104,8 +104,6 @@ public class BuildStoreBean {
         if (AdminBean.adminName != null) {
             this.storeAdmin = AdminBean.adminName;
             this.isLoggedIn = true;
-        } else {
-            this.isLoggedIn = false;  // can happen ??
         }
 
         StoreQueary storeQueary = new StoreQueary();
@@ -120,6 +118,8 @@ public class BuildStoreBean {
     /**
      * ******************** seeters & getters ********************
      */
+    
+    
     public String getSelectedStoreName() {
         return selectedStoreName;
     }

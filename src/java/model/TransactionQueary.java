@@ -7,17 +7,17 @@ package model;
 
 import Entities.ProductsSold;
 import Entities.Transactions;
+import controller.TransactionsHistory;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import jdk.internal.org.objectweb.asm.tree.analysis.Value;
 import static org.eclipse.persistence.sessions.SessionProfiler.Transaction;
 
-/**
- *
- * @author dell
- */
 public class TransactionQueary {
 
     EntityManagerFactory emf;
@@ -55,43 +55,56 @@ public class TransactionQueary {
         em.close();
     }
 
-    public List<ProductsSold> getUserHistory(String userName) {   // todo - make join table with jpa !!!!!
-        em = emf.createEntityManager();                          // ugly function !!!!
+    public List<TransactionsHistory> getUserHistory(String userName) {
+        em = emf.createEntityManager();
         List<Transactions> transactionList = em.createNamedQuery("Transactions.findByUserName")
                 .setParameter("userName", userName)
                 .getResultList();
         List<ProductsSold> productsSold = em.createNamedQuery("ProductsSold.findAll")
                 .getResultList();
-        List<ProductsSold> result = new ArrayList<ProductsSold>();
+        List<TransactionsHistory> userHistory = new ArrayList<TransactionsHistory>();
+        List<ProductsSold> tempProductsSold = new ArrayList<ProductsSold>();
 
-        for (ProductsSold product : productsSold) {
-            for (Transactions transaction : transactionList) {
+        for (Transactions transaction : transactionList) {
+            for (ProductsSold product : productsSold) {
                 if (product.getProductsSoldPK().getTransactionId() == transaction.getTransactionId()) {
-                    result.add(product);
+                    tempProductsSold.add(product);
                 }
             }
+            String date = transaction.getTransactionDate();
+            String transactionUserName = transaction.getUserName();
+            userHistory.add(new TransactionsHistory(tempProductsSold, date, transactionUserName));
+            tempProductsSold = new ArrayList<ProductsSold>();
         }
 
-        return result;
+        return userHistory;
     }
-    
-    
-    public List<ProductsSold> getAdminHistory(String adminName) {   // todo - make join table with jpa !!!!!
-        em = emf.createEntityManager();                          // ugly function !!!!
+
+    public List<TransactionsHistory> getAdminHistory(String adminName) {
+        em = emf.createEntityManager();
         List<ProductsSold> productsSoldList = em.createNamedQuery("ProductsSold.findByAdminName")
                 .setParameter("adminName", adminName)
                 .getResultList();
-        
 
-//        for (ProductsSold product : productsSold) {
-//            for (Transactions transaction : transactionList) {
-//                if (product.getProductsSoldPK().getTransactionId() == transaction.getTransactionId()) {
-//                    result.add(product);
-//                }
-//            }
-//        }
+        List<Transactions> transactionsList = em.createNamedQuery("Transactions.findAll")
+                .getResultList();
 
-        return productsSoldList;
+        Map<Integer, TransactionsHistory> historyMap = new HashMap<Integer, TransactionsHistory>();
+
+        for (ProductsSold product : productsSoldList) {
+            for (Transactions transaction : transactionsList) {
+                int transactionId = product.getProductsSoldPK().getTransactionId();
+                if (transactionId == transaction.getTransactionId()) {
+                    if(historyMap.containsKey(transactionId)){
+                        historyMap.get(transactionId).addProductSold(product);
+                    } else {
+                        ArrayList<ProductsSold> tempProductsSold = new ArrayList<ProductsSold>();
+                        tempProductsSold.add(product);
+                        historyMap.put(transactionId, new TransactionsHistory(tempProductsSold, transaction.getTransactionDate(),transaction.getUserName()));
+                    }
+                }
+            }
+        }
+        return  new ArrayList<TransactionsHistory>(historyMap.values());
     }
-
 }

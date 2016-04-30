@@ -24,17 +24,17 @@ public class TransactionCtrl {
 
     private List<UsersCart> userCart;
 
-    public void transactionHandler(List<UsersCart> userCart, int cost, String userName) {
+    public void transactionHandler(List<UsersCart> userCart, int cost, String userName, String transactionDate) {
         TransactionQueary transactionDB = new TransactionQueary();
         int transactionId = transactionDB.createTransactionId();
-        Transactions transaction = new Transactions(transactionId, userName, cost);
+        Transactions transaction = new Transactions(transactionId, userName, cost, transactionDate);
         transactionDB.saveTransaction(transaction);
         for (UsersCart product : userCart) {
             ProductsSoldPK productsSoldPK = new ProductsSoldPK(transactionId, product.getUsersCartPK().getProductId());
             ProductsSold productSold;
             UserCartQuary userCartDB = new UserCartQuary();
             String adminName = userCartDB.getAdminName(product.getStoreId());
-            productSold = new ProductsSold(productsSoldPK, product.getQuantity(), product.getStoreId(), product.getProductPrice(), adminName);
+            productSold = new ProductsSold(productsSoldPK, product.getQuantity(), product.getStoreName(), product.getProductPrice(), adminName, product.getProductName());
             transactionDB.savSoldProduct(productSold);
         }
     }

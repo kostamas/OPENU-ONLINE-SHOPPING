@@ -6,12 +6,16 @@
 package Entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -27,7 +31,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "ProductsSold.findByTransactionId", query = "SELECT p FROM ProductsSold p WHERE p.productsSoldPK.transactionId = :transactionId"),
     @NamedQuery(name = "ProductsSold.findByProductId", query = "SELECT p FROM ProductsSold p WHERE p.productsSoldPK.productId = :productId"),
     @NamedQuery(name = "ProductsSold.findByQuantity", query = "SELECT p FROM ProductsSold p WHERE p.quantity = :quantity"),
-    @NamedQuery(name = "ProductsSold.findByStoreId", query = "SELECT p FROM ProductsSold p WHERE p.storeId = :storeId"),
+    @NamedQuery(name = "ProductsSold.findByStoreName", query = "SELECT p FROM ProductsSold p WHERE p.storeName = :storeName"),
     @NamedQuery(name = "ProductsSold.findByPrice", query = "SELECT p FROM ProductsSold p WHERE p.price = :price"),
     @NamedQuery(name = "ProductsSold.findByAdminName", query = "SELECT p FROM ProductsSold p WHERE p.adminName = :adminName")})
 public class ProductsSold implements Serializable {
@@ -39,13 +43,16 @@ public class ProductsSold implements Serializable {
     @Column(name = "QUANTITY")
     private int quantity;
     @Basic(optional = false)
-    @Column(name = "STORE_ID")
-    private int storeId;
+    @Column(name = "STORE_NAME")
+    private String storeName;
     @Basic(optional = false)
     @Column(name = "PRICE")
     private int price;
     @Column(name = "ADMIN_NAME")
     private String adminName;
+    @Column(name = "PRODUCT_NAME")
+    private String productName;
+    
 
     public ProductsSold() {
     }
@@ -54,18 +61,27 @@ public class ProductsSold implements Serializable {
         this.productsSoldPK = productsSoldPK;
     }
 
-    public ProductsSold(ProductsSoldPK productsSoldPK, int quantity, int storeId, int price, String adminName) {
+    public ProductsSold(ProductsSoldPK productsSoldPK, int quantity, String storeName, int price, String adminName, String productName) {
         this.productsSoldPK = productsSoldPK;
         this.quantity = quantity;
-        this.storeId = storeId;
+        this.storeName = storeName;
         this.price = price;
         this.adminName = adminName;
+        this.productName = productName;
     }
 
     public ProductsSold(int transactionId, int productId) {
         this.productsSoldPK = new ProductsSoldPK(transactionId, productId);
     }
 
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+    
     public ProductsSoldPK getProductsSoldPK() {
         return productsSoldPK;
     }
@@ -82,12 +98,12 @@ public class ProductsSold implements Serializable {
         this.quantity = quantity;
     }
 
-    public int getStoreId() {
-        return storeId;
+    public String getStoreName() {
+        return storeName;
     }
 
-    public void setStoreId(int storeId) {
-        this.storeId = storeId;
+    public void setStoreName(String storeName) {
+        this.storeName = storeName;
     }
 
     public int getPrice() {

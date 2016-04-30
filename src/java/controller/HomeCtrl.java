@@ -7,12 +7,14 @@ package controller;
 
 import Entities.ProductsSold;
 import Entities.Stores;
+import Entities.Transactions;
 import static controller.BuildStoreBean.currentStoreId;
 import static controller.BuildStoreBean.currentStoreName;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import model.StoreQueary;
@@ -35,9 +37,10 @@ public class HomeCtrl {
     private List<Stores> storesList;
     private boolean isLoggedIn;
     private String title;
-    private List<ProductsSold> userHistoryList;
+    private List<TransactionsHistory> userHistoryList;
 
     public HomeCtrl() {
+      
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("online_shoppingPU");
         if (UserBean.userName != null) {
             isLoggedIn = true;
@@ -55,23 +58,19 @@ public class HomeCtrl {
             this.title = "Welcome to ONLINE SHOPPING";
         }
 
-        if (this.isLoggedIn) {               // user history
-            // implement - user unlogged;
+        if (this.isLoggedIn) {              
             TransactionQueary transactionDB = new TransactionQueary();
             this.userHistoryList = transactionDB.getUserHistory(this.userName);
-
-//            this.userHistoryList.remove(0);    ?????????
-//            this.userHistoryList.remove(0);
         }
 
     }
 
     // ****************** setters & getters   ********************//
-    public List<ProductsSold> getUserHistoryList() {
+    public List<TransactionsHistory> getUserHistoryList() {
         return userHistoryList;
     }
 
-    public void setUserHistoryList(List<ProductsSold> userHistoryList) {
+    public void setUserHistoryList(List<TransactionsHistory> userHistoryList) {
         this.userHistoryList = userHistoryList;
     }
 
@@ -125,7 +124,7 @@ public class HomeCtrl {
         return "home products page";
     }
 
-    public String logout(){
+    public String logout() {
         UserBean.userName = this.userName = "";
         userHistoryList = null;
         return "welcome page";

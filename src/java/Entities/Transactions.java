@@ -6,12 +6,16 @@
 package Entities;
 
 import java.io.Serializable;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -39,6 +43,9 @@ public class Transactions implements Serializable {
     private int totalCost;
     @Column(name = "USER_NAME")
     private String userName;
+    @Column(name = "TRANSACTION_DATE")
+    private String transactionDate;
+
 
     public Transactions() {
     }
@@ -51,13 +58,23 @@ public class Transactions implements Serializable {
         this.transactionId = transactionId;
         this.totalCost = totalCost;
     }
+
+    public String getTransactionDate() {
+        return transactionDate;
+    }
+
+    public void setTransactionDate(String transactionDate) {
+        this.transactionDate = transactionDate;
+    }
     
-     public Transactions(Integer transactionId, String userName, int totalCost) {
+    
+
+    public Transactions(Integer transactionId, String userName, int totalCost, String transactionDate) {
         this.transactionId = transactionId;
         this.totalCost = totalCost;
         this.userName = userName;
+        this.transactionDate = transactionDate;
     }
-
 
     public Integer getTransactionId() {
         return transactionId;
@@ -107,5 +124,5 @@ public class Transactions implements Serializable {
     public String toString() {
         return "Entities.Transactions[ transactionId=" + transactionId + " ]";
     }
-    
+
 }

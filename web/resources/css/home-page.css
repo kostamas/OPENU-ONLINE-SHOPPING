@@ -145,7 +145,8 @@ body {
     position: relative;
     width: 550px;
     height: 510px;
-    margin: 50px auto 0 auto;
+    bottom: 30px;
+    margin: 0 auto;
     transition: opacity 0.6s linear;
 }
 .table-wrapper{
@@ -226,6 +227,13 @@ table .store-description-title{
 
 table img{
     border: 1px solid black;
+}
+
+.no-data{
+    text-align: center;
+    font-family: Lato Regular;
+    font-size: 25px;
+    color: rebeccapurple;
 }
 
 .store-buttons-wrapper{
@@ -361,12 +369,12 @@ table img{
     margin-left: 27px;
 }
 
+
 .history-table-wrapper{
-    width: 650px;
+    width: 673px;
     background-color: aliceblue;
     height: 400px;
     overflow-y: scroll;
-    padding-left: 20px;
     padding-top: 10px;
     margin: 0 auto;
     border-bottom: 1px solid black;
@@ -381,7 +389,7 @@ table img{
 }
 
 
-.history-table-container tr{
+.history-table-container .inner-table-history tr{
     width: 597px;
     display:flex;
     border-bottom: 1px solid black;
@@ -392,7 +400,7 @@ table img{
     position: relative;
 }
 
-.history-table-container tr:first-child{
+.inner-table-history tr:first-child{
     border-top:1px solid black;
 }
 
@@ -401,6 +409,21 @@ table img{
     display: inline-block;
     text-align: center;
     margin: 0;
+}
+
+.transaction-date{
+    position: relative;
+    left:113px;
+    color: #23209E;
+    font-family: Lato regular;    font-size: 22px;
+    width: 330px;
+    background-color: #EAEAEA;
+    text-align: center;
+}
+
+.user-histoy-table  tr{
+    margin: 0 30px 60px 30px;
+    display: block;
 }
 
 
