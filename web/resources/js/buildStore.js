@@ -100,7 +100,7 @@ function updateUIByadminCredit(errorMessage) {
         return;
     }
     if (errorMessage && errorMessage.length > 1) {
-        if (errorMessage === 'valid credit`') {
+        if (errorMessage === 'valid credit') {
             var errorMessageElement = document.querySelector('.credit-error-message');
             var sorryIconElement = document.querySelector('.sorry-icon');
             var errorMessageWrapperElement = document.querySelector('.credit-error-message-wrapper');

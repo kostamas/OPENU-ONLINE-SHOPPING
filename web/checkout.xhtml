@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Facelet Title</title>
         <h:outputStylesheet  name="css/checkout.css"/>
@@ -17,53 +18,50 @@
         <div class="back-text">HOME</div>
         <div class="bg-cover-opacity"></div>
 
-        <h:form id="suggest-get-subscription">
-            <div class="suggest-get-subscription">
-                <div class="you-not-logged-in">We need your credit card</div>
-                <div class="credit-card-icon"></div>
-                <div class="buy-subscription-btn-wrapper">
-                    <div class="credit-error-message-wrapper">
+        <div class="suggest-get-subscription">
+            <div class="you-not-logged-in">We need your credit card</div>
+            <div class="credit-card-icon"></div>
+            <div class="buy-subscription-btn-wrapper">
+                <div class="credit-error-message-wrapper">
 
-                        <h:form id="credit-error-message">
-                            <script>
-                                debugger;
-                                alert();
-                                setTimeout(function () {
-                                    updateUIByauserCredit('#{checkout.errorMessage}')
-                                });
-                            </script>
-                            <div class="credit-error-message"></div>
-                        </h:form>
-                    </div>
-                    <h:form>   
-                        <div class="buy-manage-wrapper">
-
-                            <span class="credit-card-lable">Credit Card </span>
-                            <h:inputText onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;" id="credit" class="subscription-input" value="#{buildStoreBean.adminCreditCard}"/>
-                            <br/>
-                            <h:commandButton class="suggest-subscription-btn" value="Buy" 
-                                             action="#{checkout.updateCreditCard}">
-                                <f:ajax render=":credit-error-message" execute="@form"/>
-                            </h:commandButton>
-                            <h:commandButton class="suggest-subscription-btn" value="Buy" >
-                                <f:ajax render=":credit-error-message" execute="@form"/>
-                            </h:commandButton>
-                        </div>
-                        <h:commandButton class="no-thanks-btn" value="No tanks" />
-                    </h:form> 
+                    <h:form id="credit-error-message">
+                        <script>
+                            setTimeout(function(){
+                                updateUIByauserCredit('#{checkout.errorMessage}')    
+                            })
+                           
+                        </script>
+                        <div class="credit-error-message"></div>
+                    </h:form>
                 </div>
+                <h:form>   
+                    <div class="buy-manage-wrapper">
+
+                        <span class="credit-card-lable">Credit Card </span>
+                        <h:inputText onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;" id="credit" class="subscription-input" value="#{checkout.userCredit}"/>
+                        <br/>
+                        <h:commandButton class="suggest-subscription-btn" value="Buy" 
+                                         action="#{checkout.updateCreditCard}">
+                            <f:ajax render=":credit-error-message" execute="@form"/>
+                        </h:commandButton>
+                    </div>
+                    <h:commandButton class="no-thanks-btn" value="No tanks" />
+                </h:form> 
             </div>
-        </h:form>
+        </div>
+
         <div class="store-list-wrapper"> 
             <div class="total-cost-title">Total cost: #{checkout.cost}<span class="ns">NS</span></div>
 
-            <h:form>
-                <h:commandButton class="pay-btn" action="#{checkout.userPay}"/>                                  
-                <f:param name="selectedProductId" value="#{product.usersCartPK.productId}"/>
-                <f:param name="userCart" value="#{checkout.cartList}"/>
-            </h:form>
+            <c:if test="#{checkout.isUserLoggedIn }">
+                <h:form>
+                    <h:commandButton class="pay-btn" action="#{checkout.userPay}"/>                                  
+                    <f:param name="selectedProductId" value="#{product.usersCartPK.productId}"/>
+                    <f:param name="userCart" value="#{checkout.cartList}"/>
+                </h:form>
+            </c:if>
 
-
+            
             <div class="product-list-mask" onClick="returnProductsView('.build-store-wrapper')"> </div>
 
             <div class="table-container">

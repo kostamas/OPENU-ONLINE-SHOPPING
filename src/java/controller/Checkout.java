@@ -40,18 +40,31 @@ public class Checkout {
     private int userCredit;
     private int cost;
     private String errorMessage;
+    private boolean isUserLoggedIn;
 
     public Checkout() {
+        this.errorMessage = "";
         if (UserBean.userName != null && UserBean.userName.length() > 3) {
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("online_shoppingPU");
             cartList = UserCartQuary.getUserCart(UserBean.userName);
             userCartrl = new UsersCartJpaController(emf);
             productsCtrl = new ProductsJpaController(emf);
+            this.isUserLoggedIn = true;
             calcTotalCost();
+        } else {
+            this.isUserLoggedIn = false;
         }
     }
 
     // ****************** setters & getters   ********************//
+    public boolean isIsUserLoggedIn() {
+        return isUserLoggedIn;
+    }
+
+    public void setIsUserLoggedIn(boolean isUserLoggedIn) {
+        this.isUserLoggedIn = isUserLoggedIn;
+    }
+
     public String getErrorMessage() {
         return errorMessage;
     }
@@ -125,8 +138,10 @@ public class Checkout {
     }
 
     public void userPay() throws NonexistentEntityException {
-        this.errorMessage = "no user credit";
-        if (this.userCredit > 9999999 && this.userCredit < 100000000) {
+        Auth authDB = new Auth();
+        Users user = authDB.getUserByUserName(UserBean.userName).get(0);
+
+        if (user.getCredit() > 9999999 && user.getCredit() < 100000000) {
             TransactionCtrl transactionCtrl = new TransactionCtrl();
             Date date = new Date();
 
@@ -134,7 +149,8 @@ public class Checkout {
             transactionCtrl.emptyUserCart(this.cartList, userCartrl);
             this.cartList.clear();
             this.cost = 0;
-        } else  {
+            this.errorMessage = "";
+        } else {
             this.errorMessage = "no user credit";
         }
     }
@@ -142,11 +158,11 @@ public class Checkout {
     public void updateCreditCard() throws Exception {
 
         Auth authDB = new Auth();
-        if (UserBean.userName == null) {
+        if (!this.isUserLoggedIn) {
             this.errorMessage = "unknown error accur";
             return;
         }
-        if (this.userCredit < 999999 || this.userCredit > 99999999) {
+        if (this.userCredit < 10000000 || this.userCredit > 99999999) {
             this.errorMessage = "credit card must be 8 digits.";
             return;
         }
