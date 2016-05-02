@@ -9,6 +9,11 @@
         <h:outputStylesheet  name="css/build-product.css"/>
         <h:outputScript  name="js/buildStore.js" />
         <h:outputScript  name="js/switchClasses.js" />
+        <script>
+          if('#{buildStoreBean.storeAdmin}'.length &lt;  4 ){
+               window.location.replace('http://localhost:8080/online_shopping/');   
+          }
+        </script>
     </h:head>
 
     <h:body>

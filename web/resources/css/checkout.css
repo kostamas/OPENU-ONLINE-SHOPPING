@@ -169,3 +169,133 @@ td:last-child{
 }
 
 
+/**************************** user credit ************************/
+.suggest-get-subscription{
+    position: absolute;
+    background-color: white;
+    padding: 20px;
+    z-index: 11;
+    width: 360px;    height: 230px;
+    font-family: Lato regular;
+    font-size: 20px;
+    color:red;
+    top: -280px;
+    left: calc(50% - 150px);
+    border: 1px solid black;
+    transition: 0.7s ease-in-out;
+    text-align: center;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px black;
+}
+
+.buy-subscription-btn-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+}
+
+.buy-subscription-title{
+    background-color:  transparent;
+    border-radius: 50px;
+    font-family: Lato regular;
+    font-size: 23px;
+    margin: 15px;
+    border: none;
+    color: #0005C5;
+}
+
+.subscription-input{
+    width: 100px;
+}
+
+.credit-card-lable{
+    font-family: Lato regular;
+    font-size: 16px;
+    color: #A0A0A0;
+    margin-right: 10px;
+    position: relative;
+    top: 3px;
+}
+
+.buy-manage-wrapper{
+    display: flex;
+    margin-top: 30px;
+}
+
+.suggest-subscription-btn:focus, .suggest-subscription-btn-btn:active, .no-thanks-btn:focus, no-thanks-btn:active{
+    outline: none;
+}
+
+.suggest-subscription-btn:hover {
+    color:#2F00FB;
+    background-color: #36BF52;
+}
+
+.no-thanks-btn:hover{
+    color: #D60808;
+}
+
+.suggest-subscription-btn {
+    color:#27EC41;
+    border: 10px;
+    margin-left: 15px;
+    width: 60px;
+    border: 1px solid #807777;
+    border-radius: 10px;
+    background-color: #3DE25F;
+    color:#1200FF;
+    cursor: pointer;
+
+}
+
+.no-thanks-btn{
+    margin-top: 15px;
+    color: #27EC41;
+    margin-left: 15px;
+    width: 85px;
+    background-color: #FFFFFF;
+    color: #FF0000;
+    font-size: 16px;
+    cursor: pointer;
+    border:none;
+}
+.you-not-logged-in{
+    font-family: Lato regular;
+    color: blue;
+    font-size: 28px;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.bg-cover-opacity{
+    width: 100%;
+    height:100%;
+    position: absolute;
+    top: 0;     left: 0;
+    background-color: black;
+    opacity: 0;
+    z-index: -3;
+    pointer-events: none;
+    transition:none;
+    z-index: 10;
+}
+
+.credit-card-icon{
+    width: 110px; height:110px;
+    background: url(../images/credit-card-icon.png) repeat;
+    background-size: cover;
+    position: relative;
+    margin: 0 auto;
+}
+
+.credit-error-message-wrapper{
+    position: absolute;
+    font-size: 14px;
+    left: 126px;
+    top: 162px;
+    color: red;
+    opacity: 0;
+    transition: 0.4s ease-out;
+}
+/**************************** user credit ************************/

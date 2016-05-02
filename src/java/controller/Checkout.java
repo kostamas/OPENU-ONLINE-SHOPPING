@@ -5,10 +5,14 @@
  */
 package controller;
 
+import Entities.Administrators;
+import Entities.AdministratorsJpaController;
 import Entities.Products;
 import Entities.ProductsJpaController;
+import Entities.Users;
 import Entities.UsersCart;
 import Entities.UsersCartJpaController;
+import Entities.UsersJpaController;
 import Entities.exceptions.NonexistentEntityException;
 import java.util.Date;
 import java.util.List;
@@ -16,8 +20,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import model.Auth;
 import model.ProductQueary;
 import model.UserCartQuary;
 
@@ -31,20 +37,37 @@ public class Checkout {
     String userName;
     UsersCartJpaController userCartrl;
     ProductsJpaController productsCtrl;
+    private int userCredit;
     private int cost;
+    private String errorMessage;
 
     public Checkout() {
-        if (UserBean.userName != null && UserBean.userName.length() > 3 ) {
+        if (UserBean.userName != null && UserBean.userName.length() > 3) {
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("online_shoppingPU");
             cartList = UserCartQuary.getUserCart(UserBean.userName);
             userCartrl = new UsersCartJpaController(emf);
             productsCtrl = new ProductsJpaController(emf);
-
             calcTotalCost();
         }
     }
 
     // ****************** setters & getters   ********************//
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
+
+    public int getUserCredit() {
+        return userCredit;
+    }
+
+    public void setUserCredit(int userCredit) {
+        this.userCredit = userCredit;
+    }
+
     public List<UsersCart> getCartList() {
         return cartList;
     }
@@ -102,13 +125,40 @@ public class Checkout {
     }
 
     public void userPay() throws NonexistentEntityException {
-        TransactionCtrl transactionCtrl = new TransactionCtrl();
-         Date date = new Date();
-         
-        transactionCtrl.transactionHandler(this.cartList, this.cost, HomeCtrl.userName, date.toString());
-        transactionCtrl.emptyUserCart(this.cartList, userCartrl);
-        this.cartList.clear();
-        this.cost = 0;
+        this.errorMessage = "no user credit";
+        if (this.userCredit > 9999999 && this.userCredit < 100000000) {
+            TransactionCtrl transactionCtrl = new TransactionCtrl();
+            Date date = new Date();
+
+            transactionCtrl.transactionHandler(this.cartList, this.cost, HomeCtrl.userName, date.toString());
+            transactionCtrl.emptyUserCart(this.cartList, userCartrl);
+            this.cartList.clear();
+            this.cost = 0;
+        } else  {
+            this.errorMessage = "no user credit";
+        }
+    }
+
+    public void updateCreditCard() throws Exception {
+
+        Auth authDB = new Auth();
+        if (UserBean.userName == null) {
+            this.errorMessage = "unknown error accur";
+            return;
+        }
+        if (this.userCredit < 999999 || this.userCredit > 99999999) {
+            this.errorMessage = "credit card must be 8 digits.";
+            return;
+        }
+
+        this.errorMessage = "valid credit";
+        Users user = authDB.getUserByUserName(UserBean.userName).get(0);
+        user.setCredit(this.userCredit);
+
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("online_shoppingPU");
+        UsersJpaController userJpaCtrl = new UsersJpaController(emf);
+
+        userJpaCtrl.edit(user);
     }
 
     public void calcTotalCost() {

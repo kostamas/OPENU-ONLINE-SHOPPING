@@ -6,6 +6,7 @@
     <h:head>
         <title>Facelet Title</title>
         <h:outputStylesheet  name="css/checkout.css"/>
+        <h:outputScript library="js" name="checkout.js" />
     </h:head>
     <body>
         <div class="bg-cover"></div>
@@ -14,13 +15,51 @@
             <h:commandButton class="back"   action="home?faces-redirect=true"/>
         </h:form> 
         <div class="back-text">HOME</div>
+        <div class="bg-cover-opacity"></div>
 
+        <h:form id="suggest-get-subscription">
+            <div class="suggest-get-subscription">
+                <div class="you-not-logged-in">We need your credit card</div>
+                <div class="credit-card-icon"></div>
+                <div class="buy-subscription-btn-wrapper">
+                    <div class="credit-error-message-wrapper">
 
+                        <h:form id="credit-error-message">
+                            <script>
+                                debugger;
+                                alert();
+                                setTimeout(function () {
+                                    updateUIByauserCredit('#{checkout.errorMessage}')
+                                });
+                            </script>
+                            <div class="credit-error-message"></div>
+                        </h:form>
+                    </div>
+                    <h:form>   
+                        <div class="buy-manage-wrapper">
+
+                            <span class="credit-card-lable">Credit Card </span>
+                            <h:inputText onkeypress="if (event.which &lt; 48 || event.which &gt; 57) return false;" id="credit" class="subscription-input" value="#{buildStoreBean.adminCreditCard}"/>
+                            <br/>
+                            <h:commandButton class="suggest-subscription-btn" value="Buy" 
+                                             action="#{checkout.updateCreditCard}">
+                                <f:ajax render=":credit-error-message" execute="@form"/>
+                            </h:commandButton>
+                            <h:commandButton class="suggest-subscription-btn" value="Buy" >
+                                <f:ajax render=":credit-error-message" execute="@form"/>
+                            </h:commandButton>
+                        </div>
+                        <h:commandButton class="no-thanks-btn" value="No tanks" />
+                    </h:form> 
+                </div>
+            </div>
+        </h:form>
         <div class="store-list-wrapper"> 
             <div class="total-cost-title">Total cost: #{checkout.cost}<span class="ns">NS</span></div>
 
             <h:form>
-                <h:commandButton class="pay-btn" action="#{checkout.userPay}"/>                                    <f:param name="selectedProductId" value="#{product.usersCartPK.productId}"/>
+                <h:commandButton class="pay-btn" action="#{checkout.userPay}"/>                                  
+                <f:param name="selectedProductId" value="#{product.usersCartPK.productId}"/>
                 <f:param name="userCart" value="#{checkout.cartList}"/>
             </h:form>
 
