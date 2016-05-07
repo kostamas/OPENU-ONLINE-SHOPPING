@@ -47,8 +47,8 @@ public class ProductQueary {
                 .getResultList();
     }
 
-    public List<ProductsSold> getAdminHistory(String adminName) {   // todo - make join table with jpa !!!!!
-        em = emf.createEntityManager();                          // ugly function !!!!
+    public List<ProductsSold> getAdminHistory(String adminName) {   
+        em = emf.createEntityManager();                         
    
         List<ProductsSold> productsSold = em.createNamedQuery("ProductsSold.findByAdminName")
                 .getResultList();

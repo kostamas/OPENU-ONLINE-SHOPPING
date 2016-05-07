@@ -69,7 +69,7 @@
                             <br/>
                             <label for="password">description</label>
                             <br/>
-                            <h:inputTextarea cols="35" rows="3"  value="#{buildProductBean.description}"/>
+                            <h:inputTextarea class="product-description" cols="35" rows="3"  value="#{buildProductBean.description}"/>
                             <br/>
                             <div class="stock-and-price-wrapper">
                                 <div class="price-label" for="username">Price</div>  
@@ -127,7 +127,7 @@
                     <h:column>
                         <div class="product-data-wrapper">
                             <div class="product-quantity-title">
-                                quantity: <span style="color:#071B9A">#{product.stock}</span>
+                                stock <span style="color:#071B9A">#{product.stock}</span>
                             </div>
                             <div class="product-price-title">
                                 price: <span style="color:#071B9A">#{product.price}</span>

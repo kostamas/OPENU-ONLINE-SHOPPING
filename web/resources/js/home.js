@@ -27,7 +27,7 @@ function historyToggle() {
 }
 
 function ifNotLoggedInSuggestRegister(userName) {
-    if (userName.length === 0) {
+    if (userName.length < 4) {
         var element = document.querySelector(".suggest-register");
         var backgroundElement = document.querySelector(".bg-cover-opacity");
         backgroundElement.style.transition = '0.6s';
@@ -36,4 +36,11 @@ function ifNotLoggedInSuggestRegister(userName) {
         backgroundElement.style.opacity = '0.6';
     }
 
+}
+
+function updateProdList(productQuantity){
+    debugger;
+    if(+productQuantity < 2){
+      var t;  
+    }
 }

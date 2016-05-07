@@ -66,6 +66,7 @@
 
         <!--*******************************  store list ********************************-->
 
+            
         <div class="checkout-wrapper">
 
             <h:form>        
@@ -76,7 +77,7 @@
             </h:form>        
 
         </div>
-
+   
         <div class="store-list-wrapper"> 
             <div class="your-stores-title">
                 <div class="store-name">Store Name: #{buyProductCtrl.storeName}</div>
@@ -84,7 +85,9 @@
 
             <div class="product-list-mask" onClick="returnProductsView('.build-store-wrapper')"> </div>
 
+          
             <div class="table-wrapper">
+               <h:form id="product-list">
                 <h:dataTable value="#{buyProductCtrl.productsList}" var="product">
                     <h:column>
                         <h:form class="store-buttons-wrapper">        
@@ -92,7 +95,7 @@
 
                             <h:commandButton onclick="ifNotLoggedInSuggestRegister('#{homeCtrl.userName}')" class="products-page-btn-wrapper cart-action" action="#{buyProductCtrl.addToCart}" >
                                 <f:param name="selectedProductId" value="#{product.productId}"/>
-                                <f:ajax render=":product-count" />
+                                <f:ajax render=":product-count :product-list" />
                                 <div class="cart-img"></div>
                             </h:commandButton>
 
@@ -120,7 +123,9 @@
                         <h:graphicImage value="/image/#{product.storeId}/#{product.photo}" height="150px;" width="170px;"/>
                     </h:column>
                 </h:dataTable>
+                 </h:form> 
             </div>
+                  
         </div>
 
         <!--*******************************  store list ********************************-->

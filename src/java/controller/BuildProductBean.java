@@ -192,7 +192,7 @@ public class BuildProductBean {
         try {
             productsJpaCtrl.edit(productToUpdate);
         } catch (Exception ex) {
-            Logger.getLogger(StoresViewer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Stores.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         if (this.file != null) {

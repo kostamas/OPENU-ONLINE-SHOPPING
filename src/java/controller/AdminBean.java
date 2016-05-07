@@ -44,7 +44,7 @@ public class AdminBean {
         this.password = password;
     }
 
-    public String adminLogin() throws IOException {                 // can't make generice since this fn used in xhtml and can't take paremters
+    public String adminLogin() throws IOException {     // can't make generice since this fn used in xhtml and can't take paremters
         this.errorMessage = "";
         String queryName = "Administrators.login";
         String firstQueryParameterName = "adminName";
@@ -67,7 +67,7 @@ public class AdminBean {
         }
     }
 
-  public String adminRegister() {                 // can't make generice since this fn used in xhtml and can't take paremters
+  public String adminRegister() {        // can't make generice since this fn used in xhtml and can't take paremters
         this.errorMessage = "";
         Administrators admin = new Administrators(this.name, this.password);
         String queryName = "Administrators.findByAdminName";

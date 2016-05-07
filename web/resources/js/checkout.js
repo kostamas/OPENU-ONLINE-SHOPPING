@@ -18,7 +18,7 @@ function updateUIByauserCredit(errorMessage) {
             sorryIconElement.style.display = 'none';
             noThanksBtnElement.style.display = 'none';
 
-            errorMessageElement.innerHTML = 'Thank you and good look!';
+            errorMessageElement.innerHTML = 'Thank you!';
             errorMessageElement.style.color = 'green';
             
             errorMessageWrapperElement.style.opacity = '1';
