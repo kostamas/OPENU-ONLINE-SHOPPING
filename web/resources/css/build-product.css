@@ -150,6 +150,21 @@ body {
 
 /*********************************build product **********************************/
 
+.store-name-modal{
+    min-width: 130px;
+    color:black;
+    height: 30px;
+    font-size: 20px;
+    box-shadow: 3px 3px 1px 2px rgba(0,0,0,0.55);
+    position: absolute;
+    background-color: white;
+    display: none;
+    z-index: 100;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
 .new-product-settings{
     display: flex;    justify-content: center;    align-items: center;   height: 450px;
     color: #0B50D0;    font-family: Lato regular; font-size: 21px; 
@@ -307,13 +322,20 @@ table .product-name-title{
     text-align: center;
     font-size: 23px;   font-family: lato regular;      color:black;
     margin-bottom: 10px;
+    width: 155px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: context-menu;
 }
 
 table .product-description-title{
     padding:5px;
     font-size: 16px;   font-family: lato regular;      color:black;
     margin-bottom: -30px;
-    width: 200px;   height:140px;
+    overflow-y: auto;
+    padding-left: 10px;
+    width: 193px;   height:140px;
     border: 1px solid black;
     background: rgba(245,242,245,1);
     background: -moz-linear-gradient(top, rgba(245,242,245,1) 0%, rgba(255,255,255,1) 47%, rgba(250,242,250,1) 100%);

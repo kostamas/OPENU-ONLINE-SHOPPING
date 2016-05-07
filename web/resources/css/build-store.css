@@ -262,9 +262,11 @@ table .store-name-title{
 
 table .store-description-title{
     padding:5px;
+    overflow-y: auto;
     font-size: 16px;   font-family: lato regular;      color:black;
     margin-bottom: -30px;
-    width: 200px;   height:140px;
+    padding-left: 10px;
+    width: 193px;   height:140px;
     border: 1px solid black;
     background: rgba(245,242,245,1);
     background: -moz-linear-gradient(top, rgba(245,242,245,1) 0%, rgba(255,255,255,1) 47%, rgba(250,242,250,1) 100%);

@@ -99,6 +99,7 @@
 
 
 
+        <div class="store-name-modal"></div>
         <div class="product-list-wrapper"> 
             <div class="store-name">
                 <div class="name">Store: <span style="color:#2E0080;">#{buildProductBean.storeName}</span></div>
@@ -141,7 +142,7 @@
                     </h:column>
 
                     <h:column>
-                        <div class="product-name-title">#{product.productName}</div>
+                        <div class="product-name-title" onmouseleave="hideStoreNameModal()" onmouseover="showModalOnHover(event,'#{product.productName}')">#{product.productName}</div>
                         <h:graphicImage value="/image/#{product.storeId}/#{product.photo}" height="150px;" width="170px;"/>
                     </h:column>
                 </h:dataTable>

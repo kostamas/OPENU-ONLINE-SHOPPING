@@ -128,8 +128,8 @@ function updateUIByadminCredit(errorMessage) {
                     bgModalElement.style.display = 'none';
                     suggestSubscriptionElement.style.display = 'none';
                     location.reload();
-                },600);
-            },2000);
+                }, 600);
+            }, 2000);
         } else {
             var errorMessageWrapperElement = document.querySelector('.credit-error-message-wrapper');
             var errorMessageElement = document.querySelector('.credit-error-message');
@@ -140,4 +140,19 @@ function updateUIByadminCredit(errorMessage) {
             }, 2500);
         }
     }
+}
+
+function showModalOnHover(event, text) {
+    var x = event.screenX - 20, y = event.screenY - 55;
+    var textElement = document.querySelector('.store-name-modal');
+    textElement.style.top = y + 'px';
+    textElement.style.left = x + 'px';
+    textElement.style.display = 'block';
+    textElement.innerHTML = text;
+    
+}
+
+function hideStoreNameModal(){
+      var textElement = document.querySelector('.store-name-modal');
+    textElement.style.display = 'none';
 }

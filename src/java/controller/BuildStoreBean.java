@@ -222,6 +222,9 @@ public class BuildStoreBean {
         } catch (IOException e) {
             Logger.getLogger(BuildStoreBean.class.getName()).log(Level.SEVERE, null, e);
         }
+        this.description = null;
+        this.storeName = "";
+        this.file = null;
         return null;
     }
 
