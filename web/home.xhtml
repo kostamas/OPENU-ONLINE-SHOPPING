@@ -35,7 +35,7 @@
                     <br/>
                     <label for="email">Email</label>
                     <br/>
-                    <h:inputText class="" value="#{editProfilUserBean.mail}"/>
+                    <h:inputText class="" value="#{editProfilUserBean.email}"/>
                     <br/>
                     <label for="password">Password</label>
                     <br/>
@@ -110,6 +110,7 @@
 
 
         <!--*******************************  store list ********************************-->
+        <div class="store-name-modal"></div>
         <div class="checkout-wrapper">
 
             <h:form>        
@@ -142,7 +143,9 @@
                     </h:column>
 
                     <h:column>
-                        <div class="store-name-title">#{store.storeName}</div>
+                        <div class="store-name-title"     
+                             onmouseleave="hideStoreNameModal()" 
+                             onmouseover="showModalOnHover(event,'#{store.storeName}')">#{store.storeName}</div>
                         <h:graphicImage value="/image/#{store.storeId}/#{store.storePhoto}" height="150px;" width="170px;"/>
                     </h:column>
                 </h:dataTable>

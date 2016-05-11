@@ -28,6 +28,19 @@ body {
     top: 32px;
 }
 
+.back-text:before{
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -6px;
+    width: 80px;
+    height: 30px;
+    background-color: white;
+    opacity: 0.8;
+    border-radius: 20px;
+    z-index: -1;
+}
+
 .back:focus, .back:active {
     outline: none;
 }
@@ -81,7 +94,7 @@ body {
     display: block;
     position: relative;
     border: none;
-     background-color: white;
+    background-color: white;
     border-radius: 10px;
     cursor: pointer;
     left: 75px;
@@ -119,6 +132,7 @@ body {
 }
 .store-name-t, .product-price-t, .product-quantity-t{
     margin-left: 10px;
+    text-align: center;
 }
 
 .table-wrapper{
@@ -153,6 +167,10 @@ td{
     width: 135px;
     display: inline-block;
     text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: context-menu;
 }
 
 td:last-child{
@@ -160,6 +178,7 @@ td:last-child{
     right: -14px;
     width: 0;
     top: 12px;
+    overflow: visible;
 }
 
 .delete-order{

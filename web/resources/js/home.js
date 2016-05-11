@@ -44,3 +44,18 @@ function updateProdList(productQuantity){
       var t;  
     }
 }
+
+function showModalOnHover(event, text) {
+    var x = event.screenX - 20, y = event.screenY - 55;
+    var textElement = document.querySelector('.store-name-modal');
+    textElement.style.top = y + 'px';
+    textElement.style.left = x + 'px';
+    textElement.style.display = 'block';
+    textElement.innerHTML = text;
+    
+}
+
+function hideStoreNameModal(){
+      var textElement = document.querySelector('.store-name-modal');
+    textElement.style.display = 'none';
+}

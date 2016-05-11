@@ -138,12 +138,16 @@ public class Checkout {
     }
 
     public void userPay() throws NonexistentEntityException {
+        if(this.cartList.isEmpty()){
+            return;
+        }
         Auth authDB = new Auth();
         Users user = authDB.getUserByUserName(UserBean.userName).get(0);
 
         if (user.getCredit() > 9999999 && user.getCredit() < 100000000) {
             TransactionCtrl transactionCtrl = new TransactionCtrl();
             Date date = new Date();
+            
 
             transactionCtrl.transactionHandler(this.cartList, this.cost, HomeCtrl.userName, date.toString());
             transactionCtrl.emptyUserCart(this.cartList, userCartrl);

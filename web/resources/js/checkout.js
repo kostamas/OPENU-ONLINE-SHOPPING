@@ -23,7 +23,7 @@ function updateUIByauserCredit(errorMessage) {
             
             errorMessageWrapperElement.style.opacity = '1';
             errorMessageWrapperElement.style.top = '110px';
-            errorMessageWrapperElement.style.left = '97px';
+            errorMessageWrapperElement.style.left = '167px';
             errorMessageWrapperElement.style.fontSize = '20px';
 
             creditInputWrraperElement.style.marginTop = '90px';

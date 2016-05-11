@@ -170,6 +170,11 @@ public class BuildProductBean {
             // Show faces message?
         }
 
+        this.productName = "";
+        this.description = "";
+        this.stock = 0;
+        this.price = 0;
+        this.file = null;
         return null;
     }
 

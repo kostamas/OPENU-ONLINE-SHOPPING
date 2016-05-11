@@ -44,7 +44,7 @@
                     <br/>
                     <label for="email">Email</label>
                     <br/>
-                    <h:inputText class="" value="#{editProfilUserBean.mail}"/>
+                    <h:inputText class="" value="#{editProfilUserBean.email}"/>
                     <br/>
                     <label for="password">Password</label>
                     <br/>
@@ -66,7 +66,7 @@
 
         <!--*******************************  store list ********************************-->
 
-            
+        <div class="store-name-modal"></div>
         <div class="checkout-wrapper">
 
             <h:form>        
@@ -80,7 +80,10 @@
    
         <div class="store-list-wrapper"> 
             <div class="your-stores-title">
-                <div class="store-name">Store Name: #{buyProductCtrl.storeName}</div>
+                <div class="store-name"  
+                     onmouseleave="hideStoreNameModal()" 
+                     onmouseover="showModalOnHover(event,'#{buyProductCtrl.storeName}')">
+                    Store Name: #{buyProductCtrl.storeName}</div>
             </div>
 
             <div class="product-list-mask" onClick="returnProductsView('.build-store-wrapper')"> </div>
@@ -119,7 +122,10 @@
                     </h:column>
 
                     <h:column>
-                        <div class="store-name-title">#{product.productName}</div>
+                        <div class="store-name-title"
+                                 onmouseleave="hideStoreNameModal()" 
+                             onmouseover="showModalOnHover(event,'#{product.productName}')">
+                            #{product.productName}</div>
                         <h:graphicImage value="/image/#{product.storeId}/#{product.photo}" height="150px;" width="170px;"/>
                     </h:column>
                 </h:dataTable>

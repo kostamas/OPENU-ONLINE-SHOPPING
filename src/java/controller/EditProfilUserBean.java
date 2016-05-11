@@ -25,23 +25,16 @@ import model.Auth;
 
 @ManagedBean
 @ViewScoped
-public class EditProfilUserBean {
-
-    public String userName;
-    public String firstName;
-    public String lastName;
-    public String mail;
+public class EditProfilUserBean extends Profile{
     public String address;
-    public String password;
-    public int credit;
     UsersJpaController userJpaCtrl;
 
     public EditProfilUserBean() {
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("online_shoppingPU");
         userJpaCtrl = new UsersJpaController(emf);
-        this.userName = UserBean.userName;
-        if (this.userName != null && this.userName.length() > 3) {
+        this.name = UserBean.userName;
+        if (this.name != null && this.name.length() > 3) {
             init();
         }
 
@@ -49,78 +42,32 @@ public class EditProfilUserBean {
 
     public void init() {
         Auth auth = new Auth();
-        Users userProfile = auth.getUserByUserName(this.userName).get(0);
+        Users userProfile = auth.getUserByUserName(this.name).get(0);
         this.password = userProfile.getPassword();
         this.firstName = userProfile.getFirstName();
         this.lastName = userProfile.getLastName();
-        this.mail = userProfile.getMail();
+        this.email = userProfile.getMail();
         this.credit = userProfile.getCredit();
         this.address = userProfile.getAddress();
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
+   
     public String getAddress() {
         return address;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-
+  
     public void setAddress(String address) {
         this.address = address;
     }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public int getCredit() {
-        return credit;
-    }
-
-    public void setCredit(int credit) {
-        this.credit = credit;
-    }
-
+    
     public void update() {
-        if (this.userName.length() < 4) {
+        if (this.name.length() < 4) {
             return;
         }
 
         Auth auth = new Auth();
-        Users userToUpdate = auth.getUserByUserName(this.userName).get(0);
+        Users userToUpdate = auth.getUserByUserName(this.name).get(0);
 
         if (this.firstName.length() > 0) {
             userToUpdate.setFirstName(this.firstName);
@@ -130,8 +77,8 @@ public class EditProfilUserBean {
             userToUpdate.setLastName(this.lastName);
         }
 
-        if (this.mail.length() > 0) {
-            userToUpdate.setMail(this.mail);
+        if (this.email.length() > 0) {
+            userToUpdate.setMail(this.email);
         }
 
         if (this.password.length() > 3) {

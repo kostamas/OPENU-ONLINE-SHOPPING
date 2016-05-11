@@ -248,6 +248,8 @@ p.small {
 
 .register-wrapper{
     display: none;
+    position:relative;
+    top:8px;
 }
 
 .error-message {
