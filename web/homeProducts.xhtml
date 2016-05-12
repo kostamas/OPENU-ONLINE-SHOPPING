@@ -90,7 +90,6 @@
 
           
             <div class="table-wrapper">
-               <h:form id="product-list">
                 <h:dataTable value="#{buyProductCtrl.productsList}" var="product">
                     <h:column>
                         <h:form class="store-buttons-wrapper">        
@@ -130,9 +129,7 @@
                         <h:graphicImage value="/image/#{product.storeId}/#{product.photo}" height="150px;" width="170px;"/>
                     </h:column>
                 </h:dataTable>
-                 </h:form> 
-            </div>
-                  
+            </div> 
         </div>
 
         <!--*******************************  store list ********************************-->
