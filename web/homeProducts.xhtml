@@ -66,7 +66,7 @@
 
         <!--*******************************  store list ********************************-->
 
-        <!--<div class="store-name-modal"></div>-->
+        <div class="store-name-modal"></div>
         <div class="checkout-wrapper">
 
             <h:form>        
@@ -80,7 +80,9 @@
    
         <div class="store-list-wrapper"> 
             <div class="your-stores-title">
-                <div class="store-name">
+                <div class="store-name"  
+                     onmouseleave="hideStoreNameModal()" 
+                     onmouseover="showModalOnHover(event,'#{buyProductCtrl.storeName}')">
                     Store Name: #{buyProductCtrl.storeName}</div>
             </div>
 
