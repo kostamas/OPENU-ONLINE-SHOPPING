@@ -105,6 +105,23 @@
                 <div class="name">Store: <span style="color:#2E0080;">#{buildProductBean.storeName}</span></div>
             </div>
             <div class="new-product-btn-wrapper" onClick="updateProduct('.build-product-wrapper', '.update-btn', '45px', '529px')">New Product</div>
+            
+            <div class="dropdown">
+                <button onclick="myFunction()" class="dropbtn">Categories</button>
+                <div id="myDropdown" class="dropdown-content">
+                <h:dataTable value="#{buildProductBean.categories}" var="category">
+                    <h:column>
+                        <h:form> 
+                            <h:commandButton class="category-button" value="#{category}">
+                                 <f:param name="selectedProductId" value="#{category}"/>
+                            </h:commandButton>
+                        </h:form>
+                    </h:column>
+                </h:dataTable>
+
+                </div>
+          </div>
+            
             <div class="product-list-mask" onClick="returnProductsView('.build-product-wrapper')"> </div>
 
             <div class="table-wrapper">

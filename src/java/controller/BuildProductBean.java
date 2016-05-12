@@ -31,7 +31,7 @@ public class BuildProductBean {
 
     @ManagedProperty(value = "#{param.selectedProductId}")
     private int selectedProductId;
-    private static int currentProductId;   
+    private static int currentProductId;
     private int stock;
     private int storeId;                   // the current store id
     private String storeName;
@@ -43,6 +43,15 @@ public class BuildProductBean {
     private Part file;
     private ProductsJpaController productsJpaCtrl;
     private List<Products> productsList;
+    private String[] categories;
+
+    public String[] getCategories() {
+        return categories;
+    }
+
+    public void setCategories(String[] categories) {
+        this.categories = categories;
+    }
 
     public int getSelectedProductId() {
         return selectedProductId;
@@ -75,6 +84,14 @@ public class BuildProductBean {
         this.storeName = BuildStoreBean.currentStoreName;
         ProductQueary productQueary = new ProductQueary();
         productsList = productQueary.getProductsByStoreId(this.storeId);
+
+        categories = new String[5];
+        categories[0] = "asd";
+        categories[1] = "abvnbvvv";
+        categories[2] = "assadasd";
+        categories[3] = "rreeerasd";
+        categories[4] = "vccvcvcvasd";
+
     }
 
     public int getStock() {
@@ -217,11 +234,11 @@ public class BuildProductBean {
     public void deleteProduct() throws NonexistentEntityException {
         int _selectedProductId = this.selectedProductId;
         Products productToRemove = getProducteById(_selectedProductId);
-        
+
         String dirPath = "C:\\onlineShopping\\" + this.storeId;
         String fullImgPath = dirPath + "\\" + productToRemove.getPhoto();
         deleteImgFromDir(fullImgPath);
-        
+
         productsJpaCtrl.destroy(_selectedProductId);
         Products product = getProducteById(_selectedProductId);
         productsList.remove(product);
