@@ -421,7 +421,7 @@ table img{
 .inner-table-history tr:first-child{
     border-top:1px solid black;
 }
-.inner-table-history td{
+.inner-table-history td div{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

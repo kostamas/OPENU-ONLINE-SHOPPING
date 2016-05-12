@@ -427,6 +427,13 @@ table img{
     margin: 0;
 }
 
+.inner-table-history td div{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: context-menu;
+}
+
 .transaction-date{
     position: relative;
     left: 25px;

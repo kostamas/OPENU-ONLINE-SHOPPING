@@ -8,9 +8,9 @@
         <title>Facelet Title</title>
         <h:outputStylesheet  name="css/build-store.css"/>
         <script>
-          if('#{buildStoreBean.storeAdmin}'.length &lt;  4 ){
-               window.location.replace('http://localhost:8080/online_shopping/');   
-          }
+            if ('#{buildStoreBean.storeAdmin}'.length &lt; 4){
+                window.location.replace('http://localhost:8080/online_shopping/');
+            }
         </script>
     </h:head>
     <h:body>
@@ -27,14 +27,14 @@
             <div class="sorry-icon"></div>
             <div class="buy-subscription-title">Buy Subscription</div>
             <div class="buy-subscription-btn-wrapper">
-            <div class="credit-error-message-wrapper">
-                <h:form id="credit-error-message">
-                    <script> 
+                <div class="credit-error-message-wrapper">
+                    <h:form id="credit-error-message">
+                        <script>
                         updateUIByadminCredit('#{buildStoreBean.errorMessage}')
-                    </script>
-                    <div class="credit-error-message"></div>
-                </h:form>
-            </div>
+                        </script>
+                        <div class="credit-error-message"></div>
+                    </h:form>
+                </div>
                 <h:form>   
                     <div class="buy-manage-wrapper">
 
@@ -87,7 +87,7 @@
 
         <!--*******************************  admin history ********************************-->
 
- <div class="history-table-container">
+        <div class="history-table-container">
 
             <c:if test="#{empty buildStoreBean.adminHistoryList}">
                 <div class="history-table-wrapper">
@@ -109,8 +109,8 @@
                         <div class="transaction-date">
                             #{productList.transactionDate}  <span class="client-name">client: #{productList.userName}</span>
                         </div>
-                        
-                        
+
+
                         <div class="table-header">
                             <div class="product-name-t">Product name</div>
                             <div class="store-name-t">Store name</div>
@@ -120,11 +120,15 @@
                         </div>
                         <h:dataTable class="inner-table-history" value="#{productList.productSoldList}"  var="product">
 
-                            <h:column >                     
-                                #{product.productName}
+                            <h:column >     
+                                <div onmouseleave="hideStoreNameModal()" onmouseover="showModalOnHover(event, '#{product.productName}')">
+                                    #{product.productName}
+                                </div>
                             </h:column>
                             <h:column>
-                                #{product.storeName}
+                                <div onmouseleave="hideStoreNameModal()" onmouseover="showModalOnHover(event, '#{product.storeName}')">
+                                    #{product.storeName}
+                                </div>
                             </h:column>
                             <h:column>
                                 #{product.quantity}
@@ -218,7 +222,7 @@
                     </h:column>
 
                     <h:column>
-                        <div class="store-name-title" onmouseleave="hideStoreNameModal()" onmouseover="showModalOnHover(event,'#{store.storeName}')">#{store.storeName}</div>
+                        <div class="store-name-title" onmouseleave="hideStoreNameModal()" onmouseover="showModalOnHover(event, '#{store.storeName}')">#{store.storeName}</div>
                         <h:graphicImage value="/image/#{store.storeId}/#{store.storePhoto}" height="150px;" width="170px;"/>
                     </h:column>
                 </h:dataTable>

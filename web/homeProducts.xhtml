@@ -66,7 +66,7 @@
 
         <!--*******************************  store list ********************************-->
 
-        <div class="store-name-modal"></div>
+        <!--<div class="store-name-modal"></div>-->
         <div class="checkout-wrapper">
 
             <h:form>        
@@ -80,9 +80,7 @@
    
         <div class="store-list-wrapper"> 
             <div class="your-stores-title">
-                <div class="store-name"  
-                     onmouseleave="hideStoreNameModal()" 
-                     onmouseover="showModalOnHover(event,'#{buyProductCtrl.storeName}')">
+                <div class="store-name">
                     Store Name: #{buyProductCtrl.storeName}</div>
             </div>
 
@@ -104,6 +102,7 @@
 
                             <h:commandButton onclick="ifNotLoggedInSuggestRegister('#{homeCtrl.userName}')" class="products-page-btn-wrapper btn" action="#{buyProductCtrl.buyProduct}" value="Buy">
                                 <f:param name="selectedProductId" value="#{product.productId}"/>
+                                <f:ajax render=":product-count :product-list" />
                             </h:commandButton>
 
                         </h:form> 

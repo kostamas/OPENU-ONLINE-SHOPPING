@@ -17,6 +17,8 @@
         </h:form> 
         <div class="back-text">HOME</div>
         <div class="bg-cover-opacity"></div>
+        <div class="store-name-modal"></div>
+
 
         <div class="suggest-get-subscription">
             <div class="you-not-logged-in">We need your credit card</div>
@@ -26,10 +28,10 @@
 
                     <h:form id="credit-error-message">
                         <script>
-                            setTimeout(function(){
-                                updateUIByauserCredit('#{checkout.errorMessage}')    
+                            setTimeout(function () {
+                                updateUIByauserCredit('#{checkout.errorMessage}')
                             })
-                           
+
                         </script>
                         <div class="credit-error-message"></div>
                     </h:form>
@@ -61,7 +63,7 @@
                 </h:form>
             </c:if>
 
-            
+
             <div class="product-list-mask" onClick="returnProductsView('.build-store-wrapper')"> </div>
 
             <div class="table-container">
@@ -78,11 +80,15 @@
                     <h:form>
                         <h:dataTable value="#{checkout.cartList}" var="product">
 
-                            <h:column >                     
-                                #{product.productName}
+                            <h:column >       
+                                <div onmouseleave="hideStoreNameModal()" onmouseover="showModalOnHover(event, '#{product.productName}')">
+                                    #{product.productName}
+                                </div>
                             </h:column>
                             <h:column>
-                                #{product.storeName}
+                                <div onmouseleave="hideStoreNameModal()" onmouseover="showModalOnHover(event, '#{product.storeName}')">
+                                    #{product.storeName}
+                                </div>
                             </h:column>
                             <h:column>
                                 #{product.productPrice}
@@ -101,7 +107,7 @@
             </div>
         </div>
 
-          <script><!--init input to empty string-->
+        <script><!--init input to empty string-->
             var creditInputElement = document.querySelector('.subscription-input');
             creditInputElement.placeholder = '';
             creditInputElement.value = '';

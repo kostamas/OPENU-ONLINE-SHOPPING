@@ -142,7 +142,7 @@
                     </h:column>
 
                     <h:column>
-                        <div class="product-name-title" onmouseleave="hideStoreNameModal()" onmouseover="showModalOnHover(event,'#{product.productName}')">#{product.productName}</div>
+                        <div class="product-name-title" onmouseleave="hideStoreNameModal();" onmouseover="showModalOnHover(event,'#{product.productName}');">#{product.productName}</div>
                         <h:graphicImage value="/image/#{product.storeId}/#{product.photo}" height="150px;" width="170px;"/>
                     </h:column>
                 </h:dataTable>
@@ -150,6 +150,13 @@
         </div>
         <!--********************************* product list *********************************-->
 
+        <script><!--init input to empty string-->
+            var priceInputElement = document.querySelector('.price-input');
+            var stockInputElement = document.querySelector('.stock-input');
+
+            priceInputElement.placeholder = stockInputElement.placeholder ='';
+            priceInputElement.value = stockInputElement.value = '';
+        </script>
     </h:body>
 </html>
 

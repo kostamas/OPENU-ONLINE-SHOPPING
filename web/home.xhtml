@@ -87,11 +87,15 @@
                         </div>
                         <h:dataTable class="inner-table-history" value="#{productList.productSoldList}"  var="product">
 
-                            <h:column >                     
-                                #{product.productName}
+                            <h:column > 
+                                <div onmouseleave="hideStoreNameModal()" onmouseover="showModalOnHover(event,'#{product.productName}')">
+                                    #{product.productName}
+                                </div>
                             </h:column>
                             <h:column>
-                                #{product.storeName}
+                                <div onmouseleave="hideStoreNameModal()" onmouseover="showModalOnHover(event,'#{product.storeName}')">
+                                    #{product.storeName}
+                                 </div>
                             </h:column>
                             <h:column>
                                 #{product.quantity}

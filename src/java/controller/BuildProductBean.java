@@ -31,7 +31,7 @@ public class BuildProductBean {
 
     @ManagedProperty(value = "#{param.selectedProductId}")
     private int selectedProductId;
-    private static int currentProductId;    // static - patch...
+    private static int currentProductId;   
     private int stock;
     private int storeId;                   // the current store id
     private String storeName;

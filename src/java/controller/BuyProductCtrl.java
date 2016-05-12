@@ -30,7 +30,7 @@ public class BuyProductCtrl {
 
     @ManagedProperty(value = "#{param.selectedProductId}")
     private int selectedProductId;
-    private static int currentProductId;    // static - patch...
+    private static int currentProductId;    
     private List<Products> productsList;
     private int storeId;
     private String storeName;
@@ -121,7 +121,7 @@ public class BuyProductCtrl {
             return;
         }
 
-        if (cartList.size() > 0) {     // the user already buyed this product
+        if (cartList.size() > 0) {     // the user already bought this product
             cartList.get(0).setQuantity(cartList.get(0).getQuantity() + 1);    // quantitiy++
             try {
                 userCartCtrl.edit(cartList.get(0));
