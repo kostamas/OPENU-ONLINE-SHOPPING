@@ -67,7 +67,7 @@ body {
     font-family: Lato regular;
     font-size: 40px;
     color: black;
-    width: 300px;
+    min-width: 300px;
     display: inline-block;  
     height: 60px;
     margin-top: 80px;
@@ -83,6 +83,8 @@ body {
     top: 5px;
     left: 3px;
     font-size: 18px;
+    display: inline-block;
+    margin-right:7px;
 }
 
 .pay-btn{

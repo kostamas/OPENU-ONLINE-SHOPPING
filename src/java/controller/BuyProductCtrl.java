@@ -11,6 +11,7 @@ import Entities.UsersCart;
 import Entities.UsersCartJpaController;
 import Entities.UsersCartPK;
 import Entities.exceptions.NonexistentEntityException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,7 +31,12 @@ public class BuyProductCtrl {
 
     @ManagedProperty(value = "#{param.selectedProductId}")
     private int selectedProductId;
-    private static int currentProductId;    
+
+    @ManagedProperty(value = "#{param.selectedCategory}")
+    public String selectedCategory;
+
+    private static String currentSelectedCategory;   // to save current category user hase been selected (after "add to cart" the selectedCategory become null...)
+    private static int currentProductId;
     private List<Products> productsList;
     private int storeId;
     private String storeName;
@@ -41,6 +47,9 @@ public class BuyProductCtrl {
     ProductsJpaController productCtrl;
     UserCartQuary userCartDB;
     List<UsersCart> cartList;
+    private String[] categories;
+    private String category;
+    private final String ALL = "ALL";
 
     public BuyProductCtrl() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("online_shoppingPU");
@@ -50,17 +59,43 @@ public class BuyProductCtrl {
         this.storeName = BuildStoreBean.currentStoreName;
         ProductQueary productQueary = new ProductQueary();
         productsList = productQueary.getProductsWithQuantity(this.storeId);
+        buildCategories(productsList);
+
         userCartDB = new UserCartQuary();
 
         this.cost = 0;
 
         if (UserBean.userName != null && UserBean.userName.length() > 3) {
-            this.userName = UserBean.userName; 
+            this.userName = UserBean.userName;
             cartList = userCartDB.getUserCart(this.userName);
             for (UsersCart product : cartList) {
                 this.cost += product.getQuantity() * product.getProductPrice();
             }
         }
+    }
+
+    public String getSelectedCategory() {
+        return selectedCategory;
+    }
+
+    public void setSelectedCategory(String selectedCategory) {
+        this.selectedCategory = selectedCategory;
+    }
+
+    public String[] getCategories() {
+        return categories;
+    }
+
+    public void setCategories(String[] categories) {
+        this.categories = categories;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     /**
@@ -109,6 +144,51 @@ public class BuyProductCtrl {
     /**
      * ***************** setters & getters ********************
      */
+    private void buildCategories(List<Products> productsList) {
+        if (productsList != null && productsList.size() > 0) {
+            List<String> categoryList = new ArrayList();
+            categoryList.add(ALL);  // first category option will be all products/
+
+            for (Products product : productsList) {
+                if (addCategoryToCategoryList(categoryList, product)) {
+
+                    categoryList.add(product.getCategory());
+                }
+            }
+
+            this.categories = categoryList.toArray(new String[0]);
+        }
+    }
+
+    private boolean addCategoryToCategoryList(List<String> categoryList, Products product) {
+        return product.getCategory() != null
+                && product.getCategory().length() > 1
+                && !categoryList.contains(product.getCategory())
+                && product.getStock() > 0;
+    }
+
+    public void sortByCategory() {
+        ProductQueary productQueary = new ProductQueary();
+        List<Products> tempProductsList = productQueary.getProductsByStoreId(this.storeId);
+        if (this.selectedCategory.equals(ALL)) {
+            return;
+        }
+
+        this.currentSelectedCategory = this.selectedCategory;
+        List<Products> tempProdList = new ArrayList();
+        for (Products prod : tempProductsList) {
+            if (prod.getStock() > 0 && prod.getCategory() != null && prod.getCategory().equals(this.selectedCategory)) {
+                tempProdList.add(prod);
+            }
+        }
+        if (tempProdList.size() > 0) {
+            this.productsList = tempProdList;
+        } else {
+            this.currentSelectedCategory = ALL;
+        }
+
+    }
+
     public void addToCart() throws NonexistentEntityException, Exception {
         int _selectedProdId = this.selectedProductId;
         List<UsersCart> cartList = null;
@@ -147,6 +227,12 @@ public class BuyProductCtrl {
         }
         product.setStock(newStock);
         productCtrl.edit(product);
+        buildCategories(productsList);
+        this.selectedCategory = this.currentSelectedCategory;
+        if (this.selectedCategory != null) {
+            sortByCategory();
+        }
+
     }
 
     public String buyProduct() throws Exception {

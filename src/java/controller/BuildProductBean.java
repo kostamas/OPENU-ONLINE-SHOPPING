@@ -101,6 +101,8 @@ public class BuildProductBean {
         buildCategories(productsList);
 
     }
+    
+    
 
     public String getSelectedCategory() {
         return selectedCategory;
