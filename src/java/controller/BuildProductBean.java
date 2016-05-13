@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,6 +32,8 @@ public class BuildProductBean {
 
     @ManagedProperty(value = "#{param.selectedProductId}")
     private int selectedProductId;
+    @ManagedProperty(value = "#{param.selectedCategory}")
+    private String selectedCategory;
     private static int currentProductId;
     private int stock;
     private int storeId;                   // the current store id
@@ -44,6 +47,16 @@ public class BuildProductBean {
     private ProductsJpaController productsJpaCtrl;
     private List<Products> productsList;
     private String[] categories;
+    private String category;
+    private final String ALL = "ALL";
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
     public String[] getCategories() {
         return categories;
@@ -85,15 +98,18 @@ public class BuildProductBean {
         ProductQueary productQueary = new ProductQueary();
         productsList = productQueary.getProductsByStoreId(this.storeId);
 
-        categories = new String[5];
-        categories[0] = "asd";
-        categories[1] = "abvnbvvv";
-        categories[2] = "assadasd";
-        categories[3] = "rreeerasd";
-        categories[4] = "vccvcvcvasd";
+        buildCategories(productsList);
 
     }
 
+    public String getSelectedCategory() {
+        return selectedCategory;
+    }
+
+    public void setSelectedCategory(String selectedCategory) {
+        this.selectedCategory = selectedCategory;
+    }
+    
     public int getStock() {
         return stock;
     }
@@ -166,6 +182,37 @@ public class BuildProductBean {
         this.productName = ProductName;
     }
 
+    private void buildCategories(List<Products> productsList) {
+        if (productsList != null && productsList.size() > 0) {
+            List<String> categoryList = new ArrayList();
+            categoryList.add(ALL);  // first category option will be all products/
+
+            for (Products product : productsList) {
+                if (product.getCategory() != null  && product.getCategory().length() > 1 &&  !categoryList.contains(product.getCategory())) {
+                    categoryList.add(product.getCategory());
+                }
+            }
+
+            this.categories = categoryList.toArray(new String[0]);
+        }
+    }
+
+    public void sortByCategory() {
+        ProductQueary productQueary = new ProductQueary();
+        this.productsList = productQueary.getProductsByStoreId(this.storeId);
+        if (this.selectedCategory.equals(ALL)) {
+            return;
+        }
+
+        List<Products> tempProdList = new ArrayList();
+        for (Products prod : productsList) {
+            if (prod.getCategory() != null && prod.getCategory().equals( this.selectedCategory)) {
+                tempProdList.add(prod);
+            }
+        }
+        this.productsList = tempProdList;
+    }
+
     public String createNewProduct() {
         if (this.productName == null || this.description == null || this.stock < 1 || this.price < 1 || this.file == null) {
             return null;
@@ -178,8 +225,13 @@ public class BuildProductBean {
 
         Products newProduct = new Products(this.productId, this.productName, this.price, this.stock, this.productPhoto, BuildStoreBean.currentStoreId, this.description);
 
+        if (this.category.length() > 1) {
+            newProduct.setCategory(category);
+        }
+
         storeDB.save(newProduct);
         productsList.add(newProduct);
+        buildCategories(productsList);
 
         try (InputStream input = file.getInputStream()) {
             Files.copy(input, new File(dirPath, this.productPhoto).toPath());
@@ -192,6 +244,7 @@ public class BuildProductBean {
         this.stock = 0;
         this.price = 0;
         this.file = null;
+        this.category = null;
         return null;
     }
 
@@ -209,6 +262,10 @@ public class BuildProductBean {
         }
         if (this.price > 1) {
             productToUpdate.setPrice(this.price);
+        }
+        
+         if (this.category.length() > 1) {
+            productToUpdate.setCategory(this.category);
         }
 
         try {
@@ -229,6 +286,7 @@ public class BuildProductBean {
                 // Show faces message?
             }
         }
+        buildCategories(productsList);
     }
 
     public void deleteProduct() throws NonexistentEntityException {
@@ -242,6 +300,7 @@ public class BuildProductBean {
         productsJpaCtrl.destroy(_selectedProductId);
         Products product = getProducteById(_selectedProductId);
         productsList.remove(product);
+        buildCategories(productsList);
     }
 
     private void deleteImgFromDir(String fullPath) {

@@ -157,7 +157,7 @@ function hideStoreNameModal(){
     textElement.style.display = 'none';
 }
 
-function myFunction() {
+function openDropList() {
     document.getElementById("myDropdown").classList.toggle("show");
 }
 

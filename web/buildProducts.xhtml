@@ -3,7 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Facelet Title</title>
         <h:outputStylesheet  name="css/build-product.css"/>
@@ -67,6 +69,10 @@
                             <br/>
                             <h:inputText value="#{buildProductBean.productName}" />
                             <br/>
+                            <label for="username">Category <span style="font-size: 12px;">(optional)</span></label>
+                            <br/>
+                            <h:inputText value="#{buildProductBean.category}" />
+                            <br/>
                             <label for="password">description</label>
                             <br/>
                             <h:inputTextarea class="product-description" cols="35" rows="3"  value="#{buildProductBean.description}"/>
@@ -81,7 +87,6 @@
                             <br/>
                             <h:inputFile value="#{buildProductBean.file}"/>
                             <br/>                    
-                            <br/>
                             <h:commandButton class="create-btn" style="cursor:pointer;" action="#{buildProductBean.createNewProduct}" value="create"/>
                             <h:commandButton class="update-btn" style="cursor:pointer;" action="#{buildProductBean.updateProduct}" value="update"/>
                             <div class="cancle-btn" onClick="returnProductsView('.build-product-wrapper')">Cancle</div>
@@ -106,21 +111,24 @@
             </div>
             <div class="new-product-btn-wrapper" onClick="updateProduct('.build-product-wrapper', '.update-btn', '45px', '529px')">New Product</div>
             
-            <div class="dropdown">
-                <button onclick="myFunction()" class="dropbtn">Categories</button>
-                <div id="myDropdown" class="dropdown-content">
-                <h:dataTable value="#{buildProductBean.categories}" var="category">
-                    <h:column>
-                        <h:form> 
-                            <h:commandButton class="category-button" value="#{category}">
-                                 <f:param name="selectedProductId" value="#{category}"/>
-                            </h:commandButton>
-                        </h:form>
-                    </h:column>
-                </h:dataTable>
+            <c:if test="#{fn:length(buildProductBean.categories) > 1}">
+                <div class="dropdown">
+                    <button onclick="openDropList()" class="dropbtn">Categories</button>
+                    <div id="myDropdown" class="dropdown-content">
+                    <h:dataTable value="#{buildProductBean.categories}" var="category">
+                        <h:column>
+                            <h:form> 
+                                <h:commandButton class="category-button" value="#{category}" action="#{buildProductBean.sortByCategory}">
+                                     <f:param name="selectedCategory" value="#{category}"/>
+                                </h:commandButton>
+                            </h:form>
+                        </h:column>
+                    </h:dataTable>
 
+                    </div>
                 </div>
-          </div>
+            </c:if>
+
             
             <div class="product-list-mask" onClick="returnProductsView('.build-product-wrapper')"> </div>
 

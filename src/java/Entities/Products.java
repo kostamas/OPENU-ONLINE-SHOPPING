@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "PRODUCTS")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Products.findByProductIdWithQuantity", 
+    @NamedQuery(name = "Products.findByProductIdWithQuantity",
             query = "SELECT p FROM Products p WHERE p.storeId = :storeId and p.stock > 0"),
     @NamedQuery(name = "Products.findAll", query = "SELECT p FROM Products p"),
     @NamedQuery(name = "Products.findByProductId", query = "SELECT p FROM Products p WHERE p.productId = :productId"),
@@ -57,6 +57,8 @@ public class Products implements Serializable {
     private int storeId;
     @Column(name = "DESCRIPTION")
     private String description;
+    @Column(name = "CATEGORY")
+    private String category;
 
     public Products() {
     }
@@ -73,8 +75,8 @@ public class Products implements Serializable {
         this.photo = photo;
         this.storeId = storeId;
     }
-    
-      public Products(Integer productId, String productName, int price, int stock, String photo, int storeId, String description) {
+
+    public Products(Integer productId, String productName, int price, int stock, String photo, int storeId, String description) {
         this.productId = productId;
         this.productName = productName;
         this.price = price;
@@ -82,6 +84,14 @@ public class Products implements Serializable {
         this.photo = photo;
         this.storeId = storeId;
         this.description = description;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public Integer getProductId() {
@@ -164,5 +174,5 @@ public class Products implements Serializable {
     public String toString() {
         return "Entities.Products[ productId=" + productId + " ]";
     }
-    
+
 }
