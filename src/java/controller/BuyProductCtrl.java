@@ -157,6 +157,8 @@ public class BuyProductCtrl {
             }
 
             this.categories = categoryList.toArray(new String[0]);
+        } else {
+            this.categories = null;
         }
     }
 
@@ -186,7 +188,6 @@ public class BuyProductCtrl {
         } else {
             this.currentSelectedCategory = ALL;
         }
-
     }
 
     public void addToCart() throws NonexistentEntityException, Exception {

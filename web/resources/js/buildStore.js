@@ -110,14 +110,13 @@ function updateUIByadminCredit(errorMessage) {
             sorryIconElement.style.display = 'none';
             noThanksBtnElement.style.display = 'none';
 
-            errorMessageElement.innerHTML = 'Thank you and good look!';
+            errorMessageElement.innerHTML = 'Thank you and good luck!';
             errorMessageElement.style.color = 'green';
 
             errorMessageWrapperElement.style.opacity = '1';
             errorMessageWrapperElement.style.top = '110px';
             errorMessageWrapperElement.style.left = '97px';
             errorMessageWrapperElement.style.fontSize = '20px';
-
             creditInputWrraperElement.style.marginTop = '50px';
 
             validCreditTimeout = setTimeout(function () {

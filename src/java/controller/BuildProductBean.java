@@ -32,6 +32,7 @@ public class BuildProductBean {
 
     @ManagedProperty(value = "#{param.selectedProductId}")
     private int selectedProductId;
+    
     @ManagedProperty(value = "#{param.selectedCategory}")
     private String selectedCategory;
     private static int currentProductId;
@@ -99,7 +100,6 @@ public class BuildProductBean {
         productsList = productQueary.getProductsByStoreId(this.storeId);
 
         buildCategories(productsList);
-
     }
     
     
@@ -187,8 +187,8 @@ public class BuildProductBean {
     private void buildCategories(List<Products> productsList) {
         if (productsList != null && productsList.size() > 0) {
             List<String> categoryList = new ArrayList();
-            categoryList.add(ALL);  // first category option will be all products/
-
+            categoryList.add(ALL);  // first category option will be all products
+            
             for (Products product : productsList) {
                 if (product.getCategory() != null  && product.getCategory().length() > 1 &&  !categoryList.contains(product.getCategory())) {
                     categoryList.add(product.getCategory());
@@ -196,6 +196,8 @@ public class BuildProductBean {
             }
 
             this.categories = categoryList.toArray(new String[0]);
+        } else {
+            this.categories = null;
         }
     }
 
@@ -284,9 +286,7 @@ public class BuildProductBean {
 
             try (InputStream input = this.file.getInputStream()) {
                 Files.copy(input, new File(dirPath, "\\" + productToUpdate.getPhoto()).toPath());
-            } catch (IOException e) {
-                // Show faces message?
-            }
+            } catch (IOException e) {}
         }
         buildCategories(productsList);
     }

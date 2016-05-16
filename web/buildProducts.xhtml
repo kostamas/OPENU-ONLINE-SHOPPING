@@ -111,7 +111,7 @@
             </div>
             <div class="new-product-btn-wrapper" onClick="updateProduct('.build-product-wrapper', '.update-btn', '45px', '529px')">New Product</div>
             
-            <c:if test="#{fn:length(buildProductBean.categories) > 1}">
+            <c:if test="#{fn:length(buildProductBean.categories) > 2}">
                 <div class="dropdown">
                     <button onclick="openDropList()" class="dropbtn">Categories</button>
                     <div id="myDropdown" class="dropdown-content">

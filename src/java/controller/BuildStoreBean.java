@@ -30,6 +30,7 @@ import model.Auth;
 import model.StoreBuilder;
 import model.StoreQueary;
 import model.TransactionQueary;
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 
 @ManagedBean
 @RequestScoped
@@ -48,6 +49,7 @@ public class BuildStoreBean {
     private AdministratorsJpaController adminJpaCtrl;
     public int adminCreditCard;
     private Part file;
+    private final String STORE_PATH = "C:\\onlineShopping\\";
 
     public String errorMessage;
     public static int currentStoreId;
@@ -207,7 +209,7 @@ public class BuildStoreBean {
 
         this.storeId = storeDB.createStoreId();
 
-        String dirPath = "C:\\onlineShopping\\" + this.storeId;
+        String dirPath = STORE_PATH + this.storeId;
         new File(dirPath).mkdir();
         this.storePhoto = this.storeId + "store.jpg";
 
@@ -245,15 +247,15 @@ public class BuildStoreBean {
         }
 
         if (this.file != null) {
-            String dirPath = "C:\\onlineShopping\\" + storeToUpdate.getStoreId();
+            String dirPath = STORE_PATH + storeToUpdate.getStoreId();
             new File(dirPath).mkdir();
             File oldImage = new File(dirPath + "\\" + storeToUpdate.getStorePhoto());     // deleting old image
             oldImage.delete();
-
+            
             try (InputStream input = this.file.getInputStream()) {
                 Files.copy(input, new File(dirPath, storeToUpdate.getStorePhoto()).toPath());
             } catch (IOException e) {
-                // Show faces message?
+                Logger.getLogger(Stores.class.getName()).log(Level.SEVERE, null, e); 
             }
         }
     }
@@ -264,7 +266,12 @@ public class BuildStoreBean {
             deleteAllStoreProds(this.selectedStoreId);
             storesList.remove(storeToDelete);
             storeCtrl.destroy(this.selectedStoreId);
+            String dirPath = STORE_PATH + "\\" + this.selectedStoreId;
+            File dirToDelete = new File(dirPath);
+            FileUtils.deleteDirectory(dirToDelete);
         } catch (NonexistentEntityException ex) {
+            Logger.getLogger(BuildStoreBean.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
             Logger.getLogger(BuildStoreBean.class.getName()).log(Level.SEVERE, null, ex);
         }
 
